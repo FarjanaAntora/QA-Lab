@@ -1,0 +1,132 @@
+.page {
+  min-height: 100vh;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+.inner {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 96px 24px;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 48px;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.back:hover {
+  color: var(--color-text-primary);
+}
+
+.header {
+  margin-bottom: 56px;
+}
+
+.role {
+  margin: 0 0 12px;
+  color: var(--color-text-muted);
+}
+
+.title {
+  margin: 0 0 16px;
+  color: var(--color-text-primary);
+}
+
+.status {
+  margin: 0 0 24px;
+  font-size: 14px;
+  color: var(--color-accent);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.section {
+  margin-bottom: 48px;
+}
+
+.sectionHeading {
+  margin: 0 0 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+}
+
+.body {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+.body + .body {
+  margin-top: 16px;
+}
+
+.list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+.list li + li {
+  margin-top: 10px;
+}
+
+.codeBlock {
+  margin: 0;
+  padding: 24px;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: #0d0d0f;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  white-space: pre;
+}
+
+.inlineCode {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-accent);
+}
+
+.footerLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+}
+
+.githubLink {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.githubLink:hover {
+  color: var(--color-text-primary);
+}
+
+.comingSoon {
+  margin: 32px 0 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}

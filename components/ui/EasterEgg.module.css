@@ -1,0 +1,42 @@
+.root {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  z-index: 10;
+}
+
+.trigger {
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-muted);
+  opacity: 0.4;
+  cursor: pointer;
+}
+
+.card {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 12px);
+  min-width: 280px;
+  max-width: min(360px, calc(100vw - 48px));
+  padding: 20px 24px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-secondary);
+}
+
+.line {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  white-space: pre-wrap;
+}
+
+.line + .line {
+  margin-top: 4px;
+}

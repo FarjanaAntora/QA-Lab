@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# THE QA LAB
 
-## Getting Started
+Personal portfolio for **Aktia Farjana Antora** — a cinematic, editorial site that demonstrates QA engineering through interactive experiments, case studies, and a Playwright suite that tests the portfolio itself.
 
-First, run the development server:
+## Tech stack
+
+- Next.js (App Router) + TypeScript
+- Custom CSS design system (Inter, Playfair Display, JetBrains Mono)
+- Framer Motion
+- Lucide React
+- Playwright (Chromium) + GitHub Actions CI
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copy `.env.example` if you need local env files later. No variables are required for local development.
 
-## Learn More
+Production smoke tests (optional):
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+PROD_URL=https://your-deployment.vercel.app npx playwright test tests/production.spec.ts
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Run tests
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npx playwright install chromium
+npx playwright test
+```
 
-## Deploy on Vercel
+HTML report (after a run):
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npx playwright show-report
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## CI
+
+![QA Lab CI](https://img.shields.io/badge/CI-QA%20Lab-111113?style=flat-square)
+
+> Replace this placeholder badge with your live GitHub Actions status badge after enabling Actions on the repository.
+
+## Screenshot
+
+![THE QA LAB screenshot](./docs/screenshot-placeholder.png)
+
+> Add a homepage screenshot at `docs/screenshot-placeholder.png` (or update this path) before publishing.
+
+## Project structure
+
+```
+app/                 # App Router pages + globals
+components/          # Sections, layout, UI primitives
+content/             # Experience, toolbox, projects, CV data
+tests/               # Playwright specs
+.github/workflows/   # CI pipeline
+```
+
+## License
+
+Private portfolio project. All rights reserved.

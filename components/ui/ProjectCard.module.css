@@ -1,0 +1,88 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 32px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-secondary);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    border-color var(--transition-base),
+    transform var(--transition-base);
+}
+
+.card:hover {
+  border-color: var(--color-border-strong);
+  transform: translateY(-3px);
+}
+
+.cardStatic {
+  cursor: default;
+}
+
+.cardStatic:hover {
+  border-color: var(--color-border-strong);
+  transform: translateY(-3px);
+}
+
+.status {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+}
+
+.statusLive {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-success);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-success);
+}
+
+.statusSoon {
+  color: var(--color-text-muted);
+}
+
+.role {
+  margin: 0 0 8px;
+  padding-right: 100px;
+  color: var(--color-text-muted);
+}
+
+.title {
+  margin: 0 0 12px;
+  color: var(--color-text-primary);
+}
+
+.description {
+  margin: 0 0 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+
+.cta {
+  margin-top: auto;
+  color: var(--color-accent);
+}
+
+.ctaMuted {
+  margin-top: auto;
+  color: var(--color-text-muted);
+}
