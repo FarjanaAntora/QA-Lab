@@ -28,7 +28,7 @@ export const cvData: CVData = {
   education: {
     degree: "BSc in Computer Science & Engineering",
     university: "American International University Bangladesh",
-    year: "2014 – 2018",
+    year: "2014 - 2018",
     grade: "CGPA 3.65",
   },
 };

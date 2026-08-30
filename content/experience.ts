@@ -16,7 +16,7 @@ export const experience: ExperienceItem[] = [
     role: "Lead SQA Engineer",
     company: "Golden Harvest Infotech Ltd",
     companyShort: "GHIT",
-    period: "Oct 2024 – Present",
+    period: "Oct 2024 - Present",
     summary:
       "Leading quality across AI healthcare products, US hospital systems, and government platforms simultaneously.",
     responsibilities: [
@@ -47,7 +47,7 @@ export const experience: ExperienceItem[] = [
     role: "SQA Engineer",
     company: "Echologyx",
     companyShort: "Echologyx",
-    period: "Dec 2022 – Oct 2024",
+    period: "Dec 2022 - Oct 2024",
     summary:
       "Dedicated QA engineer for enterprise ERP systems serving UK and EU international clients.",
     responsibilities: [
@@ -64,7 +64,7 @@ export const experience: ExperienceItem[] = [
     role: "Web Developer / QA",
     company: "Digital Agency Nordic",
     companyShort: "Nordic",
-    period: "Nov 2021 – Dec 2022",
+    period: "Nov 2021 - Dec 2022",
     summary: "QA testing and WordPress development for international agency clients.",
     responsibilities: [
       "QA testing across web applications including cross-browser and UI validation",
@@ -78,7 +78,7 @@ export const experience: ExperienceItem[] = [
     role: "Business Analyst & QA Manager",
     company: "Quantanite",
     companyShort: "Quantanite",
-    period: "Jan 2020 – Oct 2021",
+    period: "Jan 2020 - Oct 2021",
     summary:
       "Team management, requirements analysis, and QA oversight for international outsourcing clients.",
     responsibilities: [
@@ -93,7 +93,7 @@ export const experience: ExperienceItem[] = [
     role: "Business Transformation Analyst",
     company: "IPDC Finance",
     companyShort: "IPDC",
-    period: "Jan 2018 – May 2019",
+    period: "Jan 2018 - May 2019",
     summary:
       "In-house software development and UAT. Built a Collateral Data Management System end-to-end in C#.",
     responsibilities: [

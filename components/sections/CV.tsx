@@ -25,9 +25,9 @@ export default function CV() {
           <p className={`text-h3 ${styles.title}`}>{cvData.title}</p>
           <p className={styles.contactRow}>
             <a href={`mailto:${cvData.email}`}>{cvData.email}</a>
-            <span aria-hidden="true"> · </span>
+            <span aria-hidden="true"> | </span>
             <a href={`tel:${cvData.phone.replace(/\s/g, "")}`}>{cvData.phone}</a>
-            <span aria-hidden="true"> · </span>
+            <span aria-hidden="true"> | </span>
             <span>{cvData.location}</span>
           </p>
         </header>
@@ -39,7 +39,7 @@ export default function CV() {
               <div key={role.id}>
                 <h3 className={styles.roleTitle}>{role.role}</h3>
                 <p className={styles.roleMeta}>
-                  {role.company} · {role.period}
+                  {role.company} | {role.period}
                 </p>
                 <ul className={styles.bullets}>
                   {role.responsibilities.map((item) => (
@@ -58,7 +58,7 @@ export default function CV() {
           <h2 className={`text-label ${styles.blockLabel}`}>EDUCATION</h2>
           <p className={styles.eduDegree}>{cvData.education.degree}</p>
           <p className={styles.eduMeta}>
-            {cvData.education.university} · {cvData.education.year} ·{" "}
+            {cvData.education.university} | {cvData.education.year} |{" "}
             {cvData.education.grade}
           </p>
         </div>

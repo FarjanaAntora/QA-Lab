@@ -31,7 +31,7 @@ function TimelineItem({ item }: { item: ExperienceItem }) {
         </span>
         <span className={styles.summary}>{item.summary}</span>
         <span className={`text-label ${styles.details}`}>
-          {open ? "− DETAILS" : "+ DETAILS"}
+          {open ? "- DETAILS" : "+ DETAILS"}
         </span>
       </button>
 

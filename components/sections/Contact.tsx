@@ -55,7 +55,7 @@ export default function Contact() {
           <hr className={styles.rule} />
 
           <p className={`text-label ${styles.footer}`}>
-            © 2026 Aktia Farjana Antora · THE QA LAB · Built and tested with
+            © 2026 Aktia Farjana Antora | THE QA LAB | Built and tested with
             Playwright
           </p>
         </div>

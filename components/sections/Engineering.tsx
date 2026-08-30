@@ -12,12 +12,12 @@ const cards = [
   {
     label: "LIGHTHOUSE SCORE",
     value: "95+",
-    note: "performance · accessibility · SEO",
+    note: "performance | accessibility | SEO",
   },
   {
     label: "FRAMEWORKS",
     value: "Next.js 14",
-    note: "App Router · TypeScript · Tailwind",
+    note: "App Router | TypeScript | Tailwind",
   },
   {
     label: "DEPLOYMENT",
