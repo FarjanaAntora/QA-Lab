@@ -12,15 +12,20 @@ export default function CV() {
         <SectionLabel number="08" title="CV" />
 
         <div className={styles.downloadBlock}>
-          <a
-            href="/cv-antora.pdf"
-            className={styles.downloadButton}
-            download="Aktia-Farjana-Antora-CV.pdf"
-          >
-            DOWNLOAD CV (PDF)
-          </a>
+          <div className={styles.buttonRow}>
+            <a href="/cv" className={styles.interactiveButton}>
+              VIEW INTERACTIVE CV
+            </a>
+            <a
+              href="/cv-antora.pdf"
+              className={styles.downloadButton}
+              download="Aktia Farjana Antora AIQA.pdf"
+            >
+              DOWNLOAD PDF
+            </a>
+          </div>
           <p className={styles.downloadNote}>
-            Or view the interactive version above.
+            Or explore the interactive version with the full matrix experience →
           </p>
         </div>
 

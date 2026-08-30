@@ -21,7 +21,9 @@ test.describe("navigation", () => {
     const nav = page.getByRole("navigation", { name: "Primary" });
 
     for (const link of navLinks) {
-      await expect(nav.getByRole("link", { name: link.label })).toBeVisible();
+      const item = nav.getByRole("link", { name: link.label });
+      await expect(item).toBeVisible();
+      await expect(item).toHaveAttribute("href", `/${link.section}`);
     }
   });
 

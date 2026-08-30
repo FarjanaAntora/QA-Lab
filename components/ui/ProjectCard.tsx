@@ -45,7 +45,9 @@ export default function ProjectCard({
       </div>
 
       {isLive ? (
-        <span className={`text-label ${styles.cta}`}>VIEW CASE STUDY →</span>
+        <span className={`text-label ${styles.ctaHover}`}>
+          VIEW CASE STUDY →
+        </span>
       ) : (
         <span className={`text-label ${styles.ctaMuted}`}>
           CASE STUDY COMING SOON

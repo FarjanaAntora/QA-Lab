@@ -17,7 +17,15 @@ export default function Projects() {
 
         <div className={styles.grid}>
           {projects.map((project) => (
-            <ProjectCard key={project.slug} {...project} />
+            <ProjectCard
+              key={project.slug}
+              title={project.title}
+              description={project.summary}
+              role={project.role}
+              technologies={project.technologies}
+              slug={project.slug}
+              status={project.status}
+            />
           ))}
         </div>
       </ScrollReveal>

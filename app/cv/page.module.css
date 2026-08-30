@@ -1,0 +1,450 @@
+.page {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #0a0a0b;
+  color: var(--color-text-primary);
+}
+
+.rainLayer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.rainLayer canvas {
+  transition: opacity 400ms ease;
+}
+
+.entryOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.entryBox {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: min(560px, 100%);
+  padding: 40px 36px 36px;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  background: rgba(10, 10, 11, 0.88);
+  pointer-events: auto;
+}
+
+.entryBoxRain {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.entryBoxContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.entrySmall {
+  margin: 0;
+  font-family: var(--font-mono);
+  color: var(--color-accent);
+  text-shadow: 0 1px 10px rgba(10, 10, 11, 0.95);
+}
+
+.entryName {
+  margin: 16px 0;
+  font-family: var(--font-mono);
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+  text-shadow: 0 1px 12px rgba(10, 10, 11, 0.95);
+}
+
+.accessPlaceholder {
+  height: 48px;
+  margin-top: 40px;
+}
+
+.accessButton {
+  margin-top: 40px;
+  padding: 12px 32px;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  background: rgba(10, 10, 11, 0.45);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--color-accent);
+  cursor: pointer;
+  pointer-events: auto;
+  min-width: 180px;
+  text-align: left;
+  text-shadow: 0 1px 8px rgba(10, 10, 11, 0.95);
+  transition: background var(--transition-base);
+}
+
+.accessButton:hover {
+  background: rgba(232, 224, 208, 0.05);
+}
+
+.cursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.cvShell {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 48px 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 500ms ease;
+}
+
+.cvShellVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cvPanel {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: 860px;
+  padding: 64px 32px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: #111113;
+}
+
+.topBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.back {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.back:hover {
+  color: var(--color-text-primary);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.downloadButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  background: var(--color-accent);
+  color: var(--color-bg-primary);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+}
+
+.downloadButton:hover {
+  opacity: 0.9;
+}
+
+.printButton {
+  padding: 10px 16px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.printButton:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.header {
+  margin-bottom: 36px;
+}
+
+.name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+}
+
+.title {
+  margin: 4px 0 12px;
+  color: var(--color-accent);
+}
+
+.contact {
+  margin: 0;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.contact a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.contact a:hover {
+  color: var(--color-accent);
+}
+
+.block {
+  margin-bottom: 36px;
+}
+
+.blockHeading {
+  margin: 0 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.summary {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+.roleHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-bottom: 10px;
+}
+
+.roleLeft {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+  min-width: 0;
+}
+
+.roleTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.roleCompany {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.rolePeriod {
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.bullets {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+.bullets li + li {
+  margin-top: 4px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.rule {
+  margin: 24px 0;
+  border: none;
+  border-top: 1px solid var(--color-border);
+}
+
+.eduDegree {
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.eduMeta {
+  margin: 0;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skillRow {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.skillCategory {
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.skillItems {
+  color: var(--color-text-secondary);
+}
+
+.hint {
+  margin-top: 32px;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 640px) {
+  .cvPanel {
+    padding: 32px 20px;
+  }
+
+  .entryName {
+    font-size: 22px;
+  }
+
+  .actions {
+    width: 100%;
+  }
+
+  .downloadButton,
+  .printButton {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+.printHide {
+  /* targeted by print media query */
+}
+
+@media print {
+  .page {
+    background: #fff !important;
+    color: #000 !important;
+    overflow: visible;
+  }
+
+  .rainLayer,
+  .entryOverlay,
+  .printHide {
+    display: none !important;
+  }
+
+  .cvShell,
+  .cvShellVisible {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    padding: 0 !important;
+    min-height: auto;
+  }
+
+  .cvPanel {
+    max-width: 100% !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+    box-shadow: none !important;
+  }
+
+  .name,
+  .roleTitle,
+  .eduDegree,
+  .skillCategory {
+    color: #000 !important;
+  }
+
+  .title,
+  .contact,
+  .summary,
+  .roleCompany,
+  .rolePeriod,
+  .bullets,
+  .eduMeta,
+  .skillItems,
+  .blockHeading {
+    color: #333 !important;
+  }
+
+  .blockHeading,
+  .rule {
+    border-color: #ccc !important;
+  }
+
+  .name {
+    font-size: 22pt !important;
+  }
+
+  .summary,
+  .bullets {
+    font-size: 10pt !important;
+  }
+}

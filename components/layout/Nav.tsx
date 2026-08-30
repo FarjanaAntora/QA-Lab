@@ -2,22 +2,27 @@
 
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 import styles from "./Nav.module.css";
 
 const links = [
-  { label: "ME", href: "#me" },
-  { label: "EXPERIENCE", href: "#experience" },
-  { label: "PROJECTS", href: "#projects" },
-  { label: "THE LAB", href: "#the-lab" },
-  { label: "CV", href: "#cv" },
-  { label: "CONTACT", href: "#contact" },
+  { label: "ME", href: "/#me" },
+  { label: "EXPERIENCE", href: "/#experience" },
+  { label: "PROJECTS", href: "/#projects" },
+  { label: "THE LAB", href: "/#the-lab" },
+  { label: "CV", href: "/#cv" },
+  { label: "CONTACT", href: "/#contact" },
 ] as const;
 
 export default function Nav() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const hideNav = pathname === "/cv";
 
   useEffect(() => {
+    if (hideNav) return;
+
     const onScroll = () => {
       setScrolled(window.scrollY > 50);
     };
@@ -25,7 +30,7 @@ export default function Nav() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [hideNav]);
 
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "smooth";
@@ -41,6 +46,8 @@ export default function Nav() {
     };
   }, [menuOpen]);
 
+  if (hideNav) return null;
+
   const handleLinkClick = () => {
     setMenuOpen(false);
   };
@@ -50,7 +57,7 @@ export default function Nav() {
       <header
         className={`${styles.nav} ${scrolled ? styles.navScrolled : ""}`}
       >
-        <a href="#" className={styles.brand}>
+        <a href="/" className={styles.brand}>
           THE QA LAB
         </a>
 

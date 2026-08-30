@@ -97,12 +97,33 @@ test.describe("interactions", () => {
     ).toBeVisible();
   });
 
-  test("cv download button points to /cv-antora.pdf", async ({ page }) => {
+  test("project cards link to case study pages", async ({ page }) => {
+    const projects = page.locator("#projects");
+    await projects.scrollIntoViewIfNeeded();
+
+    const cards = projects.getByRole("link");
+    const count = await cards.count();
+    expect(count).toBeGreaterThan(0);
+
+    for (let i = 0; i < count; i += 1) {
+      await expect(cards.nth(i)).toHaveAttribute("href", /\/projects\//);
+    }
+  });
+
+  test("cv section links to interactive cv and pdf", async ({ page }) => {
     const cv = page.locator("#cv");
     await cv.scrollIntoViewIfNeeded();
 
-    const download = cv.getByRole("link", { name: "DOWNLOAD CV (PDF)" });
+    const interactive = cv.getByRole("link", { name: "VIEW INTERACTIVE CV" });
+    await expect(interactive).toBeVisible();
+    await expect(interactive).toHaveAttribute("href", "/cv");
+
+    const download = cv.getByRole("link", { name: "DOWNLOAD PDF" });
     await expect(download).toBeVisible();
     await expect(download).toHaveAttribute("href", "/cv-antora.pdf");
+    await expect(download).toHaveAttribute(
+      "download",
+      "Aktia Farjana Antora AIQA.pdf",
+    );
   });
 });
