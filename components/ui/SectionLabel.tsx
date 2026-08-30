@@ -9,7 +9,7 @@ export default function SectionLabel({ number, title }: SectionLabelProps) {
   return (
     <div className={styles.label}>
       <span className={`text-label ${styles.text}`}>
-        — {number} / {title}
+        {number} / {title}
       </span>
     </div>
   );

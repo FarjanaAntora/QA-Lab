@@ -14,7 +14,7 @@ export default function Toolbox() {
           The tools are not the skill.
         </h2>
         <p className={`text-body ${styles.subcopy}`}>
-          These are the instruments. The skill is knowing when — and when not —
+          These are the instruments. The skill is knowing when and when not
           to use them.
         </p>
 

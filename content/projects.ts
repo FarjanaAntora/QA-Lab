@@ -25,9 +25,9 @@ export const projects: Project[] = [
     status: "live" as const,
   },
   {
-    title: "HealthScan — Phase 1 Test Plan",
+    title: "HealthScan Phase 1 Test Plan",
     description:
-      "Comprehensive test strategy for a healthcare AI document intelligence platform — 88 user stories, architecture-risk traceability, and full compliance test coverage.",
+      "Comprehensive test strategy for a healthcare AI document intelligence platform 88 user stories, architecture-risk traceability, and full compliance test coverage.",
     role: "Lead QA Engineer",
     technologies: [
       "Test Strategy",
@@ -40,7 +40,7 @@ export const projects: Project[] = [
     status: "live" as const,
   },
   {
-    title: "Memorial Houston Medical — EHR QA",
+    title: "Memorial Houston Medical EHR QA",
     description:
       "Sole QA engineer for a US hospital system covering EHR, Patient Information System, and Appointment Scheduler. Built the first Playwright automation baseline.",
     role: "Sole QA Engineer",

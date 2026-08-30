@@ -1,6 +1,6 @@
 # THE QA LAB
 
-Personal portfolio for **Aktia Farjana Antora** — a cinematic, editorial site that demonstrates QA engineering through interactive experiments, case studies, and a Playwright suite that tests the portfolio itself.
+Personal portfolio for **Aktia Farjana Antora** a cinematic, editorial site that demonstrates QA engineering through interactive experiments, case studies, and a Playwright suite that tests the portfolio itself.
 
 ## Tech stack
 

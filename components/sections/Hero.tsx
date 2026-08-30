@@ -31,7 +31,7 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
         >
-          — AKTIA FARJANA ANTORA
+          AKTIA FARJANA ANTORA
         </motion.p>
 
         <h1 className={`text-display ${styles.headline}`}>

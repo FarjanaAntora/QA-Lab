@@ -102,7 +102,7 @@ const searchIdeas: Record<SearchMode, string[]> = {
     "Search with script tags.",
   ],
   PERFORMANCE: [
-    "Rapid typing — does each keystroke fire an API call?",
+    "Rapid typing does each keystroke fire an API call?",
     "Type slowly vs paste 100 chars.",
     "Measure response time.",
   ],

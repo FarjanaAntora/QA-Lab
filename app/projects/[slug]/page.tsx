@@ -66,7 +66,7 @@ GitHub Actions CI
       <CaseStudyHeader
         title="Playwright AI QA Framework"
         role="Framework Architect & Author"
-        status="Live — Open Source"
+        status="Live Open Source"
         tags={[
           "playwright",
           "python",
@@ -81,13 +81,13 @@ GitHub Actions CI
         <h2 className={`text-h3 ${styles.sectionHeading}`}>The Problem</h2>
         <p className={styles.body}>
           Most QA automation frameworks are designed for deterministic software.
-          But what happens when the system under test is an LLM — where the same
+          But what happens when the system under test is an LLM where the same
           input can produce different outputs, where &apos;correct&apos;
           isn&apos;t binary, and where traditional assertion logic breaks down?
         </p>
         <p className={styles.body}>
           This framework was built to solve that. It combines traditional
-          Playwright E2E automation with an AI evaluation layer — so you can
+          Playwright E2E automation with an AI evaluation layer so you can
           test both the interface and the intelligence behind it.
         </p>
       </section>
@@ -99,15 +99,15 @@ GitHub Actions CI
             Playwright E2E test suites for web application functional coverage
           </li>
           <li>
-            CI/CD integration via GitHub Actions — regression gates on every PR,
+            CI/CD integration via GitHub Actions regression gates on every PR,
             scheduled nightly health checks
           </li>
           <li>
-            DeepEval-powered LLM output evaluation — hallucination detection,
+            DeepEval-powered LLM output evaluation hallucination detection,
             faithfulness scoring, answer relevance
           </li>
           <li>
-            LangSmith for LLM call chain tracing — monitors prompt performance
+            LangSmith for LLM call chain tracing monitors prompt performance
             and output drift in production
           </li>
           <li>k6 performance scripts for API load testing</li>
@@ -184,7 +184,7 @@ function HealthScanPlaceholder() {
   return (
     <>
       <CaseStudyHeader
-        title="HealthScan — Phase 1 Test Plan"
+        title="HealthScan Phase 1 Test Plan"
         role="Lead QA Engineer"
         status="Live"
         tags={[

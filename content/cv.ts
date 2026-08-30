@@ -27,7 +27,7 @@ export const cvData: CVData = {
     "Lead SQA Engineer with 8 years of experience across QA automation, AI system testing, healthcare informatics, and government platforms. Specialising in Playwright CI/CD automation, LLM hallucination testing, and full-spectrum quality engineering.",
   education: {
     degree: "BSc in Computer Science & Engineering",
-    university: "American International University — Bangladesh",
+    university: "American International University Bangladesh",
     year: "2014 – 2018",
     grade: "CGPA 3.65",
   },

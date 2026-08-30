@@ -39,9 +39,9 @@ const modeContent: Record<
     heading: "What happens at the edges?",
     considerations: [
       "Email field: what is the maximum allowed length? What happens at 255 characters?",
-      "Password: minimum 8 characters — what about exactly 7? Exactly 8?",
+      "Password: minimum 8 characters what about exactly 7? Exactly 8?",
       "What about a password that is 500 characters long?",
-      "Empty email + valid password — which error fires first?",
+      "Empty email + valid password which error fires first?",
       "Unicode characters in the email field",
       "Whitespace only in both fields",
     ],
@@ -51,10 +51,10 @@ const modeContent: Record<
     considerations: [
       "SQL injection in the email field: ' OR 1=1 --",
       "HTML in the password: <script>alert('xss')</script>",
-      "What if the auth server is down — does the UI fail gracefully?",
+      "What if the auth server is down does the UI fail gracefully?",
       "Copy-pasting a password with leading/trailing spaces",
-      "Submitting the form twice rapidly — does it send two login requests?",
-      "Back button after login — can you return to the login page?",
+      "Submitting the form twice rapidly does it send two login requests?",
+      "Back button after login can you return to the login page?",
     ],
   },
   SECURITY: {
@@ -76,7 +76,7 @@ const modeContent: Record<
       "Does the system degrade gracefully or fail completely?",
       "Does a slow auth server cause the UI to freeze or show a timeout state?",
       "Are login API calls cached anywhere they shouldn't be?",
-      "What is the timeout threshold — and what happens when it's hit?",
+      "What is the timeout threshold and what happens when it's hit?",
     ],
   },
   ACCESSIBILITY: {

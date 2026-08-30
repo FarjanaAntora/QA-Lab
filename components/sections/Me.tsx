@@ -39,28 +39,28 @@ export default function Me() {
             </h2>
             <div className={styles.body}>
               <p>
-                I&apos;m a Lead SQA Engineer with 8 years of experience — from
+                I&apos;m a Lead SQA Engineer with 8 years of experience from
                 manual testing fundamentals through to Playwright automation,
                 CI/CD pipelines, AI system validation, and healthcare
                 technology.
               </p>
               <p>
                 The foundation is manual. I started testing enterprise ERP
-                systems from scratch — writing test cases, managing defect
+                systems from scratch writing test cases, managing defect
                 lifecycles, learning to find the bugs that automated tools miss
                 because nobody has told them what to look for yet.
               </p>
               <p>
                 From that base, the automation and AI work followed naturally.
                 My day job now involves testing AI agents for healthcare
-                platforms — hallucination detection, LLM output validation,
-                prompt-response consistency — using DeepEval and LangSmith.
+                platforms hallucination detection, LLM output validation,
+                prompt-response consistency using DeepEval and LangSmith.
                 Before that became a job title anyone recognised, I was already
                 doing it.
               </p>
               <p>
                 I&apos;m moving toward AI evaluation engineering more
-                deliberately — deep learning foundations, agentic AI
+                deliberately deep learning foundations, agentic AI
                 architectures, and the kind of work that organisations like
                 Anthropic and METR are doing around model evaluation and AI
                 safety.
