@@ -66,7 +66,7 @@
 
 .tag {
   padding: 4px 10px;
-  border: 1px solid var(--color-border-strong);
+  border: 1px solid #e8e0d0a8;
   border-radius: var(--radius-sm);
   font-size: 12px;
   color: var(--color-text-muted);
