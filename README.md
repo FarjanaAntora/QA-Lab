@@ -228,13 +228,13 @@ If you're interested in QA, automation, product quality, or just breaking things
 https://qa-lab-eight.vercel.app/
 
 **LinkedIn:**
-<YOUR_LINKEDIN_URL>
+https://www.linkedin.com/in/aktia-farjana-antora/
 
 **GitHub:**
-<YOUR_GITHUB_URL>
+https://github.com/FarjanaAntora/QA-Lab
 
 **Email:**
-<YOUR_EMAIL>
+farjana1319ontu@gmail.com
 
 ---
 
