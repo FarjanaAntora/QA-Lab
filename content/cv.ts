@@ -6,6 +6,7 @@ export type CVData = {
   location: string;
   linkedin: string;
   github: string;
+  pdfDownloadName: string;
   summary: string;
   education: {
     degree: string;
@@ -23,6 +24,7 @@ export const cvData: CVData = {
   location: "Dhaka, Bangladesh",
   linkedin: "linkedin.com/in/aktia-farjana-antora",
   github: "github.com/aktia-antora",
+  pdfDownloadName: "Aktia Farjana Antora.pdf",
   summary:
     "Lead SQA Engineer with 8 years of experience across QA automation, AI system testing, healthcare informatics, and government platforms. Specialising in Playwright CI/CD automation, LLM hallucination testing, and full-spectrum quality engineering.",
   education: {

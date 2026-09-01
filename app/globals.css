@@ -1,20 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap");
 
 :root {
-  /* Colors */
-  --color-bg-primary: #0a0a0b;
-  --color-bg-secondary: #111113;
-  --color-bg-tertiary: #1a1a1d;
-  --color-border: #222226;
-  --color-border-strong: #333338;
-  --color-text-primary: #f2f2f0;
-  --color-text-secondary: #8a8a8e;
-  --color-text-muted: #4a4a50;
-  --color-accent: #e8e0d0;
-  --color-accent-dim: #6b6358;
-  --color-success: #3d7a5a;
-  --color-danger: #8b3a3a;
-  --color-warning: #7a6b3a;
+  /* Forest / teal editorial palette */
+  --color-bg-primary: #020b08;
+  --color-bg-secondary: #051a18;
+  --color-bg-tertiary: #0d2e27;
+  --color-border: #173d35;
+  --color-border-strong: #234a42;
+  --color-text-primary: #d0e5e2;
+  --color-text-secondary: #b7c9c5;
+  --color-text-muted: #7f9992;
+  --color-accent: #45776b;
+  --color-accent-dim: #2f5a50;
+  --color-accent-soft: color-mix(in srgb, var(--color-accent) 55%, transparent);
+  --color-emphasis: #d0e5e2;
+  --color-success: #45776b;
+  --color-success-glow: color-mix(in srgb, var(--color-accent) 35%, transparent);
+  --color-danger: #6b3a3a;
+  --color-warning: #6b5a3a;
+  --color-shadow: color-mix(in srgb, #020b08 65%, transparent);
 
   /* Typography */
   --font-sans: "Inter", system-ui, sans-serif;
@@ -60,7 +64,12 @@ body {
 }
 
 body {
-  background: var(--color-bg-primary);
+  background-color: var(--color-bg-primary);
+  background-image: radial-gradient(
+    1100px 640px at 50% -12%,
+    color-mix(in srgb, var(--color-bg-tertiary) 55%, transparent),
+    transparent 58%
+  );
   color: var(--color-text-primary);
   font-family: var(--font-sans);
   font-size: 16px;

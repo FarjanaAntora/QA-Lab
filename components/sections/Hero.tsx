@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import EasterEgg from "@/components/ui/EasterEgg";
+import CV from "@/components/sections/CV";
 import styles from "./Hero.module.css";
 
 const fadeUp = {
@@ -18,7 +19,7 @@ const fadeUp = {
 };
 
 const headlineLines = ["I BREAK", "SOFTWARE", "FOR A LIVING."];
-const tags = ["playwright", "api", "ci/cd", "ai testing"];
+const tags = ["playwright", "api", "ci/cd", "AI/ML Quality Engineering"];
 
 export default function Hero() {
   return (
@@ -73,6 +74,15 @@ export default function Hero() {
               </span>
             ))}
           </div>
+        </motion.div>
+
+        <motion.div
+          custom={6}
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+        >
+          <CV />
         </motion.div>
       </div>
 

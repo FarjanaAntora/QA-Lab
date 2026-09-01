@@ -52,14 +52,26 @@ export default function MatrixRain({
       );
     };
 
+    const token = (name: string, fallback: string) => {
+      const value = getComputedStyle(document.documentElement)
+        .getPropertyValue(name)
+        .trim();
+      return value || fallback;
+    };
+
+    const fadeFill = token("--color-bg-primary", "#020b08");
+    const glyphFill = token("--color-accent", "#45776b");
+
     const draw = () => {
       const width = canvas.clientWidth;
       const height = canvas.clientHeight;
 
-      context.fillStyle = "rgba(10, 10, 11, 0.05)";
+      context.fillStyle = fadeFill;
+      context.globalAlpha = 0.05;
       context.fillRect(0, 0, width, height);
+      context.globalAlpha = 1;
 
-      context.fillStyle = "#E8E0D0";
+      context.fillStyle = glyphFill;
       context.font = `${fontSize}px monospace`;
 
       for (let i = 0; i < columnCount; i += 1) {

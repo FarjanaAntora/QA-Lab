@@ -25,7 +25,7 @@ export const toolbox: ToolboxCategory[] = [
     items: ["OWASP ZAP", "Burp Suite"],
   },
   {
-    category: "AI Testing",
+    category: "AI/ML Quality Engineering",
     items: [
       "DeepEval",
       "LangSmith",

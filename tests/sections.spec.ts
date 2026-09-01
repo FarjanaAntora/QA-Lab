@@ -39,6 +39,9 @@ test.describe("sections", () => {
     const section = page.locator("#projects");
     await section.scrollIntoViewIfNeeded();
     await expect(section).toBeVisible();
+    await expect(section).toContainText("Hppy AI");
+    await expect(section).toContainText("Memorial Houston Medical");
+    await expect(section).toContainText("2,000+");
   });
 
   test("how-i-think section is visible", async ({ page }) => {
@@ -59,11 +62,12 @@ test.describe("sections", () => {
     await expect(section).toBeVisible();
   });
 
-  test("cv section is visible and contains Aktia", async ({ page }) => {
+  test("cv section is visible with download actions", async ({ page }) => {
     const section = page.locator("#cv");
     await section.scrollIntoViewIfNeeded();
     await expect(section).toBeVisible();
-    await expect(section).toContainText("Aktia");
+    await expect(section).toContainText("VIEW INTERACTIVE CV");
+    await expect(section).toContainText("DOWNLOAD PDF");
   });
 
   test("contact section is visible with closing copy", async ({ page }) => {

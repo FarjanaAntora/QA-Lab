@@ -10,14 +10,19 @@
   background: var(--color-bg-secondary);
   text-decoration: none;
   color: inherit;
+  box-shadow: 0 8px 28px var(--color-shadow);
   transition:
     border-color var(--transition-base),
-    transform var(--transition-base);
+    background var(--transition-base),
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
 }
 
 .card:hover {
+  background: var(--color-bg-tertiary);
   border-color: var(--color-border-strong);
-  transform: translateY(-3px);
+  box-shadow: 0 14px 36px var(--color-shadow);
+  transform: translateY(-2px);
 }
 
 .card:not(.cardStatic) {
@@ -29,8 +34,9 @@
 }
 
 .cardStatic:hover {
+  background: var(--color-bg-tertiary);
   border-color: var(--color-border-strong);
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
 .status {

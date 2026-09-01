@@ -23,7 +23,7 @@
 .brand {
   font-family: var(--font-mono);
   font-size: 13px;
-  color: var(--color-accent);
+  color: var(--color-text-primary);
   text-decoration: none;
 }
 
@@ -44,7 +44,7 @@
 }
 
 .link:hover {
-  color: var(--color-text-primary);
+  color: var(--color-accent);
 }
 
 .menuButton {
@@ -100,7 +100,7 @@
 }
 
 .overlayLink:hover {
-  color: var(--color-text-primary);
+  color: var(--color-accent);
 }
 
 @media (max-width: 767px) {

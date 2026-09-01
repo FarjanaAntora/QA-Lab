@@ -1,16 +1,13 @@
 .section {
   width: 100%;
-}
-
-.downloadBlock {
-  margin-bottom: 48px;
+  margin-top: 48px;
 }
 
 .buttonRow {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 }
 
 .interactiveButton,
@@ -18,7 +15,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 20px;
+  padding: 10px 16px;
   border-radius: var(--radius-sm);
   font-family: var(--font-sans);
   font-size: 11px;

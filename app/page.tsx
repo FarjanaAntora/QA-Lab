@@ -1,5 +1,4 @@
 import Contact from "@/components/sections/Contact";
-import CV from "@/components/sections/CV";
 import Engineering from "@/components/sections/Engineering";
 import Experience from "@/components/sections/Experience";
 import Hero from "@/components/sections/Hero";
@@ -20,7 +19,6 @@ export default function Home() {
       <HowIThink />
       <TheLab />
       <Engineering />
-      <CV />
       <Contact />
     </main>
   );

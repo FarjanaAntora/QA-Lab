@@ -40,9 +40,11 @@ export default function Me() {
             <div className={styles.body}>
               <p>
                 I&apos;m a Lead SQA Engineer with 8 years of experience from
-                manual testing fundamentals through to Playwright automation,
-                CI/CD pipelines, AI system validation, and healthcare
-                technology.
+                manual testing fundamentals through to{" "}
+                <span className={styles.tech}>Playwright</span> automation,{" "}
+                <span className={styles.tech}>CI/CD</span> pipelines,{" "}
+                <span className={styles.tech}>AI system validation</span>, and{" "}
+                <span className={styles.tech}>healthcare technology</span>.
               </p>
               <p>
                 The foundation is manual. I started testing enterprise ERP
@@ -53,16 +55,23 @@ export default function Me() {
               <p>
                 From that base, the automation and AI work followed naturally.
                 My day job now involves testing AI agents for healthcare
-                platforms hallucination detection, LLM output validation,
-                prompt-response consistency using DeepEval and LangSmith.
-                Before that became a job title anyone recognised, I was already
-                doing it.
+                platforms{" "}
+                <span className={styles.tech}>hallucination detection</span>,{" "}
+                <span className={styles.tech}>LLM output validation</span>,
+                prompt-response consistency using{" "}
+                <span className={styles.tech}>DeepEval</span> and{" "}
+                <span className={styles.tech}>LangSmith</span>. Before that
+                became a job title anyone recognised, I was already doing it.
               </p>
               <p>
-                I&apos;m moving toward AI evaluation engineering more
-                deliberately deep learning foundations, agentic AI
-                architectures, and the kind of work that organisations like
-                Anthropic and METR are doing around model evaluation and AI
+                I&apos;m moving toward{" "}
+                <span className={styles.tech}>AI evaluation engineering</span>{" "}
+                more deliberately{" "}
+                <span className={styles.tech}>deep learning</span> foundations,{" "}
+                <span className={styles.tech}>agentic AI</span> architectures,
+                and the kind of work that organisations like Anthropic and METR
+                are doing around{" "}
+                <span className={styles.tech}>model evaluation</span> and AI
                 safety.
               </p>
             </div>

@@ -15,12 +15,18 @@ test("matrix cv entry and reveal states", async ({ page }) => {
   await expect(access).toBeVisible({ timeout: 5000 });
   await access.click();
 
-  await expect(
-    page.getByRole("heading", { name: "Aktia Farjana Antora" }),
-  ).toBeVisible({ timeout: 5000 });
+  const pdf = page.getByTitle("Aktia Farjana Antora CV");
+  await expect(pdf).toBeVisible({ timeout: 5000 });
+  await expect(pdf).toHaveAttribute("src", "/cv-antora.pdf");
   await expect(page.getByRole("link", { name: /DOWNLOAD PDF/i })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "SUMMARY" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "EXPERIENCE" })).toBeVisible();
+  await expect(page.getByRole("link", { name: /DOWNLOAD PDF/i })).toHaveAttribute(
+    "download",
+    "Aktia Farjana Antora.pdf",
+  );
+  await expect(page.getByRole("link", { name: "PRINT" })).toHaveAttribute(
+    "href",
+    "/cv-antora.pdf",
+  );
   await expect(
     page.getByText("Press ESC to return · Press CTRL+P to print"),
   ).toBeVisible();

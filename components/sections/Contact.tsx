@@ -21,7 +21,7 @@ export default function Contact() {
   return (
     <section id="contact" className={`section ${styles.section}`}>
       <ScrollReveal className="container">
-        <SectionLabel number="09" title="CONTACT" />
+        <SectionLabel number="08" title="CONTACT" />
 
         <div className={styles.content}>
           <h2 className={`text-h1 ${styles.headline}`}>

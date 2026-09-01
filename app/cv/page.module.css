@@ -2,7 +2,7 @@
   position: relative;
   min-height: 100vh;
   overflow-x: hidden;
-  background: #0a0a0b;
+  background: var(--color-bg-primary);
   color: var(--color-text-primary);
 }
 
@@ -37,7 +37,7 @@
   padding: 40px 36px 36px;
   border: 1px solid var(--color-accent);
   border-radius: var(--radius-md);
-  background: rgba(10, 10, 11, 0.88);
+  background: color-mix(in srgb, var(--color-bg-primary) 88%, transparent);
   pointer-events: auto;
 }
 
@@ -60,7 +60,7 @@
   margin: 0;
   font-family: var(--font-mono);
   color: var(--color-accent);
-  text-shadow: 0 1px 10px rgba(10, 10, 11, 0.95);
+  text-shadow: 0 1px 10px color-mix(in srgb, var(--color-bg-primary) 95%, transparent);
 }
 
 .entryName {
@@ -70,7 +70,7 @@
   font-weight: 400;
   letter-spacing: 0.04em;
   color: var(--color-accent);
-  text-shadow: 0 1px 12px rgba(10, 10, 11, 0.95);
+  text-shadow: 0 1px 12px color-mix(in srgb, var(--color-bg-primary) 95%, transparent);
 }
 
 .accessPlaceholder {
@@ -83,7 +83,7 @@
   padding: 12px 32px;
   border: 1px solid var(--color-accent);
   border-radius: var(--radius-sm);
-  background: rgba(10, 10, 11, 0.45);
+  background: color-mix(in srgb, var(--color-bg-primary) 45%, transparent);
   font-family: var(--font-mono);
   font-size: 14px;
   color: var(--color-accent);
@@ -91,12 +91,12 @@
   pointer-events: auto;
   min-width: 180px;
   text-align: left;
-  text-shadow: 0 1px 8px rgba(10, 10, 11, 0.95);
+  text-shadow: 0 1px 8px color-mix(in srgb, var(--color-bg-primary) 95%, transparent);
   transition: background var(--transition-base);
 }
 
 .accessButton:hover {
-  background: rgba(232, 224, 208, 0.05);
+  background: color-mix(in srgb, var(--color-accent) 5%, transparent);
 }
 
 .cursor {
@@ -137,11 +137,20 @@
   position: relative;
   isolation: isolate;
   width: 100%;
-  max-width: 860px;
-  padding: 64px 32px;
+  max-width: 920px;
+  padding: 32px 24px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  background: #111113;
+  background: var(--color-bg-secondary);
+}
+
+.pdfFrame {
+  display: block;
+  width: 100%;
+  min-height: 80vh;
+  height: 1100px;
+  border: 0;
+  background: #ffffff;
 }
 
 .topBar {
@@ -192,11 +201,15 @@
 }
 
 .printButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 10px 16px;
   border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-sm);
   background: transparent;
   color: var(--color-text-secondary);
+  text-decoration: none;
   font-family: var(--font-sans);
   font-size: 11px;
   font-weight: 600;

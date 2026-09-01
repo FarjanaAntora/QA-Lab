@@ -1,0 +1,222 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  margin-bottom: 64px;
+}
+
+.focal {
+  padding: 32px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 32px var(--color-shadow);
+}
+
+.focalEditorial {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  background: var(--color-bg-secondary);
+}
+
+.focalSplit {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  background: var(--color-bg-tertiary);
+}
+
+.label {
+  margin: 0 0 12px;
+  color: var(--color-text-muted);
+}
+
+.title {
+  margin: 0 0 8px;
+  color: var(--color-text-primary);
+}
+
+.positioning {
+  margin: 0 0 16px;
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.summary {
+  margin: 0 0 16px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+.role {
+  margin: 0 0 20px;
+  color: var(--color-accent);
+}
+
+.capabilities {
+  margin: 0 0 20px;
+  padding-left: 18px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+.capabilities li + li {
+  margin-top: 6px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.cta {
+  display: inline-block;
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.cta:hover {
+  color: var(--color-text-primary);
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0 0 20px;
+  padding: 16px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-tertiary);
+}
+
+.metricValue {
+  margin: 0;
+  color: var(--color-emphasis);
+}
+
+.metricNote {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.dataStrip {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.dataCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-tertiary);
+}
+
+.dataValue {
+  margin: 0;
+  color: var(--color-emphasis);
+}
+
+.dataNote {
+  color: var(--color-text-muted);
+}
+
+.architecture {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-primary);
+}
+
+.archHub,
+.archNode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 56px;
+  padding: 12px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-secondary);
+}
+
+.archName {
+  color: var(--color-emphasis);
+}
+
+.archHint,
+.archId {
+  color: var(--color-accent);
+}
+
+.archLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.archArrow {
+  width: 1px;
+  height: 16px;
+  background: var(--color-border-strong);
+}
+
+.archModules {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.archCaption {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 768px) {
+  .focalEditorial {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .focalSplit {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .dataStrip {
+    grid-template-columns: 1fr;
+  }
+
+  .focalEditorial .dataStrip {
+    align-self: stretch;
+  }
+}
+
+@media (min-width: 900px) {
+  .focal {
+    padding: 40px;
+  }
+}

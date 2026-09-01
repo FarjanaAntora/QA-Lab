@@ -5,11 +5,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "THE QA LAB Aktia Farjana Antora",
   description:
-    "Senior QA Automation Engineer. Playwright | AI Testing | CI/CD | Performance. I break software for a living.",
+    "Senior QA Automation Engineer. Playwright | AI/ML Quality Engineering | CI/CD | Performance. I break software for a living.",
   openGraph: {
     title: "THE QA LAB Aktia Farjana Antora",
     description:
-      "Senior QA Automation Engineer. Playwright | AI Testing | CI/CD | Performance. I break software for a living.",
+      "Senior QA Automation Engineer. Playwright | AI/ML Quality Engineering | CI/CD | Performance. I break software for a living.",
     type: "website",
   },
 };

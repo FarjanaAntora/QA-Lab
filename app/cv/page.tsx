@@ -4,10 +4,7 @@ import { Download } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import MatrixRain from "@/components/ui/MatrixRain";
-import TechTag from "@/components/ui/TechTag";
 import { cvData } from "@/content/cv";
-import { experience } from "@/content/experience";
-import { toolbox } from "@/content/toolbox";
 import styles from "./page.module.css";
 
 type Phase = "entry" | "transition" | "revealed";
@@ -80,6 +77,12 @@ export default function MatrixCvPage() {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         handleReturnToEntry();
+        return;
+      }
+
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "p") {
+        event.preventDefault();
+        window.open("/cv-antora.pdf", "_blank", "noopener,noreferrer");
       }
     };
 
@@ -144,92 +147,27 @@ export default function MatrixCvPage() {
               <a
                 href="/cv-antora.pdf"
                 className={styles.downloadButton}
-                download="Aktia Farjana Antora AIQA.pdf"
+                download={cvData.pdfDownloadName}
               >
                 <Download size={14} strokeWidth={1.75} aria-hidden="true" />
                 DOWNLOAD PDF
               </a>
-              <button
-                type="button"
+              <a
+                href="/cv-antora.pdf"
                 className={styles.printButton}
-                onClick={() => window.print()}
+                target="_blank"
+                rel="noreferrer"
               >
                 PRINT
-              </button>
+              </a>
             </div>
           </div>
 
-          <header className={styles.header}>
-            <h1 className={styles.name}>{cvData.name}</h1>
-            <p className={`text-label ${styles.title}`}>{cvData.title}</p>
-            <p className={styles.contact}>
-              <a href={`mailto:${cvData.email}`}>{cvData.email}</a>
-              <span aria-hidden="true"> · </span>
-              <a href={`tel:${cvData.phone.replace(/\s/g, "")}`}>
-                {cvData.phone}
-              </a>
-              <span aria-hidden="true"> · </span>
-              <span>{cvData.location}</span>
-            </p>
-          </header>
-
-          <section className={styles.block}>
-            <h2 className={`text-label ${styles.blockHeading}`}>SUMMARY</h2>
-            <p className={styles.summary}>{cvData.summary}</p>
-          </section>
-
-          <section className={styles.block}>
-            <h2 className={`text-label ${styles.blockHeading}`}>EXPERIENCE</h2>
-            {experience.map((role, index) => (
-              <article key={role.id} className={styles.role}>
-                <div className={styles.roleHeader}>
-                  <div className={styles.roleLeft}>
-                    <span className={styles.roleTitle}>{role.role}</span>
-                    <span className={styles.roleCompany}>{role.company}</span>
-                  </div>
-                  <span className={`text-label ${styles.rolePeriod}`}>
-                    {role.period}
-                  </span>
-                </div>
-                <ul className={styles.bullets}>
-                  {role.responsibilities.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-                <div className={styles.tags}>
-                  {role.technologies.map((tech) => (
-                    <TechTag key={tech} label={tech} />
-                  ))}
-                </div>
-                {index < experience.length - 1 ? (
-                  <hr className={styles.rule} />
-                ) : null}
-              </article>
-            ))}
-          </section>
-
-          <section className={styles.block}>
-            <h2 className={`text-label ${styles.blockHeading}`}>EDUCATION</h2>
-            <p className={styles.eduDegree}>{cvData.education.degree}</p>
-            <p className={styles.eduMeta}>
-              {cvData.education.university} | {cvData.education.year} |{" "}
-              {cvData.education.grade}
-            </p>
-          </section>
-
-          <section className={styles.block}>
-            <h2 className={`text-label ${styles.blockHeading}`}>SKILLS</h2>
-            <div className={styles.skills}>
-              {toolbox.map((group) => (
-                <p key={group.category} className={styles.skillRow}>
-                  <span className={styles.skillCategory}>{group.category}</span>{" "}
-                  <span className={styles.skillItems}>
-                    {group.items.join(", ")}
-                  </span>
-                </p>
-              ))}
-            </div>
-          </section>
+          <iframe
+            className={styles.pdfFrame}
+            src="/cv-antora.pdf"
+            title="Aktia Farjana Antora CV"
+          />
 
           <p className={`text-label ${styles.hint} ${styles.printHide}`}>
             Press ESC to return · Press CTRL+P to print

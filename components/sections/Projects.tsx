@@ -1,4 +1,5 @@
 import { projects } from "@/content/projects";
+import FocalProjects from "@/components/sections/FocalProjects";
 import ProjectCard from "@/components/ui/ProjectCard";
 import SectionLabel from "@/components/ui/SectionLabel";
 import ScrollReveal from "@/components/ui/ScrollReveal";
@@ -14,6 +15,8 @@ export default function Projects() {
         <p className={`text-body ${styles.subcopy}`}>
           Case studies, not repository lists.
         </p>
+
+        <FocalProjects />
 
         <div className={styles.grid}>
           {projects.map((project) => (

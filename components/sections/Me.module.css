@@ -30,6 +30,12 @@
   margin: 0;
 }
 
+.tech {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  box-shadow: inset 0 -1px 0 var(--color-accent-soft);
+}
+
 .stats {
   display: flex;
   flex-direction: column;
@@ -44,7 +50,7 @@
 }
 
 .statValue {
-  color: var(--color-accent);
+  color: var(--color-emphasis);
   line-height: 1.1;
 }
 

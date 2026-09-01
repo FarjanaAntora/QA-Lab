@@ -123,7 +123,7 @@ test.describe("interactions", () => {
     await expect(download).toHaveAttribute("href", "/cv-antora.pdf");
     await expect(download).toHaveAttribute(
       "download",
-      "Aktia Farjana Antora AIQA.pdf",
+      "Aktia Farjana Antora.pdf",
     );
   });
 });

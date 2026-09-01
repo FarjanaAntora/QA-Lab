@@ -4,8 +4,7 @@
   align-items: center;
   width: 100%;
   min-height: 100vh;
-  height: 100vh;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .inner {
@@ -55,7 +54,7 @@
   font-family: var(--font-sans);
   font-size: 18px;
   font-weight: 400;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
 }
 
 .tags {
@@ -66,10 +65,10 @@
 
 .tag {
   padding: 4px 10px;
-  border: 1px solid #e8e0d0a8;
+  border: 1px solid var(--color-accent-soft);
   border-radius: var(--radius-sm);
   font-size: 12px;
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
 }
 
 /* Desktop: lines 1+2 together, line 3 below */
