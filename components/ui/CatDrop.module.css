@@ -1,0 +1,67 @@
+.root {
+  position: absolute;
+  top: 64px;
+  right: 30px;
+  bottom: 52px;
+  z-index: 3;
+  width: 52px;
+  pointer-events: none;
+}
+
+.rope {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1.5px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-accent) 18%, transparent),
+    color-mix(in srgb, var(--color-accent) 55%, transparent) 12%,
+    color-mix(in srgb, var(--color-accent) 40%, transparent) 88%,
+    transparent
+  );
+  transform: translateX(-50%);
+}
+
+.traveler,
+.staticCat {
+  position: absolute;
+  left: 50%;
+  line-height: 0;
+}
+
+.traveler {
+  will-change: transform, opacity;
+}
+
+.staticCat {
+  top: 22%;
+  transform: translateX(-50%);
+}
+
+.mark,
+.markWide {
+  display: block;
+  width: 42px;
+  height: 46px;
+  overflow: visible;
+  filter: drop-shadow(0 2px 4px color-mix(in srgb, #000 28%, transparent));
+}
+
+.markWide {
+  width: 48px;
+  height: 40px;
+}
+
+@media (max-width: 767px) {
+  .root {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .traveler {
+    display: none;
+  }
+}

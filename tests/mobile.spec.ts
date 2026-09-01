@@ -31,6 +31,25 @@ test.describe("mobile", () => {
     await expect(
       page.getByRole("button", { name: "Close menu" }),
     ).toBeVisible();
+    await expect(mobileNav.getByRole("link", { name: "CV" })).toHaveAttribute(
+      "href",
+      "/cv",
+    );
+  });
+
+  test("mobile CV link opens the CV page", async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("button", { name: "Open menu" }).click();
+    await page
+      .getByRole("navigation", { name: "Mobile" })
+      .getByRole("link", { name: "CV" })
+      .click();
+
+    await expect(page).toHaveURL(/\/cv\/?$/);
+    await expect(
+      page.getByRole("heading", { name: "Aktia Farjana Antora" }),
+    ).toBeVisible();
+    await expect(page.getByRole("link", { name: /DOWNLOAD PDF/i })).toBeVisible();
   });
 
   test("section headings remain readable on mobile", async ({ page }) => {

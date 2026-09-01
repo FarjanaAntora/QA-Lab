@@ -9,13 +9,18 @@
 
 .subcopy {
   margin: 0 0 48px;
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
+}
+
+.cardSlot {
+  height: 100%;
+  min-height: 0;
 }
 
 @media (min-width: 768px) {

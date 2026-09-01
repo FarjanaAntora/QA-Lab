@@ -1,6 +1,7 @@
 import { toolbox } from "@/content/toolbox";
 import SectionLabel from "@/components/ui/SectionLabel";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { StaggerGroup, StaggerItem } from "@/components/ui/Stagger";
 import TechTag from "@/components/ui/TechTag";
 import styles from "./Toolbox.module.css";
 
@@ -18,20 +19,24 @@ export default function Toolbox() {
           to use them.
         </p>
 
-        <div className={styles.grid}>
+        <StaggerGroup className={styles.grid}>
           {toolbox.map((group) => (
-            <article key={group.category} className={styles.card}>
-              <h3 className={`text-label ${styles.category}`}>
-                {group.category}
-              </h3>
-              <div className={styles.tags}>
-                {group.items.map((item) => (
-                  <TechTag key={item} label={item} />
-                ))}
-              </div>
-            </article>
+            <StaggerItem key={group.category}>
+              <article className={styles.card}>
+                <h3 className={`text-label ${styles.category}`}>
+                  {group.category}
+                </h3>
+                <StaggerGroup className={styles.tags}>
+                  {group.items.map((item) => (
+                    <StaggerItem key={item}>
+                      <TechTag label={item} />
+                    </StaggerItem>
+                  ))}
+                </StaggerGroup>
+              </article>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </ScrollReveal>
     </section>
   );

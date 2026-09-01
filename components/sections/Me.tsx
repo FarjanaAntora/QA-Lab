@@ -2,6 +2,7 @@
 
 import SectionLabel from "@/components/ui/SectionLabel";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { StaggerGroup, StaggerItem } from "@/components/ui/Stagger";
 import styles from "./Me.module.css";
 
 const stats = [
@@ -77,9 +78,9 @@ export default function Me() {
             </div>
           </div>
 
-          <div className={styles.stats}>
+          <StaggerGroup className={styles.stats}>
             {stats.map((stat) => (
-              <div key={stat.label} className={styles.stat}>
+              <StaggerItem key={stat.label} className={styles.stat}>
                 <span className={`text-h1 ${styles.statValue}`}>
                   {stat.value}
                 </span>
@@ -91,9 +92,9 @@ export default function Me() {
                     {stat.tooltip}
                   </span>
                 ) : null}
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </div>
       </ScrollReveal>
     </section>

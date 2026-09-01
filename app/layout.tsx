@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Nav from "@/components/layout/Nav";
+import ThemeProvider from "@/components/theme/ThemeProvider";
+import FriendsWalk from "@/components/ui/FriendsWalk";
+import { THEME_BOOT_SCRIPT } from "@/lib/theme";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -16,10 +19,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }} />
+      </head>
       <body className="min-h-full flex flex-col">
-        <Nav />
-        {children}
+        <ThemeProvider>
+          <Nav />
+          {children}
+          <FriendsWalk />
+        </ThemeProvider>
       </body>
     </html>
   );

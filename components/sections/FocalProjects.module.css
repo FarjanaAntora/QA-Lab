@@ -47,20 +47,20 @@
 .summary {
   margin: 0 0 16px;
   font-size: 15px;
-  line-height: 1.7;
+  line-height: var(--line-height-body);
   color: var(--color-text-secondary);
 }
 
 .role {
   margin: 0 0 20px;
-  color: var(--color-accent);
+  color: var(--color-accent-text);
 }
 
 .capabilities {
   margin: 0 0 20px;
   padding-left: 18px;
   font-size: 14px;
-  line-height: 1.7;
+  line-height: var(--line-height-body);
   color: var(--color-text-secondary);
 }
 
@@ -77,13 +77,19 @@
 
 .cta {
   display: inline-block;
-  color: var(--color-accent);
+  color: var(--color-accent-text);
   text-decoration: none;
-  transition: color var(--transition-fast);
+  transform-origin: left center;
+  transition:
+    color var(--motion-hover),
+    transform var(--motion-hover),
+    text-shadow var(--motion-hover);
 }
 
 .cta:hover {
   color: var(--color-text-primary);
+  transform: scale(1.02);
+  text-shadow: 0 0 18px var(--color-success-glow);
 }
 
 .metric {
@@ -162,7 +168,7 @@
 
 .archHint,
 .archId {
-  color: var(--color-accent);
+  color: var(--color-accent-text);
 }
 
 .archLink {
@@ -173,9 +179,10 @@
 }
 
 .archArrow {
-  width: 1px;
+  display: block;
+  width: 2px;
   height: 16px;
-  background: var(--color-border-strong);
+  color: var(--color-accent-text);
 }
 
 .archModules {
@@ -185,6 +192,96 @@
 }
 
 .archCaption {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.focalRoster {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  background: var(--color-bg-secondary);
+}
+
+.roster {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 28px;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.rosterLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+}
+
+.rosterLogo img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: 22px;
+  object-fit: contain;
+}
+
+.rosterLogo img.rosterEmblem {
+  height: 38px;
+}
+
+html[data-theme="dark"] .rosterLogo img,
+html[data-theme="bottle-green"] .rosterLogo img {
+  filter: invert(1) brightness(1.12);
+}
+
+.focalProcess {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  background: var(--color-bg-tertiary);
+}
+
+.loop {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.loopSteps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.loopStep {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-secondary);
+}
+
+.loopIndex {
+  color: var(--color-text-muted);
+}
+
+.loopTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.loopNote {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.loopCaption {
   margin: 0;
   font-size: 12px;
   line-height: 1.5;
@@ -213,10 +310,35 @@
   .focalEditorial .dataStrip {
     align-self: stretch;
   }
+
+  .focalRoster {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .focalProcess {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .loopSteps {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (min-width: 900px) {
   .focal {
     padding: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta:hover {
+    transform: none;
+    text-shadow: none;
   }
 }

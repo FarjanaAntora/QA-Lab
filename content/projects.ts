@@ -67,7 +67,7 @@ export const projects: Project[] = [
       "Playwright",
     ],
     summary:
-      "Comprehensive test plan for a healthcare AI document intelligence platform - architecture-risk traceability across 88 Phase 1 MVP stories, covering OCR pipelines, LLM extraction validation, human-in-the-loop verification, consent compliance, and entitlement gating.",
+      "Comprehensive test plan for a healthcare AI document intelligence platform - architecture-risk traceability across 88 stories, covering OCR pipelines, LLM extraction validation, human-in-the-loop verification, consent compliance, and entitlement gating.",
     problem:
       "The system processes real patient medical records using AI. A wrong extraction or an ungrounded AI answer has real-world consequences. Standard QA approaches were insufficient.",
     approach: [
@@ -81,7 +81,7 @@ export const projects: Project[] = [
     challenge:
       'Testing AI outputs that must never fabricate data, never diagnose, and always cite their source. Designing test cases for non-deterministic systems where "correct" is probabilistic.',
     outcome:
-      "Test plan adopted by the engineering team as the quality standard for Phase 1 MVP launch. Identified 10 gap categories in the original plan and added 40+ new test cases.",
+      "Test plan adopted by the engineering team as the quality standard for MVP launch. Identified 10 gap categories in the original plan and added 40+ new test cases.",
     github: null,
   },
   {
@@ -105,7 +105,7 @@ export const projects: Project[] = [
       "Jira",
     ],
     summary:
-      "Sole QA ownership for Phase 1 of a US hospital ERP spanning UIS, PIS, EHR, BMS, and Appointment Management. Patient identity stays in UIS and travels as an External ID. I covered functional, integration, and regression work, plus Selenium/Python automation for login, registration, and EHR.",
+      "Sole QA ownership for a US hospital ERP spanning UIS, PIS, EHR, BMS, and Appointment Management. Patient identity stays in UIS and travels as an External ID. I covered functional, integration, and regression work, plus Selenium/Python automation for login, registration, and EHR.",
     problem:
       "Five modules share a patient without sharing a copy of that patient. If UIS identity and the External ID drift, clinical and operational records disagree. Quality has to prove the boundary, not just the screen.",
     approach: [
@@ -117,7 +117,7 @@ export const projects: Project[] = [
       "Python + Selenium regression for login/authentication, patient registration, and EHR",
     ],
     challenge:
-      "Owning quality alone across a Phase 1 hospital platform. Coverage had to follow the identity model and the workflows that actually move patient data, not a catalogue of every possible click.",
+      "Owning quality alone across a hospital platform. Coverage had to follow the identity model and the workflows that actually move patient data, not a catalogue of every possible click.",
     outcome:
       "Identified and drove resolution of 2,000+ defects across the platform. Selenium/Python regression held login, registration, and EHR paths in place as the modules changed.",
     github: null,

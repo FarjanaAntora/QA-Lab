@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
+import ThemeSwitch from "@/components/theme/ThemeSwitch";
 import styles from "./Nav.module.css";
 
 const links = [
@@ -10,7 +11,7 @@ const links = [
   { label: "EXPERIENCE", href: "/#experience" },
   { label: "PROJECTS", href: "/#projects" },
   { label: "THE LAB", href: "/#the-lab" },
-  { label: "CV", href: "/#cv" },
+  { label: "CV", href: "/cv" },
   { label: "CONTACT", href: "/#contact" },
 ] as const;
 
@@ -61,22 +62,26 @@ export default function Nav() {
           THE QA LAB
         </a>
 
-        <nav className={styles.links} aria-label="Primary">
-          {links.map((link) => (
-            <a key={link.href} href={link.href} className={styles.link}>
-              {link.label}
-            </a>
-          ))}
-        </nav>
+        <div className={styles.right}>
+          <ThemeSwitch />
 
-        <button
-          type="button"
-          className={styles.menuButton}
-          onClick={() => setMenuOpen(true)}
-          aria-label="Open menu"
-        >
-          <Menu size={22} strokeWidth={1.5} />
-        </button>
+          <nav className={styles.links} aria-label="Primary">
+            {links.map((link) => (
+              <a key={link.href} href={link.href} className={styles.link}>
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <button
+            type="button"
+            className={styles.menuButton}
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open menu"
+          >
+            <Menu size={22} strokeWidth={1.5} />
+          </button>
+        </div>
       </header>
 
       {menuOpen ? (

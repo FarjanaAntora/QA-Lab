@@ -12,8 +12,92 @@
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--color-text-muted);
-  opacity: 0.55;
   cursor: pointer;
+}
+
+.glitch {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 10px);
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--color-accent-text);
+  letter-spacing: 0.02em;
+  text-align: right;
+  white-space: nowrap;
+}
+
+@media (max-width: 479px) {
+  .glitch {
+    max-width: min(240px, calc(100vw - 48px));
+    white-space: normal;
+  }
+}
+
+.glitch[data-active="true"] {
+  animation: glitchFlicker 420ms steps(2, end);
+}
+
+.glitch::before,
+.glitch::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  content: attr(data-text);
+  pointer-events: none;
+}
+
+.glitch::before {
+  color: var(--color-accent);
+  clip-path: inset(0 0 55% 0);
+  transform: translate(-1px, 0);
+}
+
+.glitch::after {
+  color: var(--color-danger);
+  clip-path: inset(50% 0 0 0);
+  transform: translate(1px, 0);
+}
+
+@keyframes glitchFlicker {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  20% {
+    transform: translate(-1px, 0);
+  }
+
+  40% {
+    transform: translate(1px, 0);
+  }
+
+  60% {
+    transform: translate(-1px, 1px);
+  }
+
+  80% {
+    transform: translate(1px, -1px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glitch[data-active="true"] {
+    animation: none;
+  }
+
+  .glitch::before,
+  .glitch::after {
+    content: none;
+  }
 }
 
 .card {

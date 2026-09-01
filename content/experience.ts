@@ -22,7 +22,7 @@ export const experience: ExperienceItem[] = [
     responsibilities: [
       "Architected and maintained Playwright automation suites integrated into CI/CD pipelines for 6+ concurrent client projects",
       "Built AI agent testing framework from scratch using DeepEval and LangSmith hallucination detection, LLM-as-judge evaluation, output consistency testing",
-      "Sole QA engineer for Memorial Houston Medical Phase 1: UIS, PIS, EHR, BMS, and Appointment Management, with identity held in UIS and passed as an External ID",
+      "Sole QA engineer for Memorial Houston Medical: UIS, PIS, EHR, BMS, and Appointment Management, with identity held in UIS and passed as an External ID",
       "Delivered QA across Bangladesh government platforms: Satellite Billing Module, BRRI digital platform, Conferencing Portal",
       "Conducted UAE market analysis across 10 AI competitors; authored product specifications and technical reference documentation",
       "Trained and mentored junior QA engineers; established team-wide QA frameworks and standards",

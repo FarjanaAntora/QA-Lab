@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import TechTag from "@/components/ui/TechTag";
+import { StaggerGroup, StaggerItem } from "@/components/ui/Stagger";
 import styles from "./ProjectCard.module.css";
 
 export type ProjectCardProps = {
@@ -38,11 +41,13 @@ export default function ProjectCard({
       <h3 className={`text-h3 ${styles.title}`}>{title}</h3>
       <p className={styles.description}>{description}</p>
 
-      <div className={styles.tags}>
+      <StaggerGroup className={styles.tags}>
         {technologies.map((tech) => (
-          <TechTag key={tech} label={tech} />
+          <StaggerItem key={tech}>
+            <TechTag label={tech} />
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerGroup>
 
       {isLive ? (
         <span className={`text-label ${styles.ctaHover}`}>

@@ -1,15 +1,18 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import { experience, type ExperienceItem } from "@/content/experience";
 import SectionLabel from "@/components/ui/SectionLabel";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { StaggerGroup, StaggerItem } from "@/components/ui/Stagger";
 import TechTag from "@/components/ui/TechTag";
+import { MOTION_EASE } from "@/lib/motion";
 import styles from "./Experience.module.css";
 
 function TimelineItem({ item }: { item: ExperienceItem }) {
   const [open, setOpen] = useState(false);
+  const reduce = useReducedMotion();
 
   return (
     <article className={styles.item}>
@@ -40,10 +43,13 @@ function TimelineItem({ item }: { item: ExperienceItem }) {
           <motion.div
             className={styles.panel}
             key="details"
-            initial={{ height: 0, opacity: 0 }}
+            initial={reduce ? false : { height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            exit={reduce ? undefined : { height: 0, opacity: 0 }}
+            transition={{
+              duration: reduce ? 0 : 0.3,
+              ease: MOTION_EASE,
+            }}
           >
             <div className={styles.panelInner}>
               <ul className={styles.responsibilities}>
@@ -74,15 +80,19 @@ function TimelineItem({ item }: { item: ExperienceItem }) {
 export default function Experience() {
   return (
     <section id="experience" className={`section ${styles.experience}`}>
-      <ScrollReveal className="container">
-        <SectionLabel number="02" title="EXPERIENCE" />
+      <div className="container">
+        <ScrollReveal>
+          <SectionLabel number="02" title="EXPERIENCE" />
+        </ScrollReveal>
 
-        <div className={styles.timeline}>
+        <StaggerGroup className={styles.timeline}>
           {experience.map((item) => (
-            <TimelineItem key={item.id} item={item} />
+            <StaggerItem key={item.id}>
+              <TimelineItem item={item} />
+            </StaggerItem>
           ))}
-        </div>
-      </ScrollReveal>
+        </StaggerGroup>
+      </div>
     </section>
   );
 }

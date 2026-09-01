@@ -21,7 +21,7 @@
 .subcopy {
   margin: 0 0 40px;
   max-width: 640px;
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
 }
 
 .links {
@@ -42,13 +42,19 @@
 }
 
 .link {
+  display: inline-block;
   color: var(--color-text-secondary);
   text-decoration: none;
-  transition: color 150ms ease;
+  transition:
+    color var(--motion-hover),
+    transform var(--motion-hover),
+    text-shadow var(--motion-hover);
 }
 
 .link:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-text);
+  transform: scale(1.02);
+  text-shadow: 0 0 18px var(--color-success-glow);
 }
 
 .rule {
@@ -61,4 +67,11 @@
 .footer {
   margin: 0;
   color: var(--color-text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link:hover {
+    transform: none;
+    text-shadow: none;
+  }
 }

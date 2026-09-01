@@ -1,5 +1,6 @@
 import SectionLabel from "@/components/ui/SectionLabel";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { StaggerGroup, StaggerItem } from "@/components/ui/Stagger";
 import styles from "./Engineering.module.css";
 
 const cards = [
@@ -49,20 +50,22 @@ export default function Engineering() {
           Built with the same discipline I apply to client work.
         </p>
 
-        <div className={styles.grid}>
+        <StaggerGroup className={styles.grid}>
           {cards.map((card) => (
-            <article key={card.label} className={styles.card}>
-              <p className={`text-label ${styles.label}`}>{card.label}</p>
-              <div className={styles.valueRow}>
-                <p className={`text-h2 ${styles.value}`}>{card.value}</p>
-                {"live" in card && card.live ? (
-                  <span className={styles.pulse} aria-label="Live" />
-                ) : null}
-              </div>
-              <p className={styles.note}>{card.note}</p>
-            </article>
+            <StaggerItem key={card.label}>
+              <article className={styles.card}>
+                <p className={`text-label ${styles.label}`}>{card.label}</p>
+                <div className={styles.valueRow}>
+                  <p className={`text-h2 ${styles.value}`}>{card.value}</p>
+                  {"live" in card && card.live ? (
+                    <span className={styles.pulse} aria-label="Live" />
+                  ) : null}
+                </div>
+                <p className={styles.note}>{card.note}</p>
+              </article>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
 
         <p className={`text-label ${styles.footnote}`}>
           Test suite runs automatically on every push. The count above reflects

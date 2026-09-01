@@ -24,20 +24,25 @@
   text-transform: uppercase;
   text-decoration: none;
   transition:
-    opacity var(--transition-fast),
-    color var(--transition-fast),
-    border-color var(--transition-fast),
-    background var(--transition-fast);
+    opacity var(--motion-hover),
+    color var(--motion-hover),
+    border-color var(--motion-hover),
+    background var(--motion-hover),
+    transform var(--motion-hover),
+    box-shadow var(--motion-hover);
 }
 
 .interactiveButton {
   border: 1px solid var(--color-accent);
   background: var(--color-accent);
-  color: var(--color-bg-primary);
+  color: var(--color-on-accent);
 }
 
 .interactiveButton:hover {
-  opacity: 0.9;
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  transform: scale(1.015);
+  box-shadow: 0 0 0 1px var(--color-accent-soft);
 }
 
 .downloadButton {
@@ -48,7 +53,9 @@
 
 .downloadButton:hover {
   border-color: var(--color-accent);
-  color: var(--color-accent);
+  color: var(--color-accent-text);
+  transform: scale(1.015);
+  box-shadow: 0 0 0 1px var(--color-accent-soft);
 }
 
 .downloadNote {
@@ -84,7 +91,7 @@
 }
 
 .contactRow a:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-text);
 }
 
 .block {
@@ -118,7 +125,7 @@
   margin: 0;
   padding-left: 18px;
   font-size: 14px;
-  line-height: 1.7;
+  line-height: var(--line-height-body);
   color: var(--color-text-secondary);
 }
 
@@ -154,11 +161,18 @@
 .skillGroup {
   margin: 0;
   font-size: 14px;
-  line-height: 1.7;
+  line-height: var(--line-height-body);
   color: var(--color-text-secondary);
 }
 
 .skillCategory {
   color: var(--color-text-primary);
   font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interactiveButton:hover,
+  .downloadButton:hover {
+    transform: none;
+  }
 }

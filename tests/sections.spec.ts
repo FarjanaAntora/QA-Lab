@@ -42,6 +42,14 @@ test.describe("sections", () => {
     await expect(section).toContainText("Hppy AI");
     await expect(section).toContainText("Memorial Houston Medical");
     await expect(section).toContainText("2,000+");
+    await expect(section).toContainText("Global Brand A/B Testing");
+    await expect(section.getByRole("img", { name: "Dior" })).toBeVisible();
+    await expect(
+      section.getByRole("img", { name: "Louis Vuitton" }),
+    ).toBeVisible();
+    await expect(section.getByRole("img", { name: "Heavenly" })).toBeVisible();
+    await expect(section.getByRole("img", { name: "Sole" })).toBeVisible();
+    await expect(section).toContainText("Echotex ERP");
   });
 
   test("how-i-think section is visible", async ({ page }) => {
@@ -66,7 +74,7 @@ test.describe("sections", () => {
     const section = page.locator("#cv");
     await section.scrollIntoViewIfNeeded();
     await expect(section).toBeVisible();
-    await expect(section).toContainText("VIEW INTERACTIVE CV");
+    await expect(section).toContainText("VIEW CV");
     await expect(section).toContainText("DOWNLOAD PDF");
   });
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 import styles from "./MatrixRain.module.css";
 
 const CHARSET =
@@ -10,14 +11,19 @@ type MatrixRainProps = {
   opacity?: number;
   active?: boolean;
   intervalMs?: number;
+  density?: "normal" | "dense";
+  backgroundToken?: string;
 };
 
 export default function MatrixRain({
-  opacity = 1,
+  opacity = 0.3,
   active = true,
-  intervalMs = 50,
+  intervalMs = 44,
+  density = "dense",
+  backgroundToken = "--color-bg-primary",
 }: MatrixRainProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const reduce = usePrefersReducedMotion();
 
   useEffect(() => {
     if (!active) return;
@@ -28,11 +34,18 @@ export default function MatrixRain({
     const context = canvas.getContext("2d");
     if (!context) return;
 
-    const fontSize = 14;
-    const columnWidth = 20;
+    const fontSize = density === "dense" ? 12 : 14;
+    const columnWidth = density === "dense" ? 13 : 20;
     let drops: number[] = [];
     let columnCount = 0;
     let intervalId: ReturnType<typeof setInterval> | null = null;
+
+    const token = (name: string, fallback: string) => {
+      const value = getComputedStyle(document.documentElement)
+        .getPropertyValue(name)
+        .trim();
+      return value || fallback;
+    };
 
     const resize = () => {
       const parent = canvas.parentElement;
@@ -52,24 +65,46 @@ export default function MatrixRain({
       );
     };
 
-    const token = (name: string, fallback: string) => {
-      const value = getComputedStyle(document.documentElement)
-        .getPropertyValue(name)
-        .trim();
-      return value || fallback;
+    const paintBackground = () => {
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      context.globalAlpha = 1;
+      context.fillStyle = token(backgroundToken, "#0c0f14");
+      context.fillRect(0, 0, width, height);
     };
 
-    const fadeFill = token("--color-bg-primary", "#020b08");
-    const glyphFill = token("--color-accent", "#45776b");
+    const drawStill = () => {
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      paintBackground();
+
+      context.fillStyle = token("--color-accent-text", token("--color-accent", "#6a8f9c"));
+      context.font = `${fontSize}px monospace`;
+      context.globalAlpha = 0.32;
+
+      for (let i = 0; i < columnCount; i += 1) {
+        if (i % 3 === 0) continue;
+        const glyphs = 5 + (i % 4);
+        for (let j = 0; j < glyphs; j += 1) {
+          const char = CHARSET[Math.floor(Math.random() * CHARSET.length)] ?? "0";
+          const y = ((drops[i]! + j * 2.4) * fontSize) % height;
+          context.fillText(char, i * columnWidth, y);
+        }
+      }
+
+      context.globalAlpha = 1;
+    };
 
     const draw = () => {
       const width = canvas.clientWidth;
       const height = canvas.clientHeight;
+      const fadeFill = token(backgroundToken, "#0c0f14");
+      const glyphFill = token("--color-accent-text", token("--color-accent", "#6a8f9c"));
 
       context.fillStyle = fadeFill;
-      context.globalAlpha = 0.05;
+      context.globalAlpha = 0.038;
       context.fillRect(0, 0, width, height);
-      context.globalAlpha = 1;
+      context.globalAlpha = 0.72;
 
       context.fillStyle = glyphFill;
       context.font = `${fontSize}px monospace`;
@@ -81,26 +116,60 @@ export default function MatrixRain({
 
         context.fillText(char, x, y);
 
-        if (y > height && Math.random() > 0.975) {
+        if (y > height && Math.random() > 0.968) {
           drops[i] = 0;
         } else {
-          drops[i]! += 0.35 + Math.random() * 0.4;
+          drops[i]! += 0.38 + Math.random() * 0.42;
         }
       }
+
+      context.globalAlpha = 1;
     };
 
     resize();
+
+    const reduceMotion =
+      reduce ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const themeObserver = new MutationObserver(() => {
+      if (reduceMotion) {
+        drawStill();
+      } else {
+        paintBackground();
+      }
+    });
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+
+    if (reduceMotion) {
+      drawStill();
+      const onResize = () => {
+        resize();
+        drawStill();
+      };
+      window.addEventListener("resize", onResize);
+      return () => {
+        themeObserver.disconnect();
+        window.removeEventListener("resize", onResize);
+      };
+    }
+
+    paintBackground();
     draw();
     intervalId = setInterval(draw, intervalMs);
     window.addEventListener("resize", resize);
 
     return () => {
+      themeObserver.disconnect();
       if (intervalId !== null) {
         clearInterval(intervalId);
       }
       window.removeEventListener("resize", resize);
     };
-  }, [active, intervalMs]);
+  }, [active, intervalMs, density, reduce, backgroundToken]);
 
   return (
     <canvas
@@ -108,6 +177,7 @@ export default function MatrixRain({
       className={styles.canvas}
       style={{ opacity }}
       aria-hidden="true"
+      data-testid="matrix-rain"
     />
   );
 }

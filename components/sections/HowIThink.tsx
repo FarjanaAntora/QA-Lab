@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import SectionLabel from "@/components/ui/SectionLabel";
 import ScrollReveal from "@/components/ui/ScrollReveal";
@@ -95,6 +95,7 @@ const modeContent: Record<
 export default function HowIThink() {
   const [mode, setMode] = useState<Mode>("FUNCTIONAL");
   const active = modeContent[mode];
+  const reduce = useReducedMotion();
 
   return (
     <section id="how-i-think" className={`section ${styles.section}`}>
@@ -181,10 +182,10 @@ export default function HowIThink() {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={mode}
-                  initial={{ opacity: 0 }}
+                  initial={reduce ? false : { opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+                  exit={reduce ? undefined : { opacity: 0 }}
+                  transition={{ duration: reduce ? 0 : 0.2 }}
                 >
                   <h3 className={`text-h3 ${styles.panelHeading}`}>
                     {active.heading}

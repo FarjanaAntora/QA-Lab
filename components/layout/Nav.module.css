@@ -27,6 +27,12 @@
   text-decoration: none;
 }
 
+.right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .links {
   display: flex;
   align-items: center;
@@ -44,7 +50,7 @@
 }
 
 .link:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-text);
 }
 
 .menuButton {
@@ -100,7 +106,7 @@
 }
 
 .overlayLink:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-text);
 }
 
 @media (max-width: 767px) {

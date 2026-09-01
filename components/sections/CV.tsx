@@ -6,7 +6,7 @@ export default function CV() {
     <section id="cv" className={styles.section}>
       <div className={styles.buttonRow}>
         <a href="/cv" className={styles.interactiveButton}>
-          VIEW INTERACTIVE CV
+          VIEW CV
         </a>
         <a
           href="/cv-antora.pdf"

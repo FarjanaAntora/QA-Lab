@@ -12,17 +12,19 @@
   color: inherit;
   box-shadow: 0 8px 28px var(--color-shadow);
   transition:
-    border-color var(--transition-base),
-    background var(--transition-base),
-    transform var(--transition-base),
-    box-shadow var(--transition-base);
+    border-color var(--motion-hover),
+    background var(--motion-hover),
+    transform var(--motion-hover),
+    box-shadow var(--motion-hover);
 }
 
 .card:hover {
   background: var(--color-bg-tertiary);
-  border-color: var(--color-border-strong);
-  box-shadow: 0 14px 36px var(--color-shadow);
-  transform: translateY(-2px);
+  border-color: var(--color-accent);
+  box-shadow:
+    0 0 0 1px var(--color-accent-soft),
+    0 14px 36px var(--color-shadow);
+  transform: scale(1.015);
 }
 
 .card:not(.cardStatic) {
@@ -35,8 +37,8 @@
 
 .cardStatic:hover {
   background: var(--color-bg-tertiary);
-  border-color: var(--color-border-strong);
-  transform: translateY(-2px);
+  border-color: var(--color-accent);
+  transform: scale(1.01);
 }
 
 .status {
@@ -96,13 +98,13 @@
   padding: 14px 32px;
   background: var(--color-bg-tertiary);
   border-top: 1px solid var(--color-border);
-  color: var(--color-accent);
+  color: var(--color-accent-text);
   transform: translateY(100%);
   opacity: 0;
   pointer-events: none;
   transition:
-    transform 200ms ease,
-    opacity 200ms ease;
+    transform var(--motion-hover),
+    opacity var(--motion-hover);
 }
 
 .card:hover .ctaHover,
@@ -114,4 +116,17 @@
 .ctaMuted {
   margin-top: auto;
   color: var(--color-text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover,
+  .cardStatic:hover {
+    transform: none;
+  }
+
+  .ctaHover,
+  .card:hover .ctaHover,
+  .card:focus-visible .ctaHover {
+    transform: none;
+  }
 }

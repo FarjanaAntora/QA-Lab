@@ -1,5 +1,6 @@
 import SectionLabel from "@/components/ui/SectionLabel";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { StaggerGroup, StaggerItem } from "@/components/ui/Stagger";
 import styles from "./Contact.module.css";
 
 const links = [
@@ -34,23 +35,24 @@ export default function Contact() {
             intelligence.
           </p>
 
-          <div className={styles.links}>
+          <StaggerGroup className={styles.links}>
             {links.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className={`text-label ${styles.link}`}
-                target={link.href.startsWith("http") ? "_blank" : undefined}
-                rel={
-                  link.href.startsWith("http")
-                    ? "noopener noreferrer"
-                    : undefined
-                }
-              >
-                {link.label}
-              </a>
+              <StaggerItem key={link.label}>
+                <a
+                  href={link.href}
+                  className={`text-label ${styles.link}`}
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={
+                    link.href.startsWith("http")
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
+                >
+                  {link.label}
+                </a>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
 
           <hr className={styles.rule} />
 

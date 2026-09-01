@@ -1,0 +1,48 @@
+.track {
+  position: fixed;
+  right: 0;
+  bottom: 10vh;
+  left: 0;
+  z-index: 150;
+  height: 56px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.pair {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.staticPair {
+  left: 6vw;
+}
+
+.bob {
+  display: block;
+  line-height: 0;
+}
+
+.chick {
+  display: block;
+  width: 30px;
+  height: 30px;
+  filter: drop-shadow(0 1px 2px color-mix(in srgb, #000 22%, transparent));
+}
+
+.duck {
+  display: block;
+  width: 42px;
+  height: 34px;
+  filter: drop-shadow(0 1px 2px color-mix(in srgb, #000 22%, transparent));
+}
+
+@media print {
+  .track {
+    display: none !important;
+  }
+}

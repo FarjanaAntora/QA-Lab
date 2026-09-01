@@ -22,7 +22,7 @@
   flex-direction: column;
   gap: 20px;
   font-size: 16px;
-  line-height: 1.8;
+  line-height: var(--line-height-body);
   color: var(--color-text-secondary);
 }
 

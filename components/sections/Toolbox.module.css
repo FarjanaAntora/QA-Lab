@@ -24,18 +24,20 @@
   border-radius: var(--radius-md);
   background: var(--color-bg-secondary);
   transition:
-    border-color var(--transition-base),
-    transform var(--transition-base);
+    border-color var(--motion-hover),
+    transform var(--motion-hover),
+    box-shadow var(--motion-hover);
 }
 
 .card:hover {
-  border-color: var(--color-border-strong);
-  transform: translateY(-2px);
+  border-color: var(--color-accent);
+  transform: scale(1.015);
+  box-shadow: 0 0 0 1px var(--color-accent-soft);
 }
 
 .category {
   margin: 0 0 16px;
-  color: var(--color-accent);
+  color: var(--color-accent-text);
 }
 
 .tags {
@@ -53,5 +55,11 @@
 @media (min-width: 1024px) {
   .grid {
     grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover {
+    transform: none;
   }
 }

@@ -13,6 +13,17 @@ test.describe("interactions", () => {
     await expect(card).toContainText("good. you passed the first test.");
   });
 
+  test("hovering the hidden trigger reveals the glitch line", async ({
+    page,
+  }) => {
+    await page.getByRole("button", { name: "Hidden interaction" }).hover();
+    await expect(page.getByTestId("glitch-line")).toBeVisible();
+    await expect(page.getByTestId("glitch-line")).toContainText(
+      "Found the glitch in the matrix.",
+    );
+    await expect(page.getByText("[ DO NOT CLICK ]")).toBeVisible();
+  });
+
   test("experience timeline expands responsibilities", async ({ page }) => {
     const experience = page.locator("#experience");
     await experience.scrollIntoViewIfNeeded();
@@ -114,7 +125,7 @@ test.describe("interactions", () => {
     const cv = page.locator("#cv");
     await cv.scrollIntoViewIfNeeded();
 
-    const interactive = cv.getByRole("link", { name: "VIEW INTERACTIVE CV" });
+    const interactive = cv.getByRole("link", { name: "VIEW CV" });
     await expect(interactive).toBeVisible();
     await expect(interactive).toHaveAttribute("href", "/cv");
 
