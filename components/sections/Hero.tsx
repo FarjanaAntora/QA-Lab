@@ -52,16 +52,16 @@ export default function Hero() {
               {line}
             </motion.span>
           ))}
+          <motion.span
+            className={`${styles.headlineLine} ${styles.aside}`}
+            custom={4}
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+          >
+            on purpose
+          </motion.span>
         </h1>
-
-        <motion.div
-          className={styles.divider}
-          custom={4}
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          aria-hidden="true"
-        />
 
         <motion.div
           className={styles.subtext}

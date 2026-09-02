@@ -108,6 +108,27 @@ test.describe("interactions", () => {
     ).toBeVisible();
   });
 
+  test("selected work expands a project story", async ({ page }) => {
+    const projects = page.locator("#projects");
+    await projects.scrollIntoViewIfNeeded();
+
+    const selected = projects.locator("#selected-work");
+    await selected.scrollIntoViewIfNeeded();
+
+    const interesting =
+      "The source was a physical object. Quality had to survive every step after the photograph.";
+
+    await expect(selected.getByText(interesting)).toHaveCount(0);
+
+    await selected
+      .getByRole("button", { name: /From Manuscript to Searchable Data/i })
+      .click();
+
+    await expect(selected.getByText(interesting)).toBeVisible();
+    await expect(selected.getByText("Challenge")).toBeVisible();
+    await expect(selected.getByText("What I tested")).toBeVisible();
+  });
+
   test("project cards link to case study pages", async ({ page }) => {
     const projects = page.locator("#projects");
     await projects.scrollIntoViewIfNeeded();

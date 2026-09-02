@@ -1,9 +1,6 @@
-import { projects } from "@/content/projects";
 import FocalProjects from "@/components/sections/FocalProjects";
-import ProjectCard from "@/components/ui/ProjectCard";
 import SectionLabel from "@/components/ui/SectionLabel";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import { StaggerGroup, StaggerItem } from "@/components/ui/Stagger";
 import styles from "./Projects.module.css";
 
 export default function Projects() {
@@ -20,21 +17,6 @@ export default function Projects() {
         </ScrollReveal>
 
         <FocalProjects />
-
-        <StaggerGroup className={styles.grid}>
-          {projects.map((project) => (
-            <StaggerItem key={project.slug} className={styles.cardSlot}>
-              <ProjectCard
-                title={project.title}
-                description={project.summary}
-                role={project.role}
-                technologies={project.technologies}
-                slug={project.slug}
-                status={project.status}
-              />
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
       </div>
     </section>
   );

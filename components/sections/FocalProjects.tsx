@@ -3,6 +3,7 @@
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { useRef } from "react";
+import SelectedWork from "@/components/sections/SelectedWork";
 import TechTag from "@/components/ui/TechTag";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { StaggerGroup, StaggerItem } from "@/components/ui/Stagger";
@@ -10,18 +11,12 @@ import { MOTION_EASE } from "@/lib/motion";
 import {
   abTestingFocal,
   brandRoster,
-  echotexFocal,
-  echotexLoop,
   hppyFocal,
+  hppyMetrics,
   mhmFocal,
   type FocalProject,
 } from "@/content/focal";
 import styles from "./FocalProjects.module.css";
-
-const hppyMetrics = [
-  { value: "88", note: "User stories" },
-  { value: "23", note: "Epics" },
-] as const;
 
 const mhmModules = ["PIS", "EHR", "BMS", "Appointments"] as const;
 
@@ -61,7 +56,7 @@ function FocalCta({ project }: { project: FocalProject }) {
 
 function HppyVisual() {
   return (
-    <StaggerGroup className={styles.dataStrip} aria-label="Stories and epics">
+    <StaggerGroup className={styles.dataStrip} aria-label="Hppy AI plan numbers">
       {hppyMetrics.map((metric) => (
         <StaggerItem key={metric.note} className={styles.dataCard}>
           <span className={`text-h2 ${styles.dataValue}`}>{metric.value}</span>
@@ -163,25 +158,6 @@ function BrandRoster() {
   );
 }
 
-function OwnershipLoop() {
-  return (
-    <div className={styles.loop} aria-label="Solo QA process">
-      <StaggerGroup className={styles.loopSteps}>
-        {echotexLoop.map((item, index) => (
-          <StaggerItem key={item.step} className={styles.loopStep}>
-            <span className={`text-label ${styles.loopIndex}`}>
-              0{index + 1}
-            </span>
-            <span className={styles.loopTitle}>{item.step}</span>
-            <span className={styles.loopNote}>{item.note}</span>
-          </StaggerItem>
-        ))}
-      </StaggerGroup>
-      <p className={styles.loopCaption}>One tester. The whole loop.</p>
-    </div>
-  );
-}
-
 export default function FocalProjects() {
   return (
     <div className={styles.stack}>
@@ -195,6 +171,11 @@ export default function FocalProjects() {
               ))}
             </ul>
             <FocalTags project={hppyFocal} />
+            {hppyFocal.highlight ? (
+              <blockquote className={styles.highlight}>
+                {hppyFocal.highlight}
+              </blockquote>
+            ) : null}
             <FocalCta project={hppyFocal} />
           </div>
           <HppyVisual />
@@ -217,6 +198,11 @@ export default function FocalProjects() {
               ))}
             </ul>
             <FocalTags project={mhmFocal} />
+            {mhmFocal.highlight ? (
+              <blockquote className={styles.highlight}>
+                {mhmFocal.highlight}
+              </blockquote>
+            ) : null}
             <FocalCta project={mhmFocal} />
           </div>
           <MhmArchitecture />
@@ -239,21 +225,7 @@ export default function FocalProjects() {
         </article>
       </ScrollReveal>
 
-      <ScrollReveal>
-        <article className={`${styles.focal} ${styles.focalProcess}`}>
-          <OwnershipLoop />
-          <div className={styles.copy}>
-            <FocalHeader project={echotexFocal} />
-            <ul className={styles.capabilities}>
-              {echotexFocal.capabilities.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-            <FocalTags project={echotexFocal} />
-            <FocalCta project={echotexFocal} />
-          </div>
-        </article>
-      </ScrollReveal>
+      <SelectedWork />
     </div>
   );
 }

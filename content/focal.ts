@@ -9,6 +9,7 @@ export type FocalProject = {
   metric: { value: string; note: string } | null;
   capabilities: string[];
   technologies: string[];
+  highlight: string | null;
 };
 
 export const hppyFocal: FocalProject = {
@@ -16,18 +17,21 @@ export const hppyFocal: FocalProject = {
   slug: "healthscan-test-plan",
   label: "Focal project",
   title: "Hppy AI",
-  positioning: "Healthcare document intelligence. Quality with no assumptions.",
+  positioning:
+    "Enterprise test plan and live product QA. Some of it shipped. Some of it is still in flight.",
   summary:
-    "A healthcare AI platform that reads clinical documents and has to stay grounded in the source. I owned the test plan: architecture-risk traceability across 88 stories and 23 epics, covering extraction, human review, consent, and access control. The work was about what must never happen in a patient record, not a demo script.",
+    "Hppy AI is a family of healthcare products — document intelligence, ClaimReady math, Hppy RX, and HppyFx. I owned the enterprise test plan: 88 stories and 23 epics, plus 45 formulas mapped across 8 clinical stories. Four end-to-end journeys, ten gap categories, and 40+ cases added. A wrong extraction or an ungrounded number has real-world consequences.",
   role: "Lead QA Engineer",
   metric: {
     value: "88 / 23",
     note: "user stories / epics in the test plan",
   },
   capabilities: [
-    "Architecture-risk to acceptance-criteria traceability",
-    "AI output validation and chat safety scenarios",
-    "Adversarial checks for isolation and access control",
+    "Architecture-risk to acceptance-criteria across all 88 stories",
+    "OCR, LLM extraction, and human-in-the-loop verification",
+    "Chat safety: hallucination, diagnosis refusal, isolation",
+    "Adversarial checks for access control and data leakage",
+    "Consent, entitlement, and audit completeness",
     "End-to-end journeys across the patient document flow",
   ],
   technologies: [
@@ -38,25 +42,40 @@ export const hppyFocal: FocalProject = {
     "Playwright",
     "Neo4j",
   ],
+  highlight:
+    "HealthScan plan adopted for MVP. Claim formula suite validated. HppyFx economics POC still in flight.",
 };
+
+export const hppyMetrics = [
+  { value: "88", note: "User stories" },
+  { value: "23", note: "Epics" },
+  { value: "45", note: "Formulas validated" },
+  { value: "8", note: "Clinical stories" },
+  { value: "4", note: "E2E journeys" },
+  { value: "10", note: "Gap categories" },
+  { value: "40+", note: "Cases added" },
+  { value: "3", note: "AI products" },
+] as const;
 
 export const mhmFocal: FocalProject = {
   id: "mhm",
   slug: "mhm-ehr-qa",
   label: "Focal project",
   title: "Memorial Houston Medical",
-  positioning: "Healthcare ERP / Medical Information Platform. Sole QA.",
+  positioning:
+    "EHR quality ownership. Five modules. One identity layer. Sole QA.",
   summary:
-    "A modular hospital platform around patient identity, clinical records, appointments, and bed operations. I was the only QA: functional and integration paths, API and data checks, identity-boundary security, and regression on the workflows that move patient data.",
+    "Sole QA for a US hospital ERP spanning UIS, PIS, EHR, BMS, and Appointment Management. Patient identity stays in UIS and travels as an External ID — five modules share a patient without copying the record. I covered functional and integration paths, identity-boundary security, and Selenium/Python regression for login, registration, and EHR.",
   role: "Sole QA / SQA Engineer",
   metric: {
     value: "2,000+",
     note: "defects identified and driven to resolution",
   },
   capabilities: [
-    "Functional, E2E, regression, and integration testing",
-    "API and data validation across module boundaries",
-    "Security checks on the External ID model",
+    "Functional, E2E, and integration across UIS, PIS, EHR, BMS, and appointments",
+    "API and data checks where the External ID crosses a boundary",
+    "Security and isolation on the identity model",
+    "Cross-module paths: registration, clinical record, beds, appointments",
     "Python + Selenium regression for login, registration, and EHR",
   ],
   technologies: [
@@ -72,6 +91,8 @@ export const mhmFocal: FocalProject = {
     "Security Testing",
     "Jira",
   ],
+  highlight:
+    "Selenium/Python regression held login, registration, and EHR as the modules changed.",
 };
 
 export const abTestingFocal: FocalProject = {
@@ -103,33 +124,7 @@ export const abTestingFocal: FocalProject = {
     "Test Case Design",
     "Stakeholder Communication",
   ],
-};
-
-export const echotexFocal: FocalProject = {
-  id: "echotex-erp",
-  slug: null,
-  label: "Focal project",
-  title: "Echotex ERP",
-  positioning: "ERP platform. Sole tester. Full quality ownership.",
-  summary:
-    "I was the only QA engineer on an ERP system at Echotex. Test planning, execution, and defect management sat with me — there was no QA team to split the modules across.",
-  role: "Sole QA / Tester",
-  metric: null,
-  capabilities: [
-    "Functional testing across ERP modules",
-    "Test case design",
-    "Defect tracking",
-    "Regression coverage",
-    "Independent ownership of the quality process",
-  ],
-  technologies: [
-    "ERP Testing",
-    "Functional Testing",
-    "Regression Testing",
-    "Test Case Design",
-    "Defect Tracking",
-    "Solo QA Ownership",
-  ],
+  highlight: null,
 };
 
 export const brandRoster = [
@@ -153,9 +148,3 @@ export const brandRoster = [
   { name: "Loop", src: "/brands/loop.svg", emblem: true },
 ] as const;
 
-export const echotexLoop = [
-  { step: "Plan", note: "Test planning" },
-  { step: "Execute", note: "Functional testing" },
-  { step: "Defects", note: "Defect tracking" },
-  { step: "Regression", note: "Regression coverage" },
-] as const;

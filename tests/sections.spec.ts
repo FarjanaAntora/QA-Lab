@@ -40,7 +40,12 @@ test.describe("sections", () => {
     await section.scrollIntoViewIfNeeded();
     await expect(section).toBeVisible();
     await expect(section).toContainText("Hppy AI");
+    await expect(section).toContainText("Enterprise test plan");
+    await expect(section).toContainText("45");
+    await expect(section).toContainText("Formulas validated");
+    await expect(section).toContainText("40+");
     await expect(section).toContainText("Memorial Houston Medical");
+    await expect(section).toContainText("EHR quality ownership");
     await expect(section).toContainText("2,000+");
     await expect(section).toContainText("Global Brand A/B Testing");
     await expect(section.getByRole("img", { name: "Dior" })).toBeVisible();
@@ -49,7 +54,17 @@ test.describe("sections", () => {
     ).toBeVisible();
     await expect(section.getByRole("img", { name: "Heavenly" })).toBeVisible();
     await expect(section.getByRole("img", { name: "Sole" })).toBeVisible();
-    await expect(section).toContainText("Echotex ERP");
+    await expect(section).toContainText("From Manuscript to Searchable Data");
+    await expect(section).toContainText("The Journey");
+    await expect(section).toContainText("Premium booking path");
+    await expect(section).toContainText(
+      "Bangladesh Government Systems - QA Portfolio",
+    );
+    await expect(section).toContainText("Playwright + AI Evaluation Framework");
+    await expect(section).toContainText("Also in the work");
+    await expect(section).toContainText("Data · Web Platforms · QA");
+    await expect(section).toContainText("WordPress · Web QA · Client Projects");
+    await expect(section).toContainText("QA Leadership · Process · Training");
   });
 
   test("how-i-think section is visible", async ({ page }) => {

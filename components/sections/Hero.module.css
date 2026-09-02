@@ -27,7 +27,7 @@
 }
 
 .headline {
-  margin: 0;
+  margin: 0 0 32px;
   color: var(--color-text-primary);
   line-height: 1.05;
 }
@@ -36,11 +36,9 @@
   display: block;
 }
 
-.divider {
-  width: 60px;
-  height: 1px;
-  margin: 32px 0;
-  background: var(--color-border-strong);
+.aside {
+  margin-top: 0.12em;
+  font-size: 0.38em;
 }
 
 .subtext {
@@ -87,7 +85,8 @@
     margin-right: 0.35em;
   }
 
-  .headlineLine:nth-child(3) {
+  .headlineLine:nth-child(3),
+  .headlineLine:nth-child(4) {
     width: 100%;
   }
 }
