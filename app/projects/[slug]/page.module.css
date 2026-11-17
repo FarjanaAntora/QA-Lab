@@ -161,6 +161,43 @@
   color: var(--color-text-secondary);
 }
 
+.steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  padding: 16px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.stepLabel {
+  margin: 0;
+  color: var(--color-accent-text);
+}
+
+.stepBody {
+  margin: 0;
+  font-size: 16px;
+  line-height: var(--line-height-body);
+  color: var(--color-text-secondary);
+}
+
+.related {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--color-accent-text);
+  text-decoration: none;
+}
+
+.related:hover {
+  color: var(--color-text-primary);
+}
+
 .githubButton {
   display: inline-flex;
   align-items: center;
@@ -212,6 +249,12 @@
 @media (min-width: 768px) {
   .inner {
     padding: 96px 24px;
+  }
+
+  .step {
+    grid-template-columns: 132px 1fr;
+    gap: 24px;
+    align-items: baseline;
   }
 
   .githubButton {

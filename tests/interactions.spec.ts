@@ -34,7 +34,7 @@ test.describe("interactions", () => {
 
     await expect(
       experience.getByText(
-        "Architected and maintained Playwright automation suites",
+        "Sole QA for Memorial Houston Medical across five modules",
         { exact: false },
       ),
     ).toHaveCount(0);
@@ -43,7 +43,7 @@ test.describe("interactions", () => {
 
     await expect(
       experience.getByText(
-        "Architected and maintained Playwright automation suites",
+        "Sole QA for Memorial Houston Medical across five modules",
         { exact: false },
       ),
     ).toBeVisible();
@@ -64,6 +64,40 @@ test.describe("interactions", () => {
     ).toBeVisible();
     await expect(
       section.getByText("Unicode characters in the email field"),
+    ).toBeVisible();
+  });
+
+  test("how i think can switch to AI document extraction", async ({ page }) => {
+    const section = page.locator("#how-i-think");
+    await section.scrollIntoViewIfNeeded();
+
+    await section
+      .getByRole("radio", { name: "AI document extraction" })
+      .click();
+
+    await expect(
+      section.getByText(
+        "What does a correct extraction look like, end to end?",
+      ),
+    ).toBeVisible();
+    await expect(section.getByText("no source span")).toBeVisible();
+
+    await section.getByRole("tab", { name: "NEGATIVE" }).click();
+    await expect(
+      section.getByText("No span, no write", { exact: false }),
+    ).toBeVisible();
+
+    await section.getByRole("tab", { name: "SECURITY" }).click();
+    await expect(
+      section.getByRole("heading", {
+        name: /What if one tenant's pipeline could expose another/,
+      }),
+    ).toBeVisible();
+
+    await section.getByRole("radio", { name: "Login form" }).click();
+    await section.getByRole("tab", { name: "FUNCTIONAL" }).click();
+    await expect(
+      section.getByText("Does it do what it's supposed to do?"),
     ).toBeVisible();
   });
 
@@ -121,7 +155,7 @@ test.describe("interactions", () => {
     await expect(selected.getByText(interesting)).toHaveCount(0);
 
     await selected
-      .getByRole("button", { name: /From Manuscript to Searchable Data/i })
+      .getByRole("button", { name: /Manuscript Digitisation QA/i })
       .click();
 
     await expect(selected.getByText(interesting)).toBeVisible();

@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import SectionLabel from "@/components/ui/SectionLabel";
 import ScrollReveal from "@/components/ui/ScrollReveal";
@@ -17,13 +17,20 @@ const modes = [
 
 type Mode = (typeof modes)[number];
 
-const modeContent: Record<
-  Mode,
-  {
-    heading: string;
-    considerations: string[];
-  }
-> = {
+type Lens = {
+  heading: string;
+  considerations: string[];
+};
+
+const scenarios = [
+  { id: "login", label: "Login form" },
+  { id: "extraction", label: "AI document extraction" },
+] as const;
+
+type ScenarioId = (typeof scenarios)[number]["id"];
+
+const scenarioContent: Record<ScenarioId, Record<Mode, Lens>> = {
+  login: {
   FUNCTIONAL: {
     heading: "Does it do what it's supposed to do?",
     considerations: [
@@ -90,11 +97,107 @@ const modeContent: Record<
       "Are ARIA roles and live regions used for error announcements?",
     ],
   },
+  },
+  extraction: {
+    FUNCTIONAL: {
+      heading: "What does a correct extraction look like, end to end?",
+      considerations: [
+        "The page is stored, the text is read, and each required field is filled from that text",
+        "Every stored value cites the page and the span it came from",
+        "A field that is absent on the page stays empty",
+        "A person can accept, correct, or reject the extraction before it is written",
+        "Anything downstream uses the verified value, not the raw model string",
+      ],
+    },
+    BOUNDARY: {
+      heading: "Where does extraction quality degrade?",
+      considerations: [
+        "A faint scan, a stamp across the line, or a page photographed at an angle",
+        "Handwriting that could be a 1 or a 7, or a name with an ambiguous letter",
+        "A value that starts on one page and finishes on the next",
+        "The same field printed twice, where the later line amends the first",
+        "A blank page, a cover sheet, or a page from a different document in the packet",
+      ],
+    },
+    NEGATIVE: {
+      heading: "What does a hallucinated value look like when it is plausible?",
+      considerations: [
+        "A dosage that is clinically ordinary, and is not printed on the page",
+        "A date that is a real calendar date, and is not the date on the document",
+        "A patient name one character away from another name in the same batch",
+        "Catch it by requiring a source span. No span, no write",
+        "Score the field against the page text. A fluent value with nothing to cite fails",
+        "Send the uncited field to a person instead of letting the model fill the gap",
+      ],
+    },
+    SECURITY: {
+      heading: "What if one tenant's pipeline could expose another's document?",
+      considerations: [
+        "Tenant A's extraction written into tenant B's store, log, or prompt context",
+        "A page that tells the model to ignore the document and return another patient's record",
+        "Entitlement checked when the file is fetched, not only when the screen renders",
+        "Traces, embeddings, and model logs scoped to the tenant that owns the document",
+        "An audit entry for who opened the file, who accepted the extraction, and what they changed",
+      ],
+    },
+    PERFORMANCE: {
+      heading: "How would you know quality had dropped, before anyone complains?",
+      considerations: [
+        "Faithfulness and citation rate on a sample of production documents, not one happy-path fixture",
+        "A rise in human corrections on a field that used to pass through",
+        "The same document re-run after a prompt or model change, compared with the last accepted output",
+        "A trace when the call chain gets longer, or when a fallback model takes over",
+        "A slow read shows a waiting state. It does not write a partial record",
+        "A backlog of pages does not skip the citation check to catch up",
+      ],
+    },
+    ACCESSIBILITY: {
+      heading: "Can the person who has to review the extraction actually do it?",
+      considerations: [
+        "A field that needs review is named as such. Color is not the only signal",
+        "Keyboard reaches every field, the source page, and accept, correct, or reject",
+        "A screen reader reads the value and whether it has a source",
+        "Focus lands on the first field a person has to resolve",
+        "The source image has a text alternative of the line that was read",
+        "The message names the field with no citation, and what to do next",
+      ],
+    },
+  },
 };
 
+function ExtractionSpecimen() {
+  return (
+    <div className={styles.specimen}>
+      <p className={`text-label ${styles.formLabel}`}>SOURCE PAGE</p>
+      <p className={styles.sourceLine}>
+        Metformin 500 mg
+        <span className={styles.sourceMeta}>printed on page 2</span>
+      </p>
+      <p className={styles.sourceLine}>
+        Date of service
+        <span className={styles.sourceMeta}>not printed</span>
+      </p>
+      <p className={`text-label ${styles.extractedLabel}`}>EXTRACTED</p>
+      <ul className={styles.extracted}>
+        <li>
+          <span className={styles.extractedName}>Medication</span>
+          <span>Metformin 500 mg</span>
+          <span className={styles.cited}>cited</span>
+        </li>
+        <li>
+          <span className={styles.extractedName}>Date of service</span>
+          <span>14 Mar 2024</span>
+          <span className={styles.uncited}>no source span</span>
+        </li>
+      </ul>
+    </div>
+  );
+}
+
 export default function HowIThink() {
+  const [scenario, setScenario] = useState<ScenarioId>("login");
   const [mode, setMode] = useState<Mode>("FUNCTIONAL");
-  const active = modeContent[mode];
+  const active = scenarioContent[scenario][mode];
   const reduce = useReducedMotion();
 
   return (
@@ -118,9 +221,30 @@ export default function HowIThink() {
             CHOOSE A TESTING LENS
           </h3>
           <p className={styles.demoSubtext}>
-            Select a perspective. See how a QA engineer thinks about the same
-            problem.
+            The login form is the simple case. AI document extraction is the
+            work. Same lenses either way.
           </p>
+
+          <div
+            className={styles.scenarios}
+            role="radiogroup"
+            aria-label="Example"
+          >
+            {scenarios.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                role="radio"
+                aria-checked={scenario === item.id}
+                className={`${styles.modeButton} ${
+                  scenario === item.id ? styles.modeButtonActive : ""
+                }`}
+                onClick={() => setScenario(item.id)}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
 
           <div className={styles.modes} role="tablist" aria-label="Testing lenses">
             {modes.map((item) => (
@@ -141,62 +265,65 @@ export default function HowIThink() {
 
           <div className={styles.split}>
             <div className={styles.formPanel}>
-              <p className={`text-label ${styles.formLabel}`}>LOGIN FORM</p>
-              <form
-                className={styles.form}
-                onSubmit={(event) => event.preventDefault()}
-              >
-                <label className={styles.field}>
-                  <span className={styles.fieldLabel}>Email</span>
-                  <input
-                    type="email"
-                    className={styles.input}
-                    placeholder="you@company.com"
-                    tabIndex={-1}
-                    readOnly
-                    aria-readonly="true"
-                  />
-                </label>
-                <label className={styles.field}>
-                  <span className={styles.fieldLabel}>Password</span>
-                  <input
-                    type="password"
-                    className={styles.input}
-                    placeholder="••••••••"
-                    value="password"
-                    tabIndex={-1}
-                    readOnly
-                    aria-readonly="true"
-                  />
-                </label>
-                <button type="button" className={styles.loginButton}>
-                  LOG IN
-                </button>
-                <button type="button" className={styles.forgot}>
-                  Forgot password?
-                </button>
-              </form>
+              {scenario === "login" ? (
+                <>
+                  <p className={`text-label ${styles.formLabel}`}>LOGIN FORM</p>
+                  <form
+                    className={styles.form}
+                    onSubmit={(event) => event.preventDefault()}
+                  >
+                    <label className={styles.field}>
+                      <span className={styles.fieldLabel}>Email</span>
+                      <input
+                        type="email"
+                        className={styles.input}
+                        placeholder="you@company.com"
+                        tabIndex={-1}
+                        readOnly
+                        aria-readonly="true"
+                      />
+                    </label>
+                    <label className={styles.field}>
+                      <span className={styles.fieldLabel}>Password</span>
+                      <input
+                        type="password"
+                        className={styles.input}
+                        placeholder="••••••••"
+                        value="password"
+                        tabIndex={-1}
+                        readOnly
+                        aria-readonly="true"
+                      />
+                    </label>
+                    <button type="button" className={styles.loginButton}>
+                      LOG IN
+                    </button>
+                    <button type="button" className={styles.forgot}>
+                      Forgot password?
+                    </button>
+                  </form>
+                </>
+              ) : (
+                <ExtractionSpecimen />
+              )}
             </div>
 
             <div className={styles.panel}>
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={mode}
-                  initial={reduce ? false : { opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={reduce ? undefined : { opacity: 0 }}
-                  transition={{ duration: reduce ? 0 : 0.2 }}
-                >
-                  <h3 className={`text-h3 ${styles.panelHeading}`}>
-                    {active.heading}
-                  </h3>
-                  <ul className={styles.considerations}>
-                    {active.considerations.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </motion.div>
-              </AnimatePresence>
+              <motion.div
+                key={`${scenario}-${mode}`}
+                initial={reduce ? false : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: reduce ? 0 : 0.2 }}
+              >
+                <h3 className={`text-h3 ${styles.panelHeading}`}>
+                  {active.heading}
+                </h3>
+                <ul className={styles.considerations}>
+                  {active.considerations.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </motion.div>
             </div>
           </div>
         </div>

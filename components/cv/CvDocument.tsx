@@ -15,25 +15,23 @@ export default function CvDocument() {
         <p className={styles.contact}>
           <span>{cvData.location}</span>
           <span aria-hidden="true"> · </span>
-          <a href={`tel:${cvData.phone.replace(/\s/g, "")}`}>{cvData.phone}</a>
-          <span aria-hidden="true"> · </span>
           <a href={`mailto:${cvData.email}`}>{cvData.email}</a>
         </p>
         <p className={styles.contact}>
           <a
-            href={`https://${cvData.linkedin}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {cvData.linkedin}
-          </a>
-          <span aria-hidden="true"> · </span>
-          <a
-            href={`https://${cvData.github}`}
+            href={cvData.githubHref}
             target="_blank"
             rel="noopener noreferrer"
           >
             {cvData.github}
+          </a>
+          <span aria-hidden="true"> · </span>
+          <a
+            href={cvData.websiteHref}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {cvData.website}
           </a>
         </p>
       </header>
@@ -84,16 +82,7 @@ export default function CvDocument() {
         </dl>
       </section>
 
-      <section className={styles.block}>
-        <h2 className={styles.sectionLabel}>Key Achievements</h2>
-        <ul className={styles.bullets}>
-          {cvData.achievements.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      <section className={styles.block}>
+      <section className={`${styles.block} ${styles.blockLast}`}>
         <h2 className={styles.sectionLabel}>Education</h2>
         <p className={styles.eduDegree}>
           {cvData.education.degree}
@@ -102,25 +91,6 @@ export default function CvDocument() {
         <p className={styles.eduMeta}>
           {cvData.education.university} · {cvData.education.year}
         </p>
-      </section>
-
-      <section className={`${styles.block} ${styles.blockLast}`}>
-        <h2 className={styles.sectionLabel}>Referees</h2>
-        <div className={styles.referees}>
-          {cvData.referees.map((referee) => (
-            <div key={referee.email} className={styles.referee}>
-              <p className={styles.refereeName}>{referee.name}</p>
-              <p className={styles.refereeTitle}>{referee.title}</p>
-              <p className={styles.refereeMeta}>
-                <a href={`mailto:${referee.email}`}>{referee.email}</a>
-                <span aria-hidden="true"> · </span>
-                <a href={`tel:${referee.phone.replace(/\s/g, "")}`}>
-                  {referee.phone}
-                </a>
-              </p>
-            </div>
-          ))}
-        </div>
       </section>
     </article>
   );

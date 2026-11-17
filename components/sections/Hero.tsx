@@ -9,7 +9,12 @@ import { MOTION_EASE } from "@/lib/motion";
 import styles from "./Hero.module.css";
 
 const headlineLines = ["I BREAK", "SOFTWARE", "FOR A LIVING."];
-const tags = ["playwright", "api", "ci/cd", "AI/ML Quality Engineering"];
+const tags = [
+  "manual testing",
+  "api + sql",
+  "automation",
+  "ai-assisted qa",
+];
 
 export default function Hero() {
   const reduce = useReducedMotion();
@@ -70,7 +75,10 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
         >
-          <p className={styles.role}>Senior QA Automation Engineer</p>
+          <p className={styles.role}>
+            Lead QA Engineer. Manual testing first, with automation and
+            AI-assisted QA on top.
+          </p>
           <StaggerGroup className={styles.tags}>
             {tags.map((tag) => (
               <StaggerItem key={tag}>

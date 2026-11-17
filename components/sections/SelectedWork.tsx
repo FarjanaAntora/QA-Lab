@@ -144,6 +144,9 @@ function FeatureCard({
     >
       <p className={`text-label ${styles.index}`}>{project.number}</p>
       <p className={`text-label ${styles.category}`}>{project.category}</p>
+      {project.status === "in-progress" ? (
+        <p className={`text-label ${styles.category}`}>IN PROGRESS</p>
+      ) : null}
       <h3 className={`text-h3 ${styles.title}`}>{project.title}</h3>
       <p className={styles.summary}>{project.summary}</p>
       {visual}

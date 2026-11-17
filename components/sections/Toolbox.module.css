@@ -15,7 +15,7 @@
 .grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
+  gap: 16px;
 }
 
 .card {
@@ -40,21 +40,78 @@
   color: var(--color-accent-text);
 }
 
-.tags {
+.coreBlock + .supportBlock {
+  margin-top: 16px;
+}
+
+.tier {
+  margin: 0 0 8px;
+  color: var(--color-text-muted);
+}
+
+.tags,
+.supportingTags {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+}
+
+.supportingTags {
+  gap: 4px;
+}
+
+.supportingTags span {
+  padding: 1px 6px;
+  border-color: var(--color-border);
+  background: transparent;
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+.supportBand {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.supportCard {
+  padding: 14px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.supportCategory {
+  margin: 0 0 10px;
+  color: var(--color-text-muted);
+}
+
+.types {
+  margin: 20px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.typesLabel {
+  display: inline-block;
+  margin-right: 10px;
+  color: var(--color-text-muted);
 }
 
 @media (min-width: 640px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .supportBand {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (min-width: 1024px) {
   .grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 

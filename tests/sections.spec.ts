@@ -17,6 +17,8 @@ test.describe("sections", () => {
     await section.scrollIntoViewIfNeeded();
     await expect(section).toBeVisible();
     await expect(section).toContainText("Quality is not a phase");
+    await expect(section).toContainText("junior QA engineers");
+    await expect(section).toContainText("QA Manager at Quantanite");
   });
 
   test("experience section is visible and contains GHIT", async ({ page }) => {
@@ -41,20 +43,27 @@ test.describe("sections", () => {
     await expect(section).toBeVisible();
     await expect(section).toContainText("Hppy AI");
     await expect(section).toContainText("Enterprise test plan");
-    await expect(section).toContainText("45");
+    await expect(section).toContainText("140+");
     await expect(section).toContainText("Formulas validated");
     await expect(section).toContainText("40+");
+    await expect(section).toContainText("faithfulness score");
     await expect(section).toContainText("Memorial Houston Medical");
     await expect(section).toContainText("EHR quality ownership");
-    await expect(section).toContainText("2,000+");
+    await expect(section).toContainText("5");
+    await expect(section).toContainText("150-700 defects found per module");
+    await expect(section).toContainText("160+");
+    await expect(section).toContainText("120-hour");
+    await expect(section).toContainText("Different systems");
     await expect(section).toContainText("Global Brand A/B Testing");
+    await expect(section).toContainText("QA and analytics checking");
+    await expect(section).toContainText("IN PROGRESS");
     await expect(section.getByRole("img", { name: "Dior" })).toBeVisible();
     await expect(
       section.getByRole("img", { name: "Louis Vuitton" }),
     ).toBeVisible();
     await expect(section.getByRole("img", { name: "Heavenly" })).toBeVisible();
     await expect(section.getByRole("img", { name: "Sole" })).toBeVisible();
-    await expect(section).toContainText("From Manuscript to Searchable Data");
+    await expect(section).toContainText("Manuscript Digitisation QA (in progress)");
     await expect(section).toContainText("The Journey");
     await expect(section).toContainText("Premium booking path");
     await expect(section).toContainText(

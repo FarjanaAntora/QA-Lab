@@ -7,13 +7,18 @@ test.describe("static CV page", () => {
     await expect(
       page.getByRole("heading", { name: "Aktia Farjana Antora" }),
     ).toBeVisible();
-    await expect(page.getByText("AI Quality Engineer").first()).toBeVisible();
-    await expect(page.getByText("Hppy AI Products").first()).toBeVisible();
+    await expect(page.getByText("Lead SQA Engineer").first()).toBeVisible();
     await expect(
       page.getByText("Memorial Houston Medical", { exact: false }).first(),
     ).toBeVisible();
     await expect(page.getByText("Playwright", { exact: false }).first()).toBeVisible();
     await expect(page.getByText("DeepEval", { exact: false }).first()).toBeVisible();
+    await expect(page.getByText("farjana1319ontu@gmail.com")).toBeVisible();
+    await expect(page.getByText("+880")).toHaveCount(0);
+    await expect(page.getByText("Referees")).toHaveCount(0);
+    await expect(page.getByText("Claude Sonnet 4.6 / Opus 4.6 / GPT-5.4")).toHaveCount(
+      0,
+    );
 
     await expect(page.locator("iframe")).toHaveCount(0);
     await expect(page.locator("embed, object")).toHaveCount(0);
@@ -58,6 +63,8 @@ test.describe("static CV page", () => {
     await expect(
       page.getByRole("heading", { name: "Aktia Farjana Antora" }),
     ).toBeVisible();
-    await expect(page.getByText("Key Achievements")).toBeVisible();
+    await expect(page.getByText("Education")).toBeVisible();
+    await expect(page.getByText("Key Achievements")).toHaveCount(0);
+    await expect(page.getByText("Referees")).toHaveCount(0);
   });
 });

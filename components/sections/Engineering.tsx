@@ -1,43 +1,12 @@
 import SectionLabel from "@/components/ui/SectionLabel";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { StaggerGroup, StaggerItem } from "@/components/ui/Stagger";
+import { getEngineeringCards } from "@/content/engineering-metrics";
 import styles from "./Engineering.module.css";
 
-const cards = [
-  {
-    label: "PLAYWRIGHT TESTS",
-    value: "47",
-    note: "automated checks, running in CI",
-    live: true,
-  },
-  {
-    label: "LIGHTHOUSE SCORE",
-    value: "95+",
-    note: "performance | accessibility | SEO",
-  },
-  {
-    label: "FRAMEWORKS",
-    value: "Next.js 14",
-    note: "App Router | TypeScript | Tailwind",
-  },
-  {
-    label: "DEPLOYMENT",
-    value: "Vercel",
-    note: "CI/CD via GitHub Actions",
-  },
-  {
-    label: "ACCESSIBILITY",
-    value: "WCAG AA",
-    note: "zero violations in axe-core audit",
-  },
-  {
-    label: "RESPONSE TIME",
-    value: "<1s",
-    note: "first contentful paint",
-  },
-] as const;
-
 export default function Engineering() {
+  const cards = getEngineeringCards();
+
   return (
     <section id="engineering" className={`section ${styles.section}`}>
       <ScrollReveal className="container">
@@ -47,7 +16,8 @@ export default function Engineering() {
           The portfolio tests itself.
         </h2>
         <p className={`text-body ${styles.subcopy}`}>
-          Built with the same discipline I apply to client work.
+          Playwright in this repo covers navigation, themes, and the CV download.
+          Counts below come from the latest CI metrics file, not placeholders.
         </p>
 
         <StaggerGroup className={styles.grid}>
@@ -57,7 +27,7 @@ export default function Engineering() {
                 <p className={`text-label ${styles.label}`}>{card.label}</p>
                 <div className={styles.valueRow}>
                   <p className={`text-h2 ${styles.value}`}>{card.value}</p>
-                  {"live" in card && card.live ? (
+                  {card.live ? (
                     <span className={styles.pulse} aria-label="Live" />
                   ) : null}
                 </div>
@@ -68,8 +38,10 @@ export default function Engineering() {
         </StaggerGroup>
 
         <p className={`text-label ${styles.footnote}`}>
-          Test suite runs automatically on every push. The count above reflects
-          the current passing state.
+          GitHub Actions runs Playwright (JSON reporter), axe-core, and Lighthouse
+          CI on push, then writes{" "}
+          <code>content/engineering-metrics.json</code> for the next build.
+          Cards without a measured value are omitted.
         </p>
       </ScrollReveal>
     </section>

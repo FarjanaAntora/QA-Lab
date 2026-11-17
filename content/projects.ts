@@ -12,8 +12,14 @@ export type Project = {
   problem: string;
   approach: string[];
   challenge: string;
-  outcome: string;
+  outcome?: string;
   github: string | null;
+  decision?: {
+    title: string;
+    steps: { label: string; body: string }[];
+    related?: { href: string; label: string };
+  };
+  related?: { href: string; label: string };
 };
 
 export const projects: Project[] = [
@@ -21,9 +27,9 @@ export const projects: Project[] = [
     slug: "playwright-ai-qa-framework",
     title: "Playwright + AI Evaluation Framework",
     tagline:
-      "Production-grade automation with hallucination detection built in.",
+      "Playwright runs the journey. DeepEval scores the answer. A weak score fails the build.",
     role: "Framework Architect & Author",
-    status: "live",
+    status: "coming-soon",
     category: "Automation Framework",
     technologies: [
       "Playwright",
@@ -34,7 +40,7 @@ export const projects: Project[] = [
       "Docker",
     ],
     summary:
-      "An open-source QA automation framework that combines Playwright E2E testing with an AI evaluation layer - hallucination detection, LLM-as-judge scoring, and output consistency checks - integrated into a CI/CD pipeline that runs on every push.",
+      "Playwright drives the user journey through a Page Object Model. DeepEval scores the model output for faithfulness, answer relevance, and hallucination rate. LangSmith traces the call chain. GitHub Actions runs smoke on pull request and the full regression nightly.",
     problem:
       'Most automation frameworks are built for deterministic software. When the system under test is an LLM, traditional assertion logic breaks down. The same input can produce different outputs. What does "pass" even mean?',
     approach: [
@@ -46,10 +52,11 @@ export const projects: Project[] = [
     ],
     challenge:
       'Replacing binary pass/fail assertions with probabilistic quality thresholds. Instead of expect(response).toBe("exact string"), the framework uses expect(faithfulnessScore).toBeGreaterThan(0.85).',
-    outcome:
-      "Hallucination testing framework adopted as standard practice across all AI products at GHIT. CI pipeline reduced manual regression overhead completely.",
-    github:
-      "https://github.com/aktia-antora/playwright-ai-qa-framework",
+    github: null,
+    related: {
+      href: "/projects/healthscan-test-plan#decision",
+      label: "Hppy AI — the decision this gate is for",
+    },
   },
   {
     slug: "healthscan-test-plan",
@@ -81,8 +88,45 @@ export const projects: Project[] = [
     challenge:
       'Testing AI outputs that must never fabricate data, never diagnose, and always cite their source. Designing test cases for non-deterministic systems where "correct" is probabilistic.',
     outcome:
-      "Test plan adopted by the engineering team as the quality standard for MVP launch. Identified 10 gap categories in the original plan and added 40+ new test cases.",
+      "Identified 10 gap categories in the original plan and added 40+ test cases. The engineering team used this plan for the MVP launch.",
     github: null,
+    decision: {
+      title: "When there is no exact answer",
+      related: {
+        href: "/projects/playwright-ai-qa-framework",
+        label: "Playwright + AI Evaluation Framework",
+      },
+      steps: [
+        {
+          label: "Risk",
+          body: "The model can return an answer that sounds medically plausible and is unsupported by the record. A pass/fail assertion on the wording misses that.",
+        },
+        {
+          label: "Question",
+          body: "How do you test “correct” when the same input can come back in different words, and there is no single string to assert?",
+        },
+        {
+          label: "Decision",
+          body: "Split the problem. Extraction accuracy and formula results have a correct value, so they stay on deterministic checks. Whether an answer is grounded, faithful, and relevant is a different problem, and it needs a different test.",
+        },
+        {
+          label: "Implementation",
+          body: "DeepEval scores the output against ground-truth benchmarks for faithfulness, answer relevance, and hallucination rate. An LLM-as-judge scores denial reasoning, appeals recommendations, and risk scores. The gate is a threshold on that score. LangSmith traces the call. On the extraction path, a person still verifies what the model pulled from the document. This is the same system as the Playwright + AI Evaluation Framework, running on these products.",
+        },
+        {
+          label: "Failure",
+          body: "The first gate asserted the answer text. A supported answer in different words failed the fixture. A fluent answer was never compared with the source.",
+        },
+        {
+          label: "Response",
+          body: "Model answers moved off string match. Faithfulness, relevance, and hallucination rate became the semantic gate. Denial reasoning, appeals, and risk scores go through the judge. Extraction and the formula suite stayed on exact checks, because those outputs have a correct value. LangSmith holds the trace when the prompt or the model changes, including the switch between GPT-4 and Gemini.",
+        },
+        {
+          label: "Result",
+          body: "Green means the journey ran and the faithfulness score cleared its threshold against the ground truth. A weak score fails the build. Beside that score, the product rules still hold: do not fabricate, do not diagnose, cite the source.",
+        },
+      ],
+    },
   },
   {
     slug: "mhm-ehr-qa",
@@ -105,21 +149,21 @@ export const projects: Project[] = [
       "Jira",
     ],
     summary:
-      "Sole QA ownership for a US hospital ERP spanning UIS, PIS, EHR, BMS, and Appointment Management. Patient identity stays in UIS and travels as an External ID. I covered functional, integration, and regression work, plus Selenium/Python automation for login, registration, and EHR.",
+      "Sole QA ownership for a US hospital ERP spanning UIS, PIS, EHR, BMS, and Appointment Management. Echologyx and Echotex were the same company under different management, so this sits in one continuous ERP engagement: 15+ clients across 2 years. Patient identity stays in UIS and travels as an External ID. I covered functional, integration, and regression work, plus Selenium/Python automation for login, registration, and EHR.",
     problem:
       "Five modules share a patient without sharing a copy of that patient. If UIS identity and the External ID drift, clinical and operational records disagree. Quality has to prove the boundary, not just the screen.",
     approach: [
-      "Functional, end-to-end, regression, and integration testing across UIS, PIS, EHR, BMS, and appointments",
+      "Functional, end-to-end, regression, and integration coverage followed the identity model: UIS holds the patient, other modules carry the External ID",
       "API and data validation where modules exchange the External ID instead of raw identity",
-      "Security and data-segregation checks on module-level isolation",
-      "Cross-module workflow validation for registration, clinical record, bed, and appointment paths",
+      "Security and data-segregation checks on module isolation, with the patient record staying in UIS",
+      "The paths that move that patient: registration, clinical record, beds, and appointments",
       "Defect identification, documentation, and verification through Jira",
-      "Python + Selenium regression for login/authentication, patient registration, and EHR",
+      "Python + Selenium regression on login, registration, and EHR, holding those paths as the modules changed",
     ],
     challenge:
       "Owning quality alone across a hospital platform. Coverage had to follow the identity model and the workflows that actually move patient data, not a catalogue of every possible click.",
     outcome:
-      "Identified and drove resolution of 2,000+ defects across the platform. Selenium/Python regression held login, registration, and EHR paths in place as the modules changed.",
+      "457+ defects per module, across five modules. 2,000+ total defects across the ERP, including API-level defects — the 2,000+ is the aggregate that per-module count rolls up into, not a second unrelated total. Selenium/Python regression held login, registration, and EHR paths in place as the modules changed.",
     github: null,
   },
   {
@@ -140,7 +184,7 @@ export const projects: Project[] = [
     summary:
       "QA delivery across multiple national-scale Bangladesh government systems: Satellite Billing Module, Bangladesh Rice Research Institute digital platform, and a national Conferencing Booking Portal.",
     problem:
-      "Government systems serve millions of citizens. Downtime or data errors are public failures. Each system had unique compliance requirements and zero tolerance for production defects.",
+      "Government systems serve millions of citizens. An outage or a wrong figure is visible to the public, not only to the team. Each system had its own compliance rules and its own release window.",
     approach: [
       "Risk-based test prioritisation - highest-impact flows tested first",
       "SQL database-level data integrity verification for billing accuracy",
@@ -152,7 +196,7 @@ export const projects: Project[] = [
     challenge:
       "Coordinating QA across three simultaneous government project deliveries with different stakeholders, compliance requirements, and release windows.",
     outcome:
-      "All three systems delivered to government clients without production incidents. UAT sign-off achieved on schedule.",
+      "UAT sign-off for all three systems landed on schedule.",
     github: null,
   },
 ];

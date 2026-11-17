@@ -8,6 +8,26 @@
 }
 
 .subcopy {
+  margin: 0 0 28px;
+  color: var(--color-text-secondary);
+}
+
+.framing {
   margin: 0 0 48px;
+  max-width: 68ch;
+  padding: 20px 24px;
+  border-left: 2px solid var(--color-accent);
+  background: var(--color-bg-secondary);
+}
+
+.framing p {
+  margin: 0;
+  font-size: 16px;
+  line-height: var(--line-height-body);
+  color: var(--color-text-primary);
+}
+
+.framing p + p {
+  margin-top: 12px;
   color: var(--color-text-secondary);
 }

@@ -9,10 +9,12 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { StaggerGroup, StaggerItem } from "@/components/ui/Stagger";
 import { MOTION_EASE } from "@/lib/motion";
 import {
+  abContrasts,
   abTestingFocal,
   brandRoster,
   hppyFocal,
   hppyMetrics,
+  mhmFigures,
   mhmFocal,
   type FocalProject,
 } from "@/content/focal";
@@ -48,9 +50,31 @@ function FocalCta({ project }: { project: FocalProject }) {
   if (!project.slug) return null;
 
   return (
-    <Link href={`/projects/${project.slug}`} className={`text-label ${styles.cta}`}>
+    <Link
+      href={`/projects/${project.slug}${project.anchor ?? ""}`}
+      className={`text-label ${styles.cta}`}
+    >
       VIEW CASE STUDY →
     </Link>
+  );
+}
+
+function FigureStack({
+  figures,
+  label,
+}: {
+  figures: readonly { value: string; note: string }[];
+  label: string;
+}) {
+  return (
+    <div className={styles.figureStack} aria-label={label}>
+      {figures.map((figure) => (
+        <p key={figure.value} className={styles.metric}>
+          <span className={`text-h2 ${styles.metricValue}`}>{figure.value}</span>
+          <span className={styles.metricNote}>{figure.note}</span>
+        </p>
+      ))}
+    </div>
   );
 }
 
@@ -176,6 +200,9 @@ export default function FocalProjects() {
                 {hppyFocal.highlight}
               </blockquote>
             ) : null}
+            {hppyFocal.judgment ? (
+              <p className={styles.judgment}>{hppyFocal.judgment}</p>
+            ) : null}
             <FocalCta project={hppyFocal} />
           </div>
           <HppyVisual />
@@ -186,12 +213,10 @@ export default function FocalProjects() {
         <article className={`${styles.focal} ${styles.focalSplit}`}>
           <div className={styles.copy}>
             <FocalHeader project={mhmFocal} />
-            <p className={styles.metric}>
-              <span className={`text-h2 ${styles.metricValue}`}>
-                {mhmFocal.metric?.value}
-              </span>
-              <span className={styles.metricNote}>{mhmFocal.metric?.note}</span>
-            </p>
+            <FigureStack
+              figures={mhmFigures}
+              label="ERP defect counts"
+            />
             <ul className={styles.capabilities}>
               {mhmFocal.capabilities.map((item) => (
                 <li key={item}>{item}</li>
@@ -213,6 +238,10 @@ export default function FocalProjects() {
         <article className={`${styles.focal} ${styles.focalRoster}`}>
           <div className={styles.copy}>
             <FocalHeader project={abTestingFocal} />
+            <FigureStack
+              figures={abContrasts}
+              label="Two A/B testing outcomes"
+            />
             <ul className={styles.capabilities}>
               {abTestingFocal.capabilities.map((item) => (
                 <li key={item}>{item}</li>

@@ -33,7 +33,7 @@ export default function ProjectCard({
             LIVE
           </span>
         ) : (
-          <span className={`text-label ${styles.statusSoon}`}>COMING SOON</span>
+          <span className={`text-label ${styles.statusSoon}`}>IN PROGRESS</span>
         )}
       </div>
 

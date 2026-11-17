@@ -16,6 +16,7 @@
 /test-results/
 /blob-report/
 /playwright/.cache/
+/.lighthouseci/
 
 # next.js
 /.next/
@@ -44,3 +45,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel
+.env*

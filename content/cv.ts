@@ -1,3 +1,5 @@
+import { GITHUB_URL, LINKEDIN_URL, SITE_URL } from "@/lib/site";
+
 export type CVSkillGroup = {
   category: string;
   items: string;
@@ -16,106 +18,103 @@ export type CVExperienceRole = {
   bullets?: string[];
 };
 
-export type CVReferee = {
-  name: string;
-  title: string;
-  email: string;
-  phone: string;
-};
-
 export type CVData = {
   name: string;
   title: string;
   specialty: string;
   email: string;
-  phone: string;
   location: string;
-  linkedin: string;
+  website: string;
+  websiteHref: string;
   github: string;
+  githubHref: string;
+  linkedin: string;
+  linkedinHref: string;
   pdfHref: string;
   pdfDownloadName: string;
   experienceHeading: string;
   experience: CVExperienceRole[];
   skills: CVSkillGroup[];
-  achievements: string[];
   education: {
     degree: string;
     university: string;
     year: string;
     grade: string;
   };
-  referees: CVReferee[];
 };
 
 export const cvData: CVData = {
   name: "Aktia Farjana Antora",
-  title: "AI Quality Engineer",
+  title: "Lead SQA Engineer",
   specialty:
-    "Playwright E2E Automation · DeepEval · LangSmith · Claude · GPT · CI/CD",
+    "Manual Testing & Test Design · Automation, API & AI-Assisted QA as Extensions",
   email: "farjana1319ontu@gmail.com",
-  phone: "+880 1686057143",
   location: "Dhaka, Bangladesh",
+  website: "qa-lab-eight.vercel.app",
+  websiteHref: SITE_URL,
+  github: "github.com/FarjanaAntora",
+  githubHref: GITHUB_URL,
   linkedin: "linkedin.com/in/aktia-farjana-antora",
-  github: "github.com/aktia-antora",
+  linkedinHref: LINKEDIN_URL,
   pdfHref: "/cv-antora.pdf",
   pdfDownloadName: "Aktia Farjana Antora.pdf",
-  experienceHeading: "AI Quality Engineering Experience",
+  experienceHeading: "Experience",
   experience: [
     {
-      role: "Lead AI Quality Engineer",
-      company: "Golden Harvest Infotech Ltd · Hppy AI Products",
+      role: "Lead SQA Engineer",
+      company: "Golden Harvest Infotech Ltd (GHIT)",
       period: "Oct 2024 – Present",
       groups: [
         {
-          heading: "Playwright E2E Automation Framework",
+          heading: "Manual and functional testing",
           bullets: [
-            "Designed, developed, executed, and maintained Playwright automated test suites for web applications across three AI-driven healthcare products (ClaimReady AI, Hppy RX, HppyFx)",
-            "Built scalable, maintainable E2E automation frameworks covering critical business workflows, regression scenarios, and edge cases; created reusable testing components and Page Object patterns",
-            "Used Claude Sonnet 4.6 and Claude Opus 4.6 as AI coding assistants to generate Playwright test script scaffolding, accelerate framework development, and refine automated test coverage",
-            "Integrated Playwright suites into CI/CD pipelines (GitHub Actions) for continuous regression testing and scheduled server health checks — automated gate enforcement with zero manual triggers",
+            "Memorial Houston Medical (US hospital platform): sole QA across five modules, tested manually with 150–700 defects found per module; validated data flows, forms, UI behaviour and API and SQL results",
+            "Multi-tenant SaaS (MHM, Healthcare RCM): tested tenant data isolation, per-tenant configuration, configurability and role-based access control; supported a client tenant onboarded at proof-of-concept stage",
+            "Booking platform with an embedded third-party payment form and a middleware layer syncing with WordPress (booking numbers, seat counts): covered all-or-nothing package, charter and bulk bookings and payment through live and other channels",
+            "Bangladesh government platforms (Satellite Billing, BRRI, Conferencing Portal): risk-based test coverage, SQL verification and UAT support",
+            "Validated 140+ mathematical formulas for Hppy AI against the mathematical ground truth and international-standard thresholds",
+            "Wrote test plans, scenarios and test cases from requirements and acceptance criteria; owned defect reporting, severity and priority triage and retesting with developers",
           ],
         },
         {
-          heading: "AI & Machine Learning Quality Assurance",
+          heading: "Automation as an extension of manual coverage",
           bullets: [
-            "Translated complex AI/ML requirements into structured test cases and automation strategies for LLM-backed clinical and administrative modules",
-            "Used DeepEval to build evaluation test suites validating AI output quality against ground-truth benchmarks — measuring faithfulness, answer relevance, contextual precision, and hallucination rate",
-            "Applied LLM-as-judge methodology to score and validate AI-generated outputs (denial reasoning, appeals recommendations, risk scores) for accuracy, compliance, and business logic correctness",
-            "Used LangSmith to trace and debug LLM call chains in production — monitoring prompt performance, latency, output drift, and quality regressions across multi-agent workflows",
-            "Tested across OpenAI GPT-4 (primary) and Gemini (fallback) — cross-model output comparison and consistency validation; ensured stable behaviour across model switches",
+            "Turned stable manual regression cases into a Selenium/Python regression suite for Memorial Houston Medical, so manual time goes to exploratory and new-feature testing",
+            "Scheduled CI/CD runs and server health checks (GitHub Actions, GitLab CI); Playwright automation on web projects; Postman and Swagger API checks",
           ],
         },
         {
-          heading: "AI-Assisted Test Development",
+          heading: "AI-assisted test preparation, human-verified",
           bullets: [
-            "Leveraged Claude Sonnet 4.6 and Claude Opus 4.6 to accelerate automation development: generated test scaffolding, built reusable framework components, and used AI to identify edge cases beyond manual analysis",
-            "Refined AI-generated test cases to maximise coverage and reliability — reviewed, corrected, and extended AI suggestions with domain-specific healthcare accuracy requirements",
-            "Improved testing productivity through intelligent automation workflows: AI-assisted generation of test data, schema validation patterns, and API mock definitions",
+            "Use Claude to draft test cases, test data and bug reports, then verify every output by hand: execute the tests, check the database and application output, review logs and error messages, capture screenshots, and validate API responses",
           ],
         },
         {
-          heading: "API Testing & Validation",
+          heading: "AI-assisted QA (in progress)",
           bullets: [
-            "Performed comprehensive testing of RESTful APIs using Postman and Swagger — validated functionality, reliability, performance, and data integrity across request/response lifecycle",
-            "Validated API integrations for AI model endpoints: tested inference calls, response schemas, error handling, and timeout behaviour across OpenAI and Gemini API integrations",
-            "Ensured data integrity across multiple systems and integrations — SQL-based back-end validation across SQL Server and MySQL",
-          ],
-        },
-        {
-          heading: "Additional Platform QA",
-          bullets: [
-            "Memorial Houston Medical (US EHR/PIS/Scheduler) — Sole QA engineer; built Playwright automation baseline; full functional, API, and manual testing ownership for US hospital system",
-            "Bangladesh government platforms (Satellite Billing, BRRI, Conferencing Portal) and international ecotourism booking portals (Ecoventura, Galapagos)",
+            "Designing an AI-assisted, human-in-the-loop validation workflow for a manuscript digitisation project (FamilySearch) as QA Lead and Project Manager: agents draft checks from the requirements, observe test runs, and compare image-quality, metadata and cloud results against evidence, with a human making the final sign-off. Architecture is defined; components are under development",
+            "Evaluate LLM outputs on Hppy AI products with DeepEval, LangSmith and LLM-as-judge methods; mentor junior QA engineers",
           ],
         },
       ],
     },
     {
       role: "SQA Engineer",
-      company: "Echologyx",
+      company: "Echologyx / Echotex",
       period: "Dec 2022 – Oct 2024",
       bullets: [
-        "QA for enterprise ERP systems (UK/EU clients) — API, functional, regression, integration testing; Jira defect lifecycle management; SRS and SOP documentation",
+        "Sole QA owner of 5 ERP modules across 15+ clients over about two years; uncovered 2,000+ defects across the ERP, including its API",
+        "Tested mobile applications on iOS and Android using real devices, browser developer tools and BrowserStack for wide device and browser coverage",
+        "Checked A/B tests and web analytics (tracking, event and funnel analytics, session behaviour) for global luxury and automotive brand clients — a checking role, not a lead role",
+        "Wrote SRS, SOP and test documentation; managed the defect lifecycle in Jira with development teams",
+      ],
+    },
+    {
+      role: "Web Developer / QA",
+      company: "Digital Agency Nordic",
+      period: "Nov 2021 – Dec 2022",
+      bullets: [
+        "QA testing and cross-browser validation for web applications, alongside WordPress development and client communication",
       ],
     },
     {
@@ -123,7 +122,7 @@ export const cvData: CVData = {
       company: "Quantanite",
       period: "Jan 2020 – Oct 2021",
       bullets: [
-        "Team management, requirements analysis, QA oversight for international clients",
+        "Team management (team of 80), requirements analysis, QA oversight and quality reporting for international outsourcing clients",
       ],
     },
     {
@@ -131,86 +130,60 @@ export const cvData: CVData = {
       company: "IPDC Finance",
       period: "Jan 2018 – May 2019",
       bullets: [
-        "UAT execution; end-to-end C# (.NET) development of Collateral Data Management System",
+        "Built the Collateral Data Management System end to end in C# (.NET); created test environments and executed UAT",
       ],
     },
   ],
   skills: [
     {
-      category: "AI Coding Assistants",
+      category: "Manual Testing",
       items:
-        "Claude Sonnet 4.6 · Claude Opus 4.6 · GPT-4 / GPT-5.4 · AI-assisted test generation · scaffold refinement",
+        "Functional · regression · exploratory · UAT · end-to-end · cross-browser · multi-tenant isolation and RBAC testing",
     },
     {
-      category: "AI Eval Frameworks",
+      category: "Mobile Testing",
       items:
-        "DeepEval · LangSmith · LLM-as-judge · hallucination detection · faithfulness scoring · output consistency",
+        "iOS and Android on real devices · BrowserStack · browser DevTools device emulation",
     },
     {
-      category: "LLM Platforms Tested",
+      category: "Test Design",
       items:
-        "OpenAI GPT-4 · Gemini · Claude (Anthropic) · multi-model validation · cross-model comparison",
+        "Requirements analysis · test plans, scenarios and cases · boundary value analysis · equivalence partitioning · risk-based testing",
     },
     {
-      category: "Playwright & Automation",
+      category: "Defect Management",
       items:
-        "Playwright (primary) · E2E framework design · reusable components · Page Object Model · Selenium · Pytest",
+        "Jira · ClickUp · Notion · severity and priority triage · root-cause discussion · retesting and closure",
     },
     {
-      category: "CI/CD Pipelines",
+      category: "API & Data",
       items:
-        "GitHub Actions · GitLab CI · Jenkins (familiar) · automated regression gates · scheduled health checks",
+        "Postman · Swagger · REST API validation · SQL data integrity checks",
     },
     {
-      category: "API & REST Testing",
+      category: "Automation (extension)",
       items:
-        "Postman · Swagger · RESTful API validation · request/response lifecycle · HTTP methods · data integrity",
+        "Selenium (Python) · Playwright · Pytest · GitHub Actions · GitLab CI",
     },
     {
-      category: "Languages",
+      category: "AI-Assisted QA",
       items:
-        "Python · JavaScript · TypeScript (familiar) · C# (.NET — prior dev background)",
-    },
-    {
-      category: "Testing Types",
-      items:
-        "E2E · Functional · Regression · Integration · API · UAT · Exploratory · AI/ML output validation",
+        "Claude for drafting test cases, data and reports (human-verified) · DeepEval · LangSmith · LLM-as-judge · agent-based validation design (in progress)",
     },
     {
       category: "Performance & Security",
-      items: "JMeter · OWASP ZAP · Burp Suite",
+      items: "k6 · JMeter · OWASP ZAP · Burp Suite",
     },
     {
-      category: "Tools & Tracking",
-      items: "Jira · ClickUp · Notion · Agile · Scrum · SDLC · STLC",
+      category: "Languages & Process",
+      items:
+        "Python · JavaScript · C# (development background) · Agile/Scrum · SDLC · STLC",
     },
-  ],
-  achievements: [
-    "First at GHIT to implement production AI output validation using DeepEval and LangSmith — hallucination testing framework adopted as standard across all Hppy AI products",
-    "Actively uses Claude Sonnet 4.6 and Claude Opus 4.6 in daily QA work — generating Playwright test scaffolding, building reusable components, and refining AI-generated test cases for healthcare accuracy standards",
-    "Built Playwright CI/CD automation pipeline from scratch — regression and health checks run continuously across 6+ concurrent projects with zero manual triggers",
-    "Validated 45 AI-generated mathematical formulas across 8 clinical user stories using statistical output verification — ensuring AI solution accuracy, compliance, and business logic correctness",
-    "Sole QA for Memorial Houston Medical (US EHR/PIS platform) — full test strategy, API validation, and Playwright automation baseline built independently",
-    "8-year career from C# development to AI Quality Engineering — one of the few QA engineers combining traditional automation depth with production LLM evaluation experience",
   ],
   education: {
     degree: "BSc in Computer Science & Engineering",
-    university: "American International University Bangladesh",
+    university: "American International University — Bangladesh",
     year: "2014 – 2018",
     grade: "CGPA 3.65",
   },
-  referees: [
-    {
-      name: "Ariful Islam",
-      title: "CTO · Golden Harvest Infotech Ltd",
-      email: "arif@ghitbd.com",
-      phone: "+880 1713459598",
-    },
-    {
-      name: "Sadia Ahmed",
-      title: "Senior SQA Engineer · Echologyx",
-      email: "sadia@echologyx.com",
-      phone: "+880 1747982381",
-    },
-  ],
 };

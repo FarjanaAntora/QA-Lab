@@ -12,6 +12,13 @@
   min-width: 0;
 }
 
+.identity {
+  margin: 0 0 12px;
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+}
+
 .heading {
   margin: 0 0 24px;
   color: var(--color-text-primary);
@@ -27,6 +34,19 @@
 }
 
 .body p {
+  margin: 0;
+}
+
+.leadership {
+  margin: 28px 0 0;
+  padding-left: 16px;
+  border-left: 2px solid var(--color-accent);
+  font-size: 15px;
+  line-height: var(--line-height-body);
+  color: var(--color-text-primary);
+}
+
+.leadership p {
   margin: 0;
 }
 
@@ -47,6 +67,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  min-width: 0;
 }
 
 .statValue {
@@ -88,12 +109,13 @@
 
 @media (min-width: 768px) {
   .grid {
-    grid-template-columns: 60% 40%;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
     gap: 64px;
     align-items: start;
   }
 
   .stats {
+    min-width: 0;
     padding-left: 24px;
   }
 }

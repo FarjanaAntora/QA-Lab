@@ -32,12 +32,20 @@
   color: var(--color-text-secondary);
 }
 
+.scenarios,
 .modes {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 32px;
   max-width: 100%;
+}
+
+.scenarios {
+  margin-bottom: 16px;
+}
+
+.modes {
+  margin-bottom: 32px;
 }
 
 .modeButton {
@@ -145,6 +153,61 @@
   text-decoration: underline;
   text-underline-offset: 3px;
   cursor: default;
+}
+
+.sourceLine {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: var(--color-text-primary);
+}
+
+.sourceMeta {
+  color: var(--color-text-muted);
+  font-size: 12px;
+}
+
+.extractedLabel {
+  margin: 16px 0 12px;
+  color: var(--color-text-muted);
+}
+
+.extracted {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.extracted li {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
+  padding: 10px 0;
+  border-top: 1px solid var(--color-border);
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.extractedName {
+  color: var(--color-text-primary);
+}
+
+.cited,
+.uncited {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cited {
+  color: var(--color-text-muted);
+}
+
+.uncited {
+  color: var(--color-accent-text);
 }
 
 .panel {

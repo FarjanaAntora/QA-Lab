@@ -1,53 +1,54 @@
-export type ToolboxCategory = {
+export type ToolboxGroup = {
   category: string;
-  items: string[];
+  core: string[];
+  supporting: string[];
+  quiet?: boolean;
 };
 
-export const toolbox: ToolboxCategory[] = [
+export const toolbox: ToolboxGroup[] = [
+  {
+    category: "Manual Testing",
+    core: ["Functional", "Regression", "Exploratory", "UAT"],
+    supporting: ["Multi-tenant isolation", "RBAC"],
+  },
+  {
+    category: "Mobile Testing",
+    core: ["iOS", "Android"],
+    supporting: ["Real devices", "BrowserStack", "Browser DevTools"],
+  },
   {
     category: "Automation",
-    items: ["Playwright", "Selenium", "Cypress", "Pytest"],
+    core: ["Playwright"],
+    supporting: ["Selenium", "Pytest"],
   },
   {
     category: "API Testing",
-    items: ["Postman", "Swagger", "REST API Automation"],
+    core: ["Postman"],
+    supporting: ["Swagger"],
   },
   {
     category: "CI/CD & Engineering",
-    items: ["GitHub Actions", "GitLab CI", "Jenkins", "Docker", "Git"],
+    core: ["GitHub Actions"],
+    supporting: ["GitLab CI"],
   },
   {
-    category: "Performance",
-    items: ["JMeter", "k6"],
-  },
-  {
-    category: "Security",
-    items: ["OWASP ZAP", "Burp Suite"],
-  },
-  {
-    category: "AI/ML Quality Engineering",
-    items: [
-      "DeepEval",
-      "LangSmith",
-      "LLM-as-judge",
-      "Hallucination Detection",
-    ],
-  },
-  {
-    category: "Testing Types",
-    items: [
-      "Functional",
-      "Regression",
-      "Integration",
-      "UAT",
-      "Exploratory",
-      "A/B Testing",
-      "Performance",
-      "Security",
-    ],
+    category: "AI-Assisted QA",
+    core: ["DeepEval", "LangSmith"],
+    supporting: [],
   },
   {
     category: "Languages",
-    items: ["Python", "JavaScript", "TypeScript", "C#", "SQL"],
+    core: ["Python"],
+    supporting: ["JavaScript", "SQL"],
+  },
+  {
+    category: "Performance",
+    core: [],
+    supporting: ["JMeter", "k6"],
+  },
+  {
+    category: "Security",
+    core: [],
+    supporting: ["OWASP ZAP", "Burp Suite"],
   },
 ];

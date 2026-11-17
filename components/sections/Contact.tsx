@@ -1,6 +1,7 @@
 import SectionLabel from "@/components/ui/SectionLabel";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { StaggerGroup, StaggerItem } from "@/components/ui/Stagger";
+import { GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
 import styles from "./Contact.module.css";
 
 const links = [
@@ -10,11 +11,11 @@ const links = [
   },
   {
     label: "LINKEDIN ↗",
-    href: "https://linkedin.com/in/aktia-farjana-antora",
+    href: LINKEDIN_URL,
   },
   {
     label: "GITHUB ↗",
-    href: "https://github.com/aktia-antora",
+    href: GITHUB_URL,
   },
 ] as const;
 

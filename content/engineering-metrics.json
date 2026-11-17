@@ -1,0 +1,11 @@
+{
+  "updatedAt": "2026-11-17T12:02:49.856Z",
+  "playwrightPassed": 47,
+  "axeViolations": 2,
+  "lighthouse": {
+    "performance": 94,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 100
+  }
+}

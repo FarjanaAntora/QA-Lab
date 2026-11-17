@@ -11,7 +11,7 @@ test.describe("motion variation", () => {
     await projects.scrollIntoViewIfNeeded();
     await expect(projects).toContainText("Hppy AI");
     await expect(projects).toContainText("Memorial Houston Medical");
-    await expect(projects).toContainText("2,000+");
+    await expect(projects).toContainText("150-700 defects found per module");
 
     const diagram = page.locator("[data-flow-diagram]");
     await expect(diagram).toBeVisible();

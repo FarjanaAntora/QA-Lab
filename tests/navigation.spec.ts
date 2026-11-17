@@ -12,7 +12,7 @@ test.describe("navigation", () => {
   test("page loads successfully with THE QA LAB title", async ({ page }) => {
     const response = await page.goto("/");
     expect(response?.status()).toBe(200);
-    await expect(page).toHaveTitle(/THE QA LAB/i);
+    await expect(page).toHaveTitle(/Aktia Farjana Antora/i);
   });
 
   test("nav contains primary section links", async ({ page }) => {

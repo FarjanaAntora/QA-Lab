@@ -11,7 +11,11 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   timeout: 30_000,
-  reporter: [["list"], ["html", { open: "never" }]],
+  reporter: [
+    ["list"],
+    ["html", { open: "never" }],
+    ["json", { outputFile: "test-results/playwright-results.json" }],
+  ],
   use: {
     baseURL: "http://localhost:3000",
     screenshot: "only-on-failure",

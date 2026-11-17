@@ -43,20 +43,22 @@ def build() -> Path:
 
     pdf.set_font("Helvetica", "B", 18)
     pdf.cell(0, 8, "Aktia Farjana Antora", new_x="LMARGIN", new_y="NEXT")
-    pdf.muted_line("Senior QA Automation Engineer")
+    pdf.muted_line(
+        "Senior QA Automation Engineer | AI Quality Engineering"
+    )
     pdf.muted_line(
         "farjana1319ontu@gmail.com | +880 1686057143 | Dhaka, Bangladesh"
     )
     pdf.muted_line(
-        "linkedin.com/in/aktia-farjana-antora | github.com/aktia-antora"
+        "linkedin.com/in/aktia-farjana-antora | github.com/FarjanaAntora"
     )
 
     pdf.section("Summary")
     pdf.body(
-        "Lead SQA Engineer with 8 years of experience across QA automation, "
+        "Senior QA Automation Engineer with 8 years of experience across QA automation, "
         "AI system testing, healthcare informatics, and government platforms. "
-        "Specialising in Playwright CI/CD automation, LLM hallucination testing, "
-        "and full-spectrum quality engineering."
+        "Playwright suites run in CI. LLM output is scored for faithfulness "
+        "and hallucination rate rather than an exact string."
     )
 
     pdf.section("Experience")
@@ -67,17 +69,20 @@ def build() -> Path:
             "Oct 2024 - Present",
             [
                 "Architected and maintained Playwright automation suites integrated into CI/CD pipelines for 6+ concurrent client projects",
-                "Built AI agent testing framework from scratch using DeepEval and LangSmith (hallucination detection, LLM-as-judge, output consistency)",
-                "Sole QA engineer for Memorial Houston Medical: EHR, PIS, and Appointment Scheduler ownership",
+                "Built AI agent checks with DeepEval and LangSmith (hallucination detection, LLM-as-judge, output consistency)",
+                "Sole QA for Memorial Houston Medical across 5 modules (UIS, PIS, EHR, BMS, Appointment Management): 457+ defects per module, 2,000+ total across the ERP including API-level defects",
                 "Delivered QA across Bangladesh government platforms: Satellite Billing Module, BRRI, Conferencing Portal",
-                "Trained and mentored junior QA engineers; established team-wide QA frameworks and standards",
+                "Trained junior QA engineers and set the workflow for test design, defect reporting, and release review",
             ],
         ),
         (
             "SQA Engineer",
-            "Echologyx",
+            "Echologyx / Echotex",
             "Dec 2022 - Oct 2024",
             [
+                "Same company under different management. One continuous ERP engagement, 15+ clients across 2 years, including Memorial Houston Medical.",
+                "457+ defects per module, rolling up to 2,000+ total defects across the ERP, including API-level defects.",
+                "A/B testing on two systems: 160+ defects in one engagement, and 2 defects in a separate 120-hour project.",
                 "API, functional, regression, integration, and A/B testing across complex multi-module ERP platforms",
                 "Created and maintained SRS, SOP, and structured test documentation",
                 "Managed full defect lifecycle in Jira across cross-functional international teams",

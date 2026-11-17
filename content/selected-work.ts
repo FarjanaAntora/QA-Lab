@@ -13,13 +13,14 @@ export type SelectedProject = {
   tested: string[];
   interesting: string;
   slug?: string;
+  status?: "live" | "in-progress";
 };
 
 export const selectedWorkIntro = {
   label: "Selected work",
   title: "Four problems, four kinds of quality",
   supporting:
-    "A manuscript pipeline, a luxury booking journey, public-sector systems, and an automation framework that has to judge AI output.",
+    "A manuscript digitisation pipeline in progress, a luxury booking journey, public-sector systems, and an automation framework that has to judge AI output.",
 } as const;
 
 export const additionalWorkIntro = {
@@ -35,34 +36,35 @@ export const manuscriptProject: SelectedProject & {
 } = {
   id: "manuscript-ocr",
   number: "01",
-  title: "From Manuscript to Searchable Data",
-  category: "OCR · Data Digitization · QA",
+  title: "Manuscript Digitisation QA (in progress)",
+  category: "Digitisation · Image QA · Human-in-the-loop",
   summary:
-    "A camera-based project that turned old manuscripts into searchable digital records. Quality was not a web screen. A fault could start at the lens, the OCR engine, the extracted fields, or what got stored.",
+    "QA lead on an in-house project digitising historical manuscripts. The deliverable is validated digital images: camera capture, offline-first storage, image-quality checks, sync with retry and backoff, auditor review, metadata and cloud integrity checks. I am designing a human-in-the-loop, AI-assisted validation workflow for it. The build is in progress.",
   focus: [
-    "OCR accuracy and edge cases",
-    "Image quality and capture conditions",
-    "Character and word recognition",
-    "Data integrity after extraction",
-    "Poor or unusual manuscripts",
-    "Physical source to stored data",
+    "Camera capture and offline-first storage",
+    "Image-quality checks before sync",
+    "Sync with retry and backoff",
+    "Auditor review of validated images",
+    "Metadata and cloud integrity checks",
+    "Human-in-the-loop AI-assisted validation design",
   ],
   flow: [
     { step: "CAPTURE", note: "Camera" },
-    { step: "PROCESS", note: "Image prep" },
-    { step: "OCR", note: "Recognition" },
-    { step: "EXTRACT", note: "Structure" },
-    { step: "STORE", note: "Searchable" },
+    { step: "QUALITY CHECK", note: "Image QA" },
+    { step: "SYNC", note: "Retry / backoff" },
+    { step: "METADATA", note: "Auditor review" },
+    { step: "CLOUD INTEGRITY", note: "Cloud checks" },
   ],
   challenge:
-    "The journey was physical manuscript to camera to image to text to structured data. A clean interface could still hide a misread page.",
+    "The deliverable is a validated digital image, not a web screen. A fault can start at capture, quality gates, sync, metadata, or cloud integrity — and a human still has to sign off.",
   tested: [
-    "Whether faint, damaged, or unusual pages still produced reliable text",
-    "Whether extracted fields matched what was actually on the source",
-    "Whether stored records stayed complete after every transformation",
+    "Whether capture and offline storage held the image before sync",
+    "Whether image-quality checks caught bad frames before they moved on",
+    "Whether sync retry and backoff recovered without corrupting the record",
+    "Whether metadata and cloud integrity still matched after auditor review",
   ],
   interesting:
-    "The source was a physical object. Quality had to survive every step after the photograph.",
+    "I am designing the human-in-the-loop, AI-assisted validation workflow while the build is still in progress.",
 };
 
 export const travelProject: SelectedProject & {
@@ -122,8 +124,9 @@ export const playwrightProject: SelectedProject & {
   title: "Playwright + AI Evaluation Framework",
   category: "Automation Framework",
   slug: "playwright-ai-qa-framework",
+  status: "in-progress",
   summary:
-    "E2E automation with hallucination detection in the pipeline. Pass is no longer an exact string.",
+    "Playwright runs the journey. An evaluation score judges the model output. CI fails the build when that score drops.",
   layers: [
     { step: "PLAYWRIGHT", note: "The journey" },
     { step: "EVAL", note: "The output" },
@@ -174,7 +177,7 @@ export const wordpressProject: SelectedProject & {
   title: "Small Teams, Real Websites",
   category: "WordPress · Web QA · Client Projects",
   summary:
-    "WordPress sites for artists, creators, and small businesses. The work was a professional, reliable experience with a small team and a real launch date.",
+    "WordPress sites for artists, creators, and small businesses, shipped with a small team against a fixed launch date.",
   audiences: ["Artists", "Creators", "Small businesses"],
   challenge:
     "These were not enterprise platforms. The pressure was still the same: the site has to work for a real person, on a real phone, after a real content change.",

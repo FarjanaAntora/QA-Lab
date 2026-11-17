@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import TechTag from "@/components/ui/TechTag";
 import { projects, type Project } from "@/content/projects";
+import { OG_IMAGE_PATH, absoluteUrl } from "@/lib/site";
 import styles from "./page.module.css";
 
 type PageProps = {
@@ -20,12 +21,42 @@ export async function generateMetadata({
   const project = projects.find((item) => item.slug === slug);
 
   if (!project) {
-    return { title: "Project - THE QA LAB" };
+    return {
+      title: "Project | Aktia Farjana Antora",
+      description: "Case study from THE QA LAB portfolio.",
+      alternates: { canonical: absoluteUrl(`/projects/${slug}`) },
+    };
   }
 
+  const title = `${project.title} | Aktia Farjana Antora`;
+  const description = project.tagline;
+  const url = absoluteUrl(`/projects/${project.slug}`);
+
   return {
-    title: `${project.title} - THE QA LAB`,
-    description: project.tagline,
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      images: [
+        {
+          url: OG_IMAGE_PATH,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [OG_IMAGE_PATH],
+    },
   };
 }
 
@@ -98,6 +129,32 @@ export default async function ProjectPage({ params }: PageProps) {
 
         <p className={`text-body ${styles.summary}`}>{project.summary}</p>
 
+        {project.decision ? (
+          <section className={styles.section} id="decision">
+            <h2 className={`text-h3 ${styles.sectionHeading}`}>
+              {project.decision.title}
+            </h2>
+            <ol className={styles.steps}>
+              {project.decision.steps.map((step) => (
+                <li key={step.label} className={styles.step}>
+                  <h3 className={`text-label ${styles.stepLabel}`}>
+                    {step.label}
+                  </h3>
+                  <p className={styles.stepBody}>{step.body}</p>
+                </li>
+              ))}
+            </ol>
+            {project.decision.related ? (
+              <Link
+                href={project.decision.related.href}
+                className={`text-label ${styles.related}`}
+              >
+                {project.decision.related.label} →
+              </Link>
+            ) : null}
+          </section>
+        ) : null}
+
         <section className={styles.section}>
           <h2 className={`text-h3 ${styles.sectionHeading}`}>THE PROBLEM</h2>
           <p className={styles.sectionBody}>{project.problem}</p>
@@ -117,20 +174,26 @@ export default async function ProjectPage({ params }: PageProps) {
           <p className={styles.sectionBody}>{project.challenge}</p>
         </section>
 
-        <section className={styles.section}>
-          <h2 className={`text-h3 ${styles.sectionHeading}`}>THE OUTCOME</h2>
-          <p className={styles.outcome}>{project.outcome}</p>
-        </section>
-
-        {project.github ? (
-          <a
-            href={project.github}
-            className={styles.githubButton}
-            target="_blank"
-            rel="noopener noreferrer"
+        {project.outcome ? (
+          <section className={styles.section}>
+            <h2 className={`text-h3 ${styles.sectionHeading}`}>THE OUTCOME</h2>
+            <p className={styles.outcome}>{project.outcome}</p>
+            {project.related ? (
+              <Link
+                href={project.related.href}
+                className={`text-label ${styles.related}`}
+              >
+                {project.related.label} →
+              </Link>
+            ) : null}
+          </section>
+        ) : project.related ? (
+          <Link
+            href={project.related.href}
+            className={`text-label ${styles.related}`}
           >
-            VIEW ON GITHUB ↗
-          </a>
+            {project.related.label} →
+          </Link>
         ) : null}
 
         <div className={styles.bottomNav}>

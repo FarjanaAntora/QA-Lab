@@ -10,6 +10,8 @@ export type FocalProject = {
   capabilities: string[];
   technologies: string[];
   highlight: string | null;
+  judgment?: string;
+  anchor?: string;
 };
 
 export const hppyFocal: FocalProject = {
@@ -20,7 +22,7 @@ export const hppyFocal: FocalProject = {
   positioning:
     "Enterprise test plan and live product QA. Some of it shipped. Some of it is still in flight.",
   summary:
-    "Hppy AI is a family of healthcare products — document intelligence, ClaimReady math, Hppy RX, and HppyFx. I owned the enterprise test plan: 88 stories and 23 epics, plus 45 formulas mapped across 8 clinical stories. Four end-to-end journeys, ten gap categories, and 40+ cases added. A wrong extraction or an ungrounded number has real-world consequences.",
+    "Hppy AI is a family of healthcare products — document intelligence, ClaimReady math, Hppy RX, and HppyFx. I owned the enterprise test plan: 88 stories and 23 epics, plus 140+ formulas. Four end-to-end journeys, ten gap categories, and 40+ cases added. A wrong extraction or an ungrounded number has real-world consequences.",
   role: "Lead QA Engineer",
   metric: {
     value: "88 / 23",
@@ -28,7 +30,7 @@ export const hppyFocal: FocalProject = {
   },
   capabilities: [
     "Architecture-risk to acceptance-criteria across all 88 stories",
-    "OCR, LLM extraction, and human-in-the-loop verification",
+    "OCR and LLM extraction stay on exact checks, with a person verifying the pull before it is written",
     "Chat safety: hallucination, diagnosis refusal, isolation",
     "Adversarial checks for access control and data leakage",
     "Consent, entitlement, and audit completeness",
@@ -44,13 +46,15 @@ export const hppyFocal: FocalProject = {
   ],
   highlight:
     "HealthScan plan adopted for MVP. Claim formula suite validated. HppyFx economics POC still in flight.",
+  judgment:
+    "Under the counts: exact checks for extraction and formulas, and a faithfulness score for answers that have no single correct string.",
+  anchor: "#decision",
 };
 
 export const hppyMetrics = [
   { value: "88", note: "User stories" },
   { value: "23", note: "Epics" },
-  { value: "45", note: "Formulas validated" },
-  { value: "8", note: "Clinical stories" },
+  { value: "140+", note: "Formulas validated" },
   { value: "4", note: "E2E journeys" },
   { value: "10", note: "Gap categories" },
   { value: "40+", note: "Cases added" },
@@ -65,18 +69,15 @@ export const mhmFocal: FocalProject = {
   positioning:
     "EHR quality ownership. Five modules. One identity layer. Sole QA.",
   summary:
-    "Sole QA for a US hospital ERP spanning UIS, PIS, EHR, BMS, and Appointment Management. Patient identity stays in UIS and travels as an External ID — five modules share a patient without copying the record. I covered functional and integration paths, identity-boundary security, and Selenium/Python regression for login, registration, and EHR.",
+    "Sole QA for a US hospital ERP spanning UIS, PIS, EHR, BMS, and Appointment Management. This is one continuous ERP engagement: Echologyx and Echotex were the same company under different management, and 15+ clients were served across those 2 years. Patient identity stays in UIS and travels as an External ID — five modules share a patient without copying the record. I covered functional and integration paths, identity-boundary security, API defects, and Selenium/Python regression for login, registration, and EHR.",
   role: "Sole QA / SQA Engineer",
-  metric: {
-    value: "2,000+",
-    note: "defects identified and driven to resolution",
-  },
+  metric: null,
   capabilities: [
-    "Functional, E2E, and integration across UIS, PIS, EHR, BMS, and appointments",
+    "Functional, end-to-end, and integration coverage followed the identity boundary: UIS holds the patient, other modules use the External ID",
     "API and data checks where the External ID crosses a boundary",
     "Security and isolation on the identity model",
-    "Cross-module paths: registration, clinical record, beds, appointments",
-    "Python + Selenium regression for login, registration, and EHR",
+    "Paths that move the patient across modules: registration, clinical record, beds, appointments",
+    "Python + Selenium regression held login, registration, and EHR as the modules changed",
   ],
   technologies: [
     "Selenium",
@@ -95,6 +96,13 @@ export const mhmFocal: FocalProject = {
     "Selenium/Python regression held login, registration, and EHR as the modules changed.",
 };
 
+export const mhmFigures = [
+  {
+    value: "5",
+    note: "modules, 150-700 defects found per module",
+  },
+] as const;
+
 export const abTestingFocal: FocalProject = {
   id: "global-ab",
   slug: null,
@@ -103,15 +111,15 @@ export const abTestingFocal: FocalProject = {
   positioning:
     "A/B testing and QA for premium global brands. The full lifecycle, not just execution.",
   summary:
-    "I led A/B testing across a portfolio of high-end global clients. I owned the path end to end: taking the brief, writing the technical documentation, moving designs through approval, and QA on the experiments themselves. Client-facing BA, documentation, and quality in one seat, at the standard those brands expect.",
-  role: "Client-facing BA & QA",
+    "QA and analytics checking on A/B tests for premium global brands: checking experiments, traffic and web analytics, event tracking and user journeys.",
+  role: "QA and analytics checking",
   metric: null,
   capabilities: [
-    "Requirements gathering and translation for each engagement",
+    "Each client brief was translated into the technical documentation before the experiment was built and tested",
     "Technical documentation for experiment build and QA",
     "Design approval workflow management",
-    "QA across the A/B test lifecycle, including UAT and cross-browser checks",
-    "Stakeholder communication through to ship",
+    "QA across the full lifecycle of each experiment, from the brief through UAT and cross-browser checks",
+    "Client-facing communication through to ship, in the same seat as the brief and the QA",
   ],
   technologies: [
     "A/B Testing",
@@ -126,6 +134,17 @@ export const abTestingFocal: FocalProject = {
   ],
   highlight: null,
 };
+
+export const abContrasts = [
+  {
+    value: "160+",
+    note: "defects found in one A/B testing engagement.",
+  },
+  {
+    value: "2",
+    note: "defects found in a separate 120-hour project, on a different system.",
+  },
+] as const;
 
 export const brandRoster = [
   { name: "Louis Vuitton", src: "/brands/louis-vuitton.svg" },
