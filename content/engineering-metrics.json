@@ -1,8 +1,8 @@
 {
-  "measuredAt": "2026-11-23T11:26:23.646Z",
+  "measuredAt": "2026-11-25T12:00:35.626Z",
   "playwright": {
-    "listed": 56,
-    "ciRunnable": 53,
+    "listed": 62,
+    "ciRunnable": 59,
     "productionSkippedWithoutProdUrl": 3,
     "note": "npx playwright test --list. CI runs the full suite on push/PR to main and motion; 3 production smoke tests skip unless PROD_URL is set."
   },
@@ -23,12 +23,12 @@
     "repoUrl": "https://github.com/FarjanaAntora/QA-Lab",
     "actionsUrl": "https://github.com/FarjanaAntora/QA-Lab/actions",
     "latestWorkflowRun": {
-      "id": 44080911724,
-      "url": "https://github.com/FarjanaAntora/QA-Lab/actions/runs/44080911724",
-      "status": "completed",
-      "conclusion": "failure",
+      "id": 45609042278,
+      "url": "https://github.com/FarjanaAntora/QA-Lab/actions/runs/45609042278",
+      "status": "in_progress",
+      "conclusion": null,
       "branch": "motion",
-      "createdAt": "2026-11-17T12:12:06Z"
+      "createdAt": "2026-11-25T11:56:25Z"
     }
   },
   "axe": {
@@ -45,6 +45,15 @@
     "scanCount": 9,
     "totalViolations": 6,
     "maxViolations": 2,
+    "uniqueIds": [
+      "label-content-name-mismatch",
+      "scrollable-region-focusable"
+    ],
+    "byPage": {
+      "home": 2,
+      "case-study": 0,
+      "cv": 0
+    },
     "runs": [
       {
         "page": "home",
@@ -119,15 +128,6 @@
         "ids": []
       }
     ],
-    "uniqueIds": [
-      "label-content-name-mismatch",
-      "scrollable-region-focusable"
-    ],
-    "byPage": {
-      "home": 2,
-      "case-study": 0,
-      "cv": 0
-    },
     "statement": "axe-core: 2 violations on home across 3 themes (label-content-name-mismatch, scrollable-region-focusable); 0 on the case-study and CV pages tested. Automated checks only — not a WCAG conformance claim."
   },
   "lighthouse": {
@@ -145,7 +145,7 @@
       "accessibility": 100,
       "bestPractices": 100,
       "seo": 100,
-      "fcpMs": 905
+      "fcpMs": 907
     },
     "runs": [
       {
@@ -156,7 +156,7 @@
         "accessibility": 100,
         "bestPractices": 100,
         "seo": 100,
-        "fcpMs": 1057
+        "fcpMs": 1060
       },
       {
         "page": "home",
@@ -166,58 +166,58 @@
         "accessibility": 100,
         "bestPractices": 100,
         "seo": 100,
-        "fcpMs": 1056
+        "fcpMs": 1060
       },
       {
         "page": "case-study",
         "path": "/projects/healthscan-test-plan",
         "formFactor": "mobile",
-        "performance": 100,
+        "performance": 98,
         "accessibility": 100,
         "bestPractices": 100,
         "seo": 100,
-        "fcpMs": 906
+        "fcpMs": 909
       },
       {
         "page": "case-study",
         "path": "/projects/healthscan-test-plan",
         "formFactor": "desktop",
-        "performance": 87,
+        "performance": 86,
         "accessibility": 100,
         "bestPractices": 100,
         "seo": 100,
-        "fcpMs": 905
+        "fcpMs": 907
       },
       {
         "page": "cv",
         "path": "/cv",
         "formFactor": "mobile",
-        "performance": 100,
+        "performance": 98,
         "accessibility": 100,
         "bestPractices": 100,
         "seo": 100,
-        "fcpMs": 906
+        "fcpMs": 907
       },
       {
         "page": "cv",
         "path": "/cv",
         "formFactor": "desktop",
-        "performance": 88,
+        "performance": 86,
         "accessibility": 100,
         "bestPractices": 100,
         "seo": 100,
-        "fcpMs": 905
+        "fcpMs": 908
       }
     ]
   },
-  "updatedAt": "2026-11-23T11:26:23.646Z",
-  "playwrightPassed": 53,
+  "updatedAt": "2026-11-25T12:00:35.626Z",
+  "playwrightPassed": 59,
   "axeViolations": 6,
   "lighthouseLegacy": {
     "performance": 81,
     "accessibility": 100,
     "bestPractices": 100,
     "seo": 100,
-    "fcpMs": 905
+    "fcpMs": 907
   }
 }
