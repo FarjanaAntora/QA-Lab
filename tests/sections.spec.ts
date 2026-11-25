@@ -5,11 +5,13 @@ test.describe("sections", () => {
     await page.goto("/");
   });
 
-  test("hero is visible and contains BREAK and SOFTWARE", async ({ page }) => {
+  test("hero is visible and shows the QA title", async ({ page }) => {
     const hero = page.locator("#hero");
     await expect(hero).toBeVisible();
-    await expect(hero).toContainText(/BREAK/);
-    await expect(hero).toContainText(/SOFTWARE/);
+    await expect(hero).toContainText("I'm not here to break things.");
+    await expect(hero).toContainText(
+      "I'm here to make sure our users don't.",
+    );
   });
 
   test("me section is visible with key copy", async ({ page }) => {
@@ -51,11 +53,13 @@ test.describe("sections", () => {
     await expect(section).toContainText("EHR quality ownership");
     await expect(section).toContainText("5");
     await expect(section).toContainText("150-700 defects found per module");
+    await expect(section).toContainText("Enterprise ERP QA");
+    await expect(section).toContainText("15+");
+    await expect(section).toContainText("A/B Analytics QA");
+    await expect(section).toContainText("QA and analytics checking");
     await expect(section).toContainText("160+");
     await expect(section).toContainText("120-hour");
     await expect(section).toContainText("Different systems");
-    await expect(section).toContainText("Global Brand A/B Testing");
-    await expect(section).toContainText("QA and analytics checking");
     await expect(section).toContainText("IN PROGRESS");
     await expect(section.getByRole("img", { name: "Dior" })).toBeVisible();
     await expect(
@@ -69,7 +73,9 @@ test.describe("sections", () => {
     await expect(section).toContainText(
       "Bangladesh Government Systems - QA Portfolio",
     );
+    await expect(section).toContainText("DELIVERED");
     await expect(section).toContainText("Playwright + AI Evaluation Framework");
+    await expect(section.getByText("LIVE", { exact: true })).toHaveCount(0);
     await expect(section).toContainText("Also in the work");
     await expect(section).toContainText("Data · Web Platforms · QA");
     await expect(section).toContainText("WordPress · Web QA · Client Projects");
@@ -92,6 +98,15 @@ test.describe("sections", () => {
     const section = page.locator("#engineering");
     await section.scrollIntoViewIfNeeded();
     await expect(section).toBeVisible();
+    await expect(section).toContainText("Playwright tests");
+    await expect(section).toContainText("axe-core");
+    await expect(section).not.toContainText("WCAG AA");
+    await expect(
+      section.getByRole("link", { name: /Public repo/i }),
+    ).toHaveAttribute("href", "https://github.com/FarjanaAntora/QA-Lab");
+    await expect(
+      section.getByRole("link", { name: /Latest CI run/i }),
+    ).toBeVisible();
   });
 
   test("cv section is visible with download actions", async ({ page }) => {

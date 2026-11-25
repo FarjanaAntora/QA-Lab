@@ -45,8 +45,8 @@
   margin: 0 0 6px;
   font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
   color: var(--cv-accent);
 }
 
@@ -211,34 +211,11 @@
   color: var(--cv-ink-secondary);
 }
 
-.referees {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.referee {
-  break-inside: avoid;
-}
-
-.refereeName {
-  margin: 0 0 2px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--cv-ink);
-}
-
-.refereeTitle,
-.refereeMeta {
+.referencesNote {
   margin: 0;
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.55;
   color: var(--cv-ink-secondary);
-}
-
-.refereeMeta a {
-  color: inherit;
-  text-decoration: none;
 }
 
 @media (max-width: 720px) {
@@ -250,10 +227,6 @@
   .skillRow {
     grid-template-columns: 1fr;
     gap: 4px;
-  }
-
-  .referees {
-    grid-template-columns: 1fr;
   }
 
   .rolePeriod {

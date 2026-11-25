@@ -10,7 +10,8 @@
     "generate-cv": "ts-node scripts/generate-cv.ts",
     "test:e2e": "playwright test",
     "lighthouse:ci": "lhci collect && lhci upload",
-    "metrics:write": "node scripts/write-engineering-metrics.mjs"
+    "metrics:write": "node scripts/write-engineering-metrics.mjs",
+    "metrics:measure": "node scripts/measure-engineering.mjs"
   },
   "ts-node": {
     "project": "scripts/tsconfig.json",

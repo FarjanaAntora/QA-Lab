@@ -1,11 +1,223 @@
 {
-  "updatedAt": "2026-11-17T12:15:51.203Z",
-  "playwrightPassed": 46,
-  "axeViolations": 3,
+  "measuredAt": "2026-11-23T11:26:23.646Z",
+  "playwright": {
+    "listed": 56,
+    "ciRunnable": 53,
+    "productionSkippedWithoutProdUrl": 3,
+    "note": "npx playwright test --list. CI runs the full suite on push/PR to main and motion; 3 production smoke tests skip unless PROD_URL is set."
+  },
+  "ci": {
+    "workflow": "QA Lab CI",
+    "triggers": [
+      "push to main/motion",
+      "pull_request to main/motion"
+    ],
+    "steps": [
+      "npm ci",
+      "playwright install chromium",
+      "next build",
+      "playwright test (JSON reporter)",
+      "Lighthouse CI collect + upload",
+      "write engineering-metrics.json"
+    ],
+    "repoUrl": "https://github.com/FarjanaAntora/QA-Lab",
+    "actionsUrl": "https://github.com/FarjanaAntora/QA-Lab/actions",
+    "latestWorkflowRun": {
+      "id": 44080911724,
+      "url": "https://github.com/FarjanaAntora/QA-Lab/actions/runs/44080911724",
+      "status": "completed",
+      "conclusion": "failure",
+      "branch": "motion",
+      "createdAt": "2026-11-17T12:12:06Z"
+    }
+  },
+  "axe": {
+    "pages": [
+      "/",
+      "/projects/healthscan-test-plan",
+      "/cv"
+    ],
+    "themes": [
+      "dark",
+      "bottle-green",
+      "light"
+    ],
+    "scanCount": 9,
+    "totalViolations": 6,
+    "maxViolations": 2,
+    "runs": [
+      {
+        "page": "home",
+        "path": "/",
+        "theme": "dark",
+        "violations": 2,
+        "ids": [
+          "label-content-name-mismatch",
+          "scrollable-region-focusable"
+        ]
+      },
+      {
+        "page": "home",
+        "path": "/",
+        "theme": "bottle-green",
+        "violations": 2,
+        "ids": [
+          "label-content-name-mismatch",
+          "scrollable-region-focusable"
+        ]
+      },
+      {
+        "page": "home",
+        "path": "/",
+        "theme": "light",
+        "violations": 2,
+        "ids": [
+          "label-content-name-mismatch",
+          "scrollable-region-focusable"
+        ]
+      },
+      {
+        "page": "case-study",
+        "path": "/projects/healthscan-test-plan",
+        "theme": "dark",
+        "violations": 0,
+        "ids": []
+      },
+      {
+        "page": "case-study",
+        "path": "/projects/healthscan-test-plan",
+        "theme": "bottle-green",
+        "violations": 0,
+        "ids": []
+      },
+      {
+        "page": "case-study",
+        "path": "/projects/healthscan-test-plan",
+        "theme": "light",
+        "violations": 0,
+        "ids": []
+      },
+      {
+        "page": "cv",
+        "path": "/cv",
+        "theme": "dark",
+        "violations": 0,
+        "ids": []
+      },
+      {
+        "page": "cv",
+        "path": "/cv",
+        "theme": "bottle-green",
+        "violations": 0,
+        "ids": []
+      },
+      {
+        "page": "cv",
+        "path": "/cv",
+        "theme": "light",
+        "violations": 0,
+        "ids": []
+      }
+    ],
+    "uniqueIds": [
+      "label-content-name-mismatch",
+      "scrollable-region-focusable"
+    ],
+    "byPage": {
+      "home": 2,
+      "case-study": 0,
+      "cv": 0
+    },
+    "statement": "axe-core: 2 violations on home across 3 themes (label-content-name-mismatch, scrollable-region-focusable); 0 on the case-study and CV pages tested. Automated checks only — not a WCAG conformance claim."
+  },
   "lighthouse": {
-    "performance": 65,
-    "accessibility": 97,
+    "pages": [
+      "/",
+      "/projects/healthscan-test-plan",
+      "/cv"
+    ],
+    "formFactors": [
+      "mobile",
+      "desktop"
+    ],
+    "summary": {
+      "performance": 81,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "fcpMs": 905
+    },
+    "runs": [
+      {
+        "page": "home",
+        "path": "/",
+        "formFactor": "mobile",
+        "performance": 94,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100,
+        "fcpMs": 1057
+      },
+      {
+        "page": "home",
+        "path": "/",
+        "formFactor": "desktop",
+        "performance": 81,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100,
+        "fcpMs": 1056
+      },
+      {
+        "page": "case-study",
+        "path": "/projects/healthscan-test-plan",
+        "formFactor": "mobile",
+        "performance": 100,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100,
+        "fcpMs": 906
+      },
+      {
+        "page": "case-study",
+        "path": "/projects/healthscan-test-plan",
+        "formFactor": "desktop",
+        "performance": 87,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100,
+        "fcpMs": 905
+      },
+      {
+        "page": "cv",
+        "path": "/cv",
+        "formFactor": "mobile",
+        "performance": 100,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100,
+        "fcpMs": 906
+      },
+      {
+        "page": "cv",
+        "path": "/cv",
+        "formFactor": "desktop",
+        "performance": 88,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100,
+        "fcpMs": 905
+      }
+    ]
+  },
+  "updatedAt": "2026-11-23T11:26:23.646Z",
+  "playwrightPassed": 53,
+  "axeViolations": 6,
+  "lighthouseLegacy": {
+    "performance": 81,
+    "accessibility": 100,
     "bestPractices": 100,
-    "seo": 100
+    "seo": 100,
+    "fcpMs": 905
   }
 }

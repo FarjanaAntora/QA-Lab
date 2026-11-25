@@ -13,14 +13,14 @@ export type SelectedProject = {
   tested: string[];
   interesting: string;
   slug?: string;
-  status?: "live" | "in-progress";
+  status?: "in-progress" | "delivered";
 };
 
 export const selectedWorkIntro = {
   label: "Selected work",
-  title: "Four problems, four kinds of quality",
+  title: "Five problems, five kinds of quality",
   supporting:
-    "A manuscript digitisation pipeline in progress, a luxury booking journey, public-sector systems, and an automation framework that has to judge AI output.",
+    "A/B analytics checking, a manuscript digitisation pipeline in progress, a luxury booking journey, public-sector systems, and an automation framework that has to judge AI output.",
 } as const;
 
 export const additionalWorkIntro = {
@@ -102,6 +102,7 @@ export const governmentProject: SelectedProject & {
   title: "Bangladesh Government Systems - QA Portfolio",
   category: "Government / GovTech",
   slug: "bd-government-qa",
+  status: "delivered",
   summary:
     "Three national-scale systems. Downtime or a wrong figure is a public failure, not a ticket.",
   systems: ["Satellite Billing", "BRRI", "Conferencing Portal"],

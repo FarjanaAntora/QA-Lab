@@ -84,14 +84,24 @@ test.describe("interactions", () => {
 
     await section.getByRole("tab", { name: "NEGATIVE" }).click();
     await expect(
-      section.getByText("No span, no write", { exact: false }),
+      section.getByText("Corrupted files", { exact: false }),
     ).toBeVisible();
 
     await section.getByRole("tab", { name: "SECURITY" }).click();
     await expect(
       section.getByRole("heading", {
-        name: /What if one tenant's pipeline could expose another/,
+        name: /Can one user's document ever surface for another/,
       }),
+    ).toBeVisible();
+
+    await section.getByRole("tab", { name: "AI BEHAVIOUR" }).click();
+    await expect(
+      section.getByText("plausible but unsupported", { exact: false }),
+    ).toBeVisible();
+
+    await section.getByRole("tab", { name: "OBSERVABILITY" }).click();
+    await expect(
+      section.getByText("before a user complained", { exact: false }),
     ).toBeVisible();
 
     await section.getByRole("radio", { name: "Login form" }).click();
@@ -138,7 +148,11 @@ test.describe("interactions", () => {
     await lab.getByRole("button", { name: "SHOW EXPLANATION" }).click();
     await expect(lab.getByText("Open the login page")).toBeVisible();
     await expect(
-      lab.getByText("Six lines. Six assertions.", { exact: false }),
+      lab.getByText("Role- and label-based locators", { exact: false }),
+    ).toBeVisible();
+    await expect(lab.getByText("getByLabel", { exact: false }).first()).toBeVisible();
+    await expect(
+      lab.getByText("E2E_USER_EMAIL", { exact: false }).first(),
     ).toBeVisible();
   });
 
@@ -174,6 +188,41 @@ test.describe("interactions", () => {
     for (let i = 0; i < count; i += 1) {
       await expect(cards.nth(i)).toHaveAttribute("href", /\/projects\//);
     }
+
+    await expect(
+      projects.locator('a[href="/projects/enterprise-erp-qa"]'),
+    ).toBeVisible();
+  });
+
+  test("case study prev/next chain includes ERP and wraps", async ({
+    page,
+  }) => {
+    await page.goto("/projects/enterprise-erp-qa");
+    await expect(page.getByRole("heading", { name: "Enterprise ERP QA" })).toBeVisible();
+    await expect(page.getByText("STATUS", { exact: true })).toHaveCount(0);
+    await expect(page.getByText("LIVE", { exact: true })).toHaveCount(0);
+
+    await page
+      .getByRole("link", {
+        name: /Bangladesh Government Systems - QA Portfolio/i,
+      })
+      .click();
+    await expect(page.getByText("DELIVERED", { exact: true })).toBeVisible();
+
+    await page
+      .getByRole("link", { name: /Playwright \+ AI Evaluation Framework/i })
+      .last()
+      .click();
+    await expect(page.getByText("IN PROGRESS", { exact: true })).toBeVisible();
+    await expect(page.getByText("LIVE", { exact: true })).toHaveCount(0);
+
+    await page
+      .getByRole("link", { name: /Hppy AI - Enterprise Test Plan/i })
+      .last()
+      .click();
+    await expect(
+      page.getByRole("heading", { name: /Hppy AI/ }),
+    ).toBeVisible();
   });
 
   test("cv section links to interactive cv and pdf", async ({ page }) => {

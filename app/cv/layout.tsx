@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { OG_IMAGE_PATH, absoluteUrl } from "@/lib/site";
+import { CV_HEADLINE } from "@/content/cv";
+import { absoluteUrl } from "@/lib/site";
 
-const title = "CV | Aktia Farjana Antora — Lead SQA Engineer";
-const description =
-  "Curriculum vitae for Aktia Farjana Antora, Lead SQA Engineer.";
+const title = `CV | Aktia Farjana Antora — ${CV_HEADLINE}`;
+const description = CV_HEADLINE;
 
 export const metadata: Metadata = {
   title,
@@ -16,20 +16,11 @@ export const metadata: Metadata = {
     title,
     description,
     url: absoluteUrl("/cv"),
-    images: [
-      {
-        url: OG_IMAGE_PATH,
-        width: 1200,
-        height: 630,
-        alt: title,
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
-    images: [OG_IMAGE_PATH],
   },
 };
 

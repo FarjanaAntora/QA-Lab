@@ -1,4 +1,4 @@
-export type ProjectStatus = "live" | "coming-soon";
+export type ProjectStatus = "live" | "coming-soon" | "delivered" | null;
 
 export type Project = {
   slug: string;
@@ -24,46 +24,11 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "playwright-ai-qa-framework",
-    title: "Playwright + AI Evaluation Framework",
-    tagline:
-      "Playwright runs the journey. DeepEval scores the answer. A weak score fails the build.",
-    role: "Framework Architect & Author",
-    status: "coming-soon",
-    category: "Automation Framework",
-    technologies: [
-      "Playwright",
-      "Python",
-      "DeepEval",
-      "LangSmith",
-      "GitHub Actions",
-      "Docker",
-    ],
-    summary:
-      "Playwright drives the user journey through a Page Object Model. DeepEval scores the model output for faithfulness, answer relevance, and hallucination rate. LangSmith traces the call chain. GitHub Actions runs smoke on pull request and the full regression nightly.",
-    problem:
-      'Most automation frameworks are built for deterministic software. When the system under test is an LLM, traditional assertion logic breaks down. The same input can produce different outputs. What does "pass" even mean?',
-    approach: [
-      "Playwright for E2E web automation with Page Object Model",
-      "DeepEval for LLM output scoring - faithfulness, answer relevance, hallucination rate",
-      "LangSmith for tracing LLM call chains and detecting output drift in production",
-      "GitHub Actions CI pipeline with separate test tiers: smoke on PR, full regression nightly",
-      "Docker Compose for local environment setup",
-    ],
-    challenge:
-      'Replacing binary pass/fail assertions with probabilistic quality thresholds. Instead of expect(response).toBe("exact string"), the framework uses expect(faithfulnessScore).toBeGreaterThan(0.85).',
-    github: null,
-    related: {
-      href: "/projects/healthscan-test-plan#decision",
-      label: "Hppy AI — the decision this gate is for",
-    },
-  },
-  {
     slug: "healthscan-test-plan",
     title: "Hppy AI - Enterprise Test Plan",
     tagline: "88 user stories. 23 epics. Zero assumptions.",
     role: "Lead QA Engineer",
-    status: "live",
+    status: null,
     category: "Test Strategy",
     technologies: [
       "Test Strategy",
@@ -133,7 +98,7 @@ export const projects: Project[] = [
     title: "Memorial Houston Medical - EHR Quality Ownership",
     tagline: "Sole QA engineer. Five modules. One identity layer.",
     role: "Sole QA Engineer",
-    status: "live",
+    status: null,
     category: "Healthcare ERP",
     technologies: [
       "Selenium",
@@ -167,11 +132,52 @@ export const projects: Project[] = [
     github: null,
   },
   {
+    slug: "enterprise-erp-qa",
+    title: "Enterprise ERP QA",
+    tagline:
+      "Sole QA ownership across a multi-client ERP engagement. Fifteen-plus clients. One continuous platform.",
+    role: "Sole QA / SQA Engineer",
+    status: null,
+    category: "Enterprise ERP",
+    technologies: [
+      "Manual Testing",
+      "API Testing",
+      "Selenium",
+      "Python",
+      "Postman",
+      "Mobile Testing",
+      "BrowserStack",
+      "Jira",
+      "SQL",
+    ],
+    summary:
+      "SQA for Echologyx / Echotex across a shared ERP serving 15+ clients over about two years. Same company under different management — one continuous engagement, not two unrelated jobs. Coverage spanned API, functional, regression and integration work, with mobile checks on real devices and BrowserStack. Memorial Houston Medical sits inside this engagement as the deepest module-ownership case.",
+    problem:
+      "A shared ERP serving many clients cannot be treated as one happy path. Each client configuration still has to hold on the same platform, and defects in identity, API, or module boundaries multiply across the portfolio.",
+    approach: [
+      "Sole QA ownership across shared ERP modules for a multi-client portfolio",
+      "API, functional, regression and integration coverage on a live enterprise platform",
+      "Mobile testing on iOS and Android with real devices, DevTools and BrowserStack",
+      "Defect lifecycle in Jira with development teams; SRS and SOP documentation",
+      "Continuous engagement across Echologyx and Echotex under different management",
+    ],
+    challenge:
+      "Owning quality alone across a multi-client ERP without losing the module boundaries, client configuration differences, or the paths that actually move patient and operational data.",
+    outcome:
+      "2,000+ defects uncovered across the ERP, including its API — with Memorial Houston as the five-module ownership case inside the same engagement.",
+    github: null,
+    related: {
+      href: "/projects/mhm-ehr-qa",
+      label: "Memorial Houston Medical — the five-module ownership case",
+    },
+  },
+  {
     slug: "bd-government-qa",
     title: "Bangladesh Government Systems - QA Portfolio",
-    tagline: "Public sector delivery. Zero tolerance for failure.",
+    tagline:
+      "Public-sector delivery where a wrong figure is a public failure.",
     role: "Lead QA Engineer",
-    status: "live",
+    status: "delivered",
     category: "Government / GovTech",
     technologies: [
       "Selenium",
@@ -182,7 +188,7 @@ export const projects: Project[] = [
       "OWASP ZAP",
     ],
     summary:
-      "QA delivery across multiple national-scale Bangladesh government systems: Satellite Billing Module, Bangladesh Rice Research Institute digital platform, and a national Conferencing Booking Portal.",
+      "QA delivery across multiple national-scale Bangladesh government systems: Satellite Billing Module, Bangladesh Rice Research Institute digital platform, and a national Conferencing Booking Portal — with a low tolerance for production defects.",
     problem:
       "Government systems serve millions of citizens. An outage or a wrong figure is visible to the public, not only to the team. Each system had its own compliance rules and its own release window.",
     approach: [
@@ -196,7 +202,43 @@ export const projects: Project[] = [
     challenge:
       "Coordinating QA across three simultaneous government project deliveries with different stakeholders, compliance requirements, and release windows.",
     outcome:
-      "UAT sign-off for all three systems landed on schedule.",
+      "All three systems were delivered to government clients; UAT sign-off was achieved on schedule.",
     github: null,
+  },
+  {
+    slug: "playwright-ai-qa-framework",
+    title: "Playwright + AI Evaluation Framework",
+    tagline: "Playwright E2E with an AI evaluation layer, gated in CI.",
+    role: "Framework Architect & Author",
+    status: "coming-soon",
+    category: "Automation Framework",
+    technologies: [
+      "Playwright",
+      "Python",
+      "DeepEval",
+      "LangSmith",
+      "GitHub Actions",
+      "Docker",
+    ],
+    summary:
+      "Playwright drives the user journey through a Page Object Model. DeepEval scores the model output for faithfulness, answer relevance, and hallucination rate. LangSmith traces the call chain. GitHub Actions runs smoke on pull request and the full regression nightly.",
+    problem:
+      'Most automation frameworks are built for deterministic software. When the system under test is an LLM, traditional assertion logic breaks down. The same input can produce different outputs. What does "pass" even mean?',
+    approach: [
+      "Playwright for E2E web automation with Page Object Model",
+      "DeepEval for LLM output scoring - faithfulness, answer relevance, hallucination rate",
+      "LangSmith for tracing LLM call chains and detecting output drift in production",
+      "GitHub Actions CI pipeline with separate test tiers: smoke on PR, full regression nightly",
+      "Docker Compose for local environment setup",
+    ],
+    challenge:
+      'Replacing binary pass/fail assertions with probabilistic quality thresholds. Instead of expect(response).toBe("exact string"), the framework uses expect(faithfulnessScore).toBeGreaterThan(0.85).',
+    outcome:
+      "Hallucination testing adopted across the Hppy AI products at GHIT. CI runs smoke tests on every pull request and the full regression nightly.",
+    github: null,
+    related: {
+      href: "/projects/healthscan-test-plan#decision",
+      label: "Hppy AI — the decision this gate is for",
+    },
   },
 ];

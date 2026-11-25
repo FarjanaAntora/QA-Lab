@@ -28,17 +28,14 @@
 
 .headline {
   margin: 0 0 32px;
+  max-width: 11em;
   color: var(--color-text-primary);
-  line-height: 1.05;
+  font-size: clamp(36px, 6vw, 76px);
+  line-height: 1.08;
 }
 
 .headlineLine {
   display: block;
-}
-
-.aside {
-  margin-top: 0.12em;
-  font-size: 0.38em;
 }
 
 .subtext {
@@ -67,26 +64,4 @@
   border-radius: var(--radius-sm);
   font-size: 12px;
   color: var(--color-text-secondary);
-}
-
-/* Desktop: lines 1+2 together, line 3 below */
-@media (min-width: 768px) {
-  .headline {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .headlineLine:nth-child(1),
-  .headlineLine:nth-child(2) {
-    display: inline-block;
-  }
-
-  .headlineLine:nth-child(1) {
-    margin-right: 0.35em;
-  }
-
-  .headlineLine:nth-child(3),
-  .headlineLine:nth-child(4) {
-    width: 100%;
-  }
 }

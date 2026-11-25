@@ -7,8 +7,12 @@ test.describe("mobile", () => {
     const response = await page.goto("/");
     expect(response?.status()).toBe(200);
     await expect(page.locator("#hero")).toBeVisible();
-    await expect(page.locator("#hero")).toContainText("I BREAK");
-    await expect(page.locator("#hero")).toContainText("SOFTWARE");
+    await expect(page.locator("#hero")).toContainText(
+      "I'm not here to break things.",
+    );
+    await expect(page.locator("#hero")).toContainText(
+      "I'm here to make sure our users don't.",
+    );
   });
 
   test("hamburger opens the mobile menu", async ({ page }) => {

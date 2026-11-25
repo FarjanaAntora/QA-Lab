@@ -71,8 +71,12 @@
 }
 
 .statValue {
-  color: var(--color-emphasis);
+  width: fit-content;
   line-height: 1.1;
+  background-image: var(--color-accent-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 .statLabel {

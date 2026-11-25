@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import TechTag from "@/components/ui/TechTag";
+import { getCaseStudyFacts } from "@/content/facts";
 import { projects, type Project } from "@/content/projects";
-import { OG_IMAGE_PATH, absoluteUrl } from "@/lib/site";
+import { absoluteUrl } from "@/lib/site";
 import styles from "./page.module.css";
 
 type PageProps = {
@@ -18,52 +19,57 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
+  const facts = getCaseStudyFacts(slug);
   const project = projects.find((item) => item.slug === slug);
 
-  if (!project) {
+  if (!facts || !project) {
     return {
       title: "Project | Aktia Farjana Antora",
       description: "Case study from THE QA LAB portfolio.",
       alternates: { canonical: absoluteUrl(`/projects/${slug}`) },
+      twitter: { card: "summary_large_image" },
     };
   }
 
-  const title = `${project.title} | Aktia Farjana Antora`;
-  const description = project.tagline;
-  const url = absoluteUrl(`/projects/${project.slug}`);
+  const url = absoluteUrl(`/projects/${facts.slug}`);
 
   return {
-    title,
-    description,
+    title: facts.ogTitle,
+    description: facts.ogDescription,
     alternates: {
       canonical: url,
     },
     openGraph: {
-      title,
-      description,
+      title: facts.ogTitle,
+      description: facts.ogDescription,
       url,
-      images: [
-        {
-          url: OG_IMAGE_PATH,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
+      type: "article",
     },
     twitter: {
       card: "summary_large_image",
-      title,
-      description,
-      images: [OG_IMAGE_PATH],
+      title: facts.ogTitle,
+      description: facts.ogDescription,
     },
   };
 }
 
-function getNextProject(current: Project): Project | null {
+function getAdjacentProjects(current: Project): {
+  previous: Project;
+  next: Project;
+} {
   const index = projects.findIndex((item) => item.slug === current.slug);
-  if (index < 0 || index >= projects.length - 1) return null;
-  return projects[index + 1] ?? null;
+  const length = projects.length;
+  return {
+    previous: projects[(index - 1 + length) % length]!,
+    next: projects[(index + 1) % length]!,
+  };
+}
+
+function statusLabel(status: Project["status"]): string | null {
+  if (status === "coming-soon") return "IN PROGRESS";
+  if (status === "delivered") return "DELIVERED";
+  // No generic LIVE — only badges the page copy supports.
+  return null;
 }
 
 export default async function ProjectPage({ params }: PageProps) {
@@ -74,8 +80,8 @@ export default async function ProjectPage({ params }: PageProps) {
     notFound();
   }
 
-  const nextProject = getNextProject(project);
-  const isLive = project.status === "live";
+  const { previous, next } = getAdjacentProjects(project);
+  const status = statusLabel(project.status);
 
   return (
     <main className={styles.page}>
@@ -101,19 +107,12 @@ export default async function ProjectPage({ params }: PageProps) {
             </span>
           </div>
 
-          <div className={styles.metaBlock}>
-            <span className={`text-label ${styles.metaLabel}`}>STATUS</span>
-            {isLive ? (
-              <span className={`text-label ${styles.statusLive}`}>
-                <span className={styles.dot} aria-hidden="true" />
-                LIVE
-              </span>
-            ) : (
-              <span className={`text-label ${styles.statusSoon}`}>
-                IN PROGRESS
-              </span>
-            )}
-          </div>
+          {status ? (
+            <div className={styles.metaBlock}>
+              <span className={`text-label ${styles.metaLabel}`}>STATUS</span>
+              <span className={`text-label ${styles.statusSoon}`}>{status}</span>
+            </div>
+          ) : null}
 
           <div className={styles.metaBlock}>
             <span className={`text-label ${styles.metaLabel}`}>STACK</span>
@@ -197,17 +196,21 @@ export default async function ProjectPage({ params }: PageProps) {
         ) : null}
 
         <div className={styles.bottomNav}>
-          <Link href="/#projects" className={`text-label ${styles.back}`}>
-            ← BACK TO PROJECTS
+          <Link
+            href={`/projects/${previous.slug}`}
+            className={`text-label ${styles.back}`}
+          >
+            ← {previous.title}
           </Link>
-          {nextProject ? (
-            <Link
-              href={`/projects/${nextProject.slug}`}
-              className={`text-label ${styles.nextLink}`}
-            >
-              NEXT PROJECT →
-            </Link>
-          ) : null}
+          <Link href="/#projects" className={`text-label ${styles.back}`}>
+            ALL PROJECTS
+          </Link>
+          <Link
+            href={`/projects/${next.slug}`}
+            className={`text-label ${styles.nextLink}`}
+          >
+            {next.title} →
+          </Link>
         </div>
       </div>
     </main>

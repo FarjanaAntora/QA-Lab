@@ -21,8 +21,8 @@ test.describe("production", () => {
     await page.goto(prodUrl!);
     const hero = page.locator("#hero");
     await expect(hero).toBeVisible();
-    await expect(hero).toContainText(/I BREAK/);
-    await expect(hero).toContainText(/SOFTWARE/);
+    await expect(hero).toContainText("I'm not here to break things.");
+    await expect(hero).toContainText("I'm here to make sure our users don't.");
   });
 
   test("easter egg trigger exists", async ({ page }) => {

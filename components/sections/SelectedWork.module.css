@@ -154,7 +154,8 @@
 }
 
 .pipeline,
-.travelStage {
+.travelStage,
+.flowStage {
   margin-bottom: 20px;
   padding: 16px;
   border: 1px solid var(--color-border);
@@ -162,15 +163,22 @@
   background: var(--color-bg-primary);
 }
 
+/* Shared flow-box row: reflow; vertical stepper on narrow viewports */
+.flowTrack,
 .pipelineTrack,
-.layers {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.layers,
+.travelPath {
+  display: flex;
+  flex-direction: column;
   gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .layers,
-.tags {
+.tags,
+.flowStage {
   margin-bottom: 20px;
 }
 
@@ -180,11 +188,16 @@
   gap: 6px;
 }
 
+.flowBox,
 .pipelineStep,
-.layer {
+.layer,
+.travelStop {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  box-sizing: border-box;
+  min-width: 7.5rem;
+  width: 100%;
   min-height: 56px;
   padding: 10px 12px;
   border: 1px solid var(--color-border);
@@ -192,22 +205,38 @@
   background: var(--color-bg-secondary);
 }
 
+.flowLabel,
 .pipelineName,
-.layerName {
+.layerName,
+.travelStep {
   color: var(--color-emphasis);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  overflow-wrap: normal;
+  word-break: keep-all;
+  hyphens: none;
+  white-space: normal;
 }
 
+.flowNote,
 .pipelineNote,
-.layerNote {
+.layerNote,
+.travelNote {
   font-size: 12px;
   line-height: 1.4;
   color: var(--color-text-secondary);
+  overflow-wrap: normal;
+  word-break: keep-all;
+  hyphens: none;
 }
 
 .travelEyebrow {
   margin: 0 0 8px;
   font-size: 11px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--color-text-muted);
 }
@@ -222,19 +251,66 @@
   color: var(--color-text-primary);
 }
 
-.travelPath {
+.figureStack {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0 0 20px;
 }
 
-.travelStep {
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 16px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-primary);
+}
+
+.metricValue {
+  margin: 0;
+  color: var(--color-emphasis);
+}
+
+.metricNote {
   font-size: 13px;
-  font-weight: 600;
   color: var(--color-text-secondary);
+}
+
+.roster {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 20px;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 4px 0;
+}
+
+.rosterLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+}
+
+.rosterLogo img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: 20px;
+  object-fit: contain;
+}
+
+.rosterLogo img.rosterEmblem {
+  height: 34px;
+}
+
+html[data-theme="dark"] .rosterLogo img,
+html[data-theme="bottle-green"] .rosterLogo img,
+html[data-theme="aurora"] .rosterLogo img {
+  filter: invert(1) brightness(1.12);
 }
 
 .chips {
@@ -255,6 +331,28 @@
   color: var(--color-text-secondary);
 }
 
+@media (min-width: 480px) {
+  .flowTrack,
+  .pipelineTrack,
+  .layers,
+  .travelPath {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .flowBox,
+  .pipelineStep,
+  .layer,
+  .travelStop {
+    flex: 1 1 7.5rem;
+    width: auto;
+    max-width: 100%;
+    min-height: 64px;
+  }
+}
+
 @media (min-width: 768px) {
   .grid {
     grid-template-columns: 1fr 1fr;
@@ -264,18 +362,12 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .pipelineTrack {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  .layers {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
+  .flowBox,
   .pipelineStep,
-  .layer {
-    min-height: 64px;
+  .layer,
+  .travelStop {
+    flex: 1 1 7.5rem;
+    min-width: 7.5rem;
   }
 }
 

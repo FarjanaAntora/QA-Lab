@@ -49,11 +49,12 @@ export const experience: ExperienceItem[] = [
     companyShort: "Echologyx / Echotex",
     period: "Dec 2022 - Oct 2024",
     summary:
-      "Sole QA owner across 5 ERP modules and 15+ clients over about two years, including mobile and A/B analytics checking.",
+      "One continuous ERP engagement across Echologyx / Echotex — 5 modules, 15+ clients over about two years, including Memorial Houston Medical.",
     responsibilities: [
+      "Same company under different management; sole QA across UIS, PIS, EHR, BMS and Appointment Management",
       "Uncovered 2,000+ defects across the ERP, including its API",
       "Mobile testing on iOS and Android with real devices, DevTools and BrowserStack",
-      "A/B tests and web analytics checking for global luxury and automotive brands — a checking role, not a lead role",
+      "A/B tests and web analytics checking for global luxury and automotive brands — a checking role, not a lead role; 160+ defects in one engagement, 2 in a separate 120-hour project",
       "SRS, SOP and test documentation; defect lifecycle in Jira with development teams",
     ],
     technologies: [
@@ -74,10 +75,10 @@ export const experience: ExperienceItem[] = [
     companyShort: "Nordic",
     period: "Nov 2021 - Dec 2022",
     summary:
-      "QA testing and cross-browser validation for web applications, alongside WordPress development and client communication.",
+      "QA testing and WordPress development for international agency clients.",
     responsibilities: [
-      "QA testing and cross-browser validation for web applications",
-      "WordPress development and client communication",
+      "QA testing and WordPress development for international agency clients",
+      "Cross-browser and UI validation",
     ],
     technologies: ["WordPress", "JavaScript", "Manual Testing"],
     highlight: null,

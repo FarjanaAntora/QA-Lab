@@ -50,9 +50,9 @@ jobs:
         if: always()
         run: npx lhci collect && npx lhci upload
 
-      - name: Write engineering metrics
+      - name: Measure engineering metrics
         if: always()
-        run: node scripts/write-engineering-metrics.mjs
+        run: npm run metrics:measure
 
       - name: Commit engineering metrics
         if: always() && github.event_name == 'push'

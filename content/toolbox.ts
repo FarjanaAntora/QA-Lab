@@ -1,54 +1,51 @@
-export type ToolboxGroup = {
-  category: string;
+export type ToolboxData = {
   core: string[];
   supporting: string[];
-  quiet?: boolean;
+  testingTypes: string[];
 };
 
-export const toolbox: ToolboxGroup[] = [
-  {
-    category: "Manual Testing",
-    core: ["Functional", "Regression", "Exploratory", "UAT"],
-    supporting: ["Multi-tenant isolation", "RBAC"],
-  },
-  {
-    category: "Mobile Testing",
-    core: ["iOS", "Android"],
-    supporting: ["Real devices", "BrowserStack", "Browser DevTools"],
-  },
-  {
-    category: "Automation",
-    core: ["Playwright"],
-    supporting: ["Selenium", "Pytest"],
-  },
-  {
-    category: "API Testing",
-    core: ["Postman"],
-    supporting: ["Swagger"],
-  },
-  {
-    category: "CI/CD & Engineering",
-    core: ["GitHub Actions"],
-    supporting: ["GitLab CI"],
-  },
-  {
-    category: "AI-Assisted QA",
-    core: ["DeepEval", "LangSmith"],
-    supporting: [],
-  },
-  {
-    category: "Languages",
-    core: ["Python"],
-    supporting: ["JavaScript", "SQL"],
-  },
-  {
-    category: "Performance",
-    core: [],
-    supporting: ["JMeter", "k6"],
-  },
-  {
-    category: "Security",
-    core: [],
-    supporting: ["OWASP ZAP", "Burp Suite"],
-  },
-];
+/**
+ * Weight only — every tool stays. Core is what the case studies lean on;
+ * Also used is familiarity. Testing types stay a quiet line, not a skills wall.
+ */
+export const toolbox: ToolboxData = {
+  core: [
+    "Playwright",
+    "Selenium",
+    "Python",
+    "Postman",
+    "Swagger",
+    "GitHub Actions",
+    "SQL",
+    "DeepEval",
+    "LangSmith",
+    "LLM-as-judge",
+    "Hallucination detection",
+  ],
+  supporting: [
+    "Cypress",
+    "Pytest",
+    "JavaScript",
+    "TypeScript",
+    "C#",
+    "GitLab CI",
+    "Jenkins",
+    "Docker",
+    "Git",
+    "JMeter",
+    "k6",
+    "OWASP ZAP",
+    "Burp Suite",
+    "BrowserStack",
+  ],
+  testingTypes: [
+    "Functional",
+    "Regression",
+    "Exploratory",
+    "UAT",
+    "Integration",
+    "Mobile (iOS / Android)",
+    "Multi-tenant isolation",
+    "RBAC",
+  ],
+};

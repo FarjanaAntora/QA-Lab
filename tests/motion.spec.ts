@@ -26,7 +26,9 @@ test.describe("motion variation", () => {
   }) => {
     await page.goto("/");
     await expect(page.getByTestId("matrix-rain")).toHaveCount(0);
-    await expect(page.locator("#hero")).toContainText("I BREAK");
+    await expect(page.locator("#hero")).toContainText(
+      "I'm not here to break things.",
+    );
     await expect(page.getByTestId("rope-cat")).toBeAttached();
     await expect(page.getByTestId("friends-walk")).toBeAttached();
     await expect(page.getByTestId("friends-walk")).toHaveCSS(

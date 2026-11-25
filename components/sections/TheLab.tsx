@@ -312,51 +312,47 @@ function ExperimentFour() {
         <span className={styles.codePlain}> page.</span>
         <span className={styles.codeFn}>goto</span>
         <span className={styles.codePlain}>(</span>
-        <span className={styles.codeString}>
-          &apos;https://app.example.com/login&apos;
-        </span>
+        <span className={styles.codeString}>&apos;/login&apos;</span>
         <span className={styles.codePlain}>);</span>
       </>,
       <>
         <span className={styles.codePlain}>{"  "}</span>
         <span className={styles.codeKeyword}>await</span>
         <span className={styles.codePlain}> page.</span>
-        <span className={styles.codeFn}>fill</span>
+        <span className={styles.codeFn}>getByLabel</span>
         <span className={styles.codePlain}>(</span>
-        <span className={styles.codeString}>
-          &apos;[data-testid=&quot;email&quot;]&apos;
-        </span>
-        <span className={styles.codePlain}>, </span>
-        <span className={styles.codeString}>
-          &apos;test@example.com&apos;
-        </span>
-        <span className={styles.codePlain}>);</span>
-      </>,
-      <>
-        <span className={styles.codePlain}>{"  "}</span>
-        <span className={styles.codeKeyword}>await</span>
-        <span className={styles.codePlain}> page.</span>
+        <span className={styles.codeString}>&apos;Email&apos;</span>
+        <span className={styles.codePlain}>).</span>
         <span className={styles.codeFn}>fill</span>
-        <span className={styles.codePlain}>(</span>
-        <span className={styles.codeString}>
-          &apos;[data-testid=&quot;password&quot;]&apos;
-        </span>
-        <span className={styles.codePlain}>, </span>
-        <span className={styles.codeString}>
-          &apos;SecurePass123&apos;
-        </span>
-        <span className={styles.codePlain}>);</span>
+        <span className={styles.codePlain}>(process.env.</span>
+        <span className={styles.codeFn}>E2E_USER_EMAIL</span>
+        <span className={styles.codePlain}>!);</span>
       </>,
       <>
         <span className={styles.codePlain}>{"  "}</span>
         <span className={styles.codeKeyword}>await</span>
         <span className={styles.codePlain}> page.</span>
+        <span className={styles.codeFn}>getByLabel</span>
+        <span className={styles.codePlain}>(</span>
+        <span className={styles.codeString}>&apos;Password&apos;</span>
+        <span className={styles.codePlain}>).</span>
+        <span className={styles.codeFn}>fill</span>
+        <span className={styles.codePlain}>(process.env.</span>
+        <span className={styles.codeFn}>E2E_USER_PASSWORD</span>
+        <span className={styles.codePlain}>!);</span>
+      </>,
+      <>
+        <span className={styles.codePlain}>{"  "}</span>
+        <span className={styles.codeKeyword}>await</span>
+        <span className={styles.codePlain}> page.</span>
+        <span className={styles.codeFn}>getByRole</span>
+        <span className={styles.codePlain}>(</span>
+        <span className={styles.codeString}>&apos;button&apos;</span>
+        <span className={styles.codePlain}>, &#123; name: </span>
+        <span className={styles.codeString}>&apos;Log in&apos;</span>
+        <span className={styles.codePlain}> &#125;).</span>
         <span className={styles.codeFn}>click</span>
-        <span className={styles.codePlain}>(</span>
-        <span className={styles.codeString}>
-          &apos;[data-testid=&quot;submit&quot;]&apos;
-        </span>
-        <span className={styles.codePlain}>);</span>
+        <span className={styles.codePlain}>();</span>
       </>,
       <>
         <span className={styles.codePlain}>{"  "}</span>
@@ -366,7 +362,7 @@ function ExperimentFour() {
         <span className={styles.codePlain}>(page).</span>
         <span className={styles.codeFn}>toHaveURL</span>
         <span className={styles.codePlain}>(</span>
-        <span className={styles.codeString}>&apos;/dashboard&apos;</span>
+        <span className={styles.codeString}>/\\/dashboard\\/?$/</span>
         <span className={styles.codePlain}>);</span>
       </>,
       <>
@@ -375,14 +371,14 @@ function ExperimentFour() {
         <span className={styles.codePlain}> </span>
         <span className={styles.codeFn}>expect</span>
         <span className={styles.codePlain}>(page.</span>
-        <span className={styles.codeFn}>locator</span>
+        <span className={styles.codeFn}>getByRole</span>
         <span className={styles.codePlain}>(</span>
-        <span className={styles.codeString}>&apos;h1&apos;</span>
-        <span className={styles.codePlain}>)).</span>
-        <span className={styles.codeFn}>toContainText</span>
-        <span className={styles.codePlain}>(</span>
-        <span className={styles.codeString}>&apos;Welcome&apos;</span>
-        <span className={styles.codePlain}>);</span>
+        <span className={styles.codeString}>&apos;heading&apos;</span>
+        <span className={styles.codePlain}>, &#123; name: </span>
+        <span className={styles.codeString}>/welcome/i</span>
+        <span className={styles.codePlain}> &#125;)).</span>
+        <span className={styles.codeFn}>toBeVisible</span>
+        <span className={styles.codePlain}>();</span>
       </>,
       <>
         <span className={styles.codePlain}>&#125;);</span>
@@ -429,21 +425,27 @@ function ExperimentFour() {
             <ol className={styles.explanationList}>
               <li>Open the login page</li>
               <li>
-                Find the email field (by its test ID) and type a test email
-              </li>
-              <li>Find the password field and type a test password</li>
-              <li>Click the submit button</li>
-              <li>
-                Assert: the URL changed to /dashboard (not an error page)
+                Find the email field by its accessible label and fill it from{" "}
+                <code>E2E_USER_EMAIL</code>
               </li>
               <li>
-                Assert: the page heading contains &quot;Welcome&quot; (the user
-                is actually logged in)
+                Find the password field by label and fill it from{" "}
+                <code>E2E_USER_PASSWORD</code> — no hardcoded secrets in the
+                test
+              </li>
+              <li>Click the Log in button by role and name</li>
+              <li>
+                Assert with a web-first check: the URL matches{" "}
+                <code>/dashboard</code> (regex, not a brittle exact string)
+              </li>
+              <li>
+                Assert the welcome heading is visible — the user is actually
+                logged in
               </li>
             </ol>
             <p className={styles.explanationNote}>
-              Six lines. Six assertions. This runs in 2 seconds and catches
-              login regressions automatically.
+              Role- and label-based locators. Web-first assertions. Credentials
+              from the environment. That is the current Playwright idiom.
             </p>
           </motion.div>
         ) : null}

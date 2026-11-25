@@ -23,7 +23,7 @@
   font-family: var(--font-mono);
   font-size: 11px;
   line-height: 1.4;
-  color: var(--color-accent-text);
+  color: var(--color-glitch-base);
   letter-spacing: 0.02em;
   text-align: right;
   white-space: nowrap;
@@ -52,15 +52,15 @@
 }
 
 .glitch::before {
-  color: var(--color-accent);
+  color: var(--color-glitch-a);
   clip-path: inset(0 0 55% 0);
-  transform: translate(-1px, 0);
+  transform: translate(-1.5px, 0);
 }
 
 .glitch::after {
-  color: var(--color-danger);
+  color: var(--color-glitch-b);
   clip-path: inset(50% 0 0 0);
-  transform: translate(1px, 0);
+  transform: translate(1.5px, 0);
 }
 
 @keyframes glitchFlicker {

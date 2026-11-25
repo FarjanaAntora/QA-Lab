@@ -49,6 +49,10 @@
   filter: drop-shadow(0 2px 4px color-mix(in srgb, #000 28%, transparent));
 }
 
+.auroraMark {
+  color: var(--color-text-primary);
+}
+
 .markWide {
   width: 48px;
   height: 40px;

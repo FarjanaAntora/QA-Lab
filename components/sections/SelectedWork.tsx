@@ -8,6 +8,11 @@ import { StaggerGroup, StaggerItem } from "@/components/ui/Stagger";
 import TechTag from "@/components/ui/TechTag";
 import { MOTION_EASE } from "@/lib/motion";
 import {
+  abContrasts,
+  abTestingFocal,
+  brandRoster,
+} from "@/content/focal";
+import {
   additionalWorkIntro,
   dataProject,
   governmentProject,
@@ -17,6 +22,7 @@ import {
   selectedWorkIntro,
   travelProject,
   wordpressProject,
+  type ProcessStep,
   type SelectedProject,
 } from "@/content/selected-work";
 import styles from "./SelectedWork.module.css";
@@ -147,6 +153,9 @@ function FeatureCard({
       {project.status === "in-progress" ? (
         <p className={`text-label ${styles.category}`}>IN PROGRESS</p>
       ) : null}
+      {project.status === "delivered" ? (
+        <p className={`text-label ${styles.category}`}>DELIVERED</p>
+      ) : null}
       <h3 className={`text-h3 ${styles.title}`}>{project.title}</h3>
       <p className={styles.summary}>{project.summary}</p>
       {visual}
@@ -185,19 +194,43 @@ function AdditionalCard({
   );
 }
 
+function FlowBoxes({
+  steps,
+  label,
+  className,
+}: {
+  steps: readonly ProcessStep[];
+  label: string;
+  className?: string;
+}) {
+  return (
+    <StaggerGroup
+      className={`${styles.flowTrack} ${className ?? ""}`}
+      aria-label={label}
+      data-flow-track=""
+    >
+      {steps.map((item) => (
+        <StaggerItem
+          key={item.step}
+          className={styles.flowBox}
+          data-flow-box=""
+        >
+          <span className={styles.flowLabel} data-flow-label="">
+            {item.step}
+          </span>
+          {item.note ? (
+            <span className={styles.flowNote}>{item.note}</span>
+          ) : null}
+        </StaggerItem>
+      ))}
+    </StaggerGroup>
+  );
+}
+
 function ManuscriptVisual() {
   return (
     <div className={styles.pipeline} aria-label="Digitization pipeline">
-      <StaggerGroup className={styles.pipelineTrack}>
-        {manuscriptProject.flow.map((item) => (
-          <StaggerItem key={item.step} className={styles.pipelineStep}>
-            <span className={`text-label ${styles.pipelineName}`}>
-              {item.step}
-            </span>
-            <span className={styles.pipelineNote}>{item.note}</span>
-          </StaggerItem>
-        ))}
-      </StaggerGroup>
+      <FlowBoxes steps={manuscriptProject.flow} label="Digitization pipeline" />
     </div>
   );
 }
@@ -207,13 +240,11 @@ function TravelVisual() {
     <div className={styles.travelStage} aria-label="Booking journey">
       <p className={styles.travelEyebrow}>Premium booking path</p>
       <p className={styles.travelDisplay}>The journey</p>
-      <ol className={styles.travelPath}>
-        {travelProject.journey.map((item) => (
-          <li key={item.step} className={styles.travelStop}>
-            <span className={styles.travelStep}>{item.step}</span>
-          </li>
-        ))}
-      </ol>
+      <FlowBoxes
+        steps={travelProject.journey}
+        label="Booking journey steps"
+        className={styles.travelPath}
+      />
     </div>
   );
 }
@@ -232,27 +263,26 @@ function GovernmentVisual() {
 
 function PlaywrightVisual() {
   return (
-    <StaggerGroup className={styles.layers} aria-label="Framework layers">
-      {playwrightProject.layers.map((item) => (
-        <StaggerItem key={item.step} className={styles.layer}>
-          <span className={`text-label ${styles.layerName}`}>{item.step}</span>
-          <span className={styles.layerNote}>{item.note}</span>
-        </StaggerItem>
-      ))}
-    </StaggerGroup>
+    <FlowBoxes
+      steps={playwrightProject.layers}
+      label="Framework layers"
+      className={styles.layers}
+    />
   );
 }
 
-function ThemeTags({
-  items,
-  label,
-}: {
-  items: string[];
-  label: string;
-}) {
+function DataVisual() {
   return (
-    <StaggerGroup className={styles.tags} aria-label={label}>
-      {items.map((item) => (
+    <div className={styles.flowStage}>
+      <FlowBoxes steps={dataProject.checks} label="Data path" />
+    </div>
+  );
+}
+
+function WordpressVisual() {
+  return (
+    <StaggerGroup className={styles.tags} aria-label="Client types">
+      {wordpressProject.audiences.map((item) => (
         <StaggerItem key={item}>
           <TechTag label={item} />
         </StaggerItem>
@@ -261,29 +291,58 @@ function ThemeTags({
   );
 }
 
-function DataVisual() {
-  return (
-    <ThemeTags
-      label="Data path"
-      items={dataProject.checks.map((item) => `${item.step} · ${item.note}`)}
-    />
-  );
-}
-
-function WordpressVisual() {
-  return (
-    <ThemeTags label="Client types" items={[...wordpressProject.audiences]} />
-  );
-}
-
 function LeadershipVisual() {
   return (
-    <ThemeTags
-      label="QA process"
-      items={processProject.loop.map((item) => `${item.step} · ${item.note}`)}
-    />
+    <div className={styles.flowStage}>
+      <FlowBoxes steps={processProject.loop} label="QA process" />
+    </div>
   );
 }
+
+function AbAnalyticsVisual() {
+  return (
+    <>
+      <div className={styles.figureStack} aria-label="Two A/B testing outcomes">
+        {abContrasts.map((figure) => (
+          <p key={figure.value} className={styles.metric}>
+            <span className={`text-h2 ${styles.metricValue}`}>
+              {figure.value}
+            </span>
+            <span className={styles.metricNote}>{figure.note}</span>
+          </p>
+        ))}
+      </div>
+      <StaggerGroup className={styles.roster} aria-label="Client brands">
+        {brandRoster.map((brand) => (
+          <StaggerItem key={brand.name} className={styles.rosterLogo}>
+            <img
+              src={brand.src}
+              alt={brand.name}
+              className={
+                "emblem" in brand && brand.emblem
+                  ? styles.rosterEmblem
+                  : undefined
+              }
+            />
+          </StaggerItem>
+        ))}
+      </StaggerGroup>
+    </>
+  );
+}
+
+const abAnalyticsProject: SelectedProject = {
+  id: abTestingFocal.id,
+  number: "01",
+  title: "A/B Analytics QA",
+  category: "A/B Testing · Analytics · Brand QA",
+  summary: abTestingFocal.summary,
+  challenge:
+    "Two engagements on different systems produced very different defect counts. Neither one corrects the other — the quality work is reading the risk, not chasing a bigger number.",
+  tested: abTestingFocal.capabilities,
+  interesting:
+    "Client-facing checking on experiments, traffic, event tracking and user journeys for premium global brands.",
+};
 
 export default function SelectedWork() {
   return (
@@ -305,24 +364,29 @@ export default function SelectedWork() {
       <ScrollReveal>
         <div className={styles.grid}>
           <FeatureCard
-            project={manuscriptProject}
+            project={abAnalyticsProject}
+            visual={<AbAnalyticsVisual />}
+            tone="secondary"
+          />
+          <FeatureCard
+            project={{ ...manuscriptProject, number: "02" }}
             visual={<ManuscriptVisual />}
-            tone="secondary"
+            tone="tertiary"
           />
           <FeatureCard
-            project={travelProject}
+            project={{ ...travelProject, number: "03" }}
             visual={<TravelVisual />}
-            tone="tertiary"
-          />
-          <FeatureCard
-            project={governmentProject}
-            visual={<GovernmentVisual />}
             tone="secondary"
           />
           <FeatureCard
-            project={playwrightProject}
-            visual={<PlaywrightVisual />}
+            project={{ ...governmentProject, number: "04" }}
+            visual={<GovernmentVisual />}
             tone="tertiary"
+          />
+          <FeatureCard
+            project={{ ...playwrightProject, number: "05" }}
+            visual={<PlaywrightVisual />}
+            tone="secondary"
           />
         </div>
       </ScrollReveal>

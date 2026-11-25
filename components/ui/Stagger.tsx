@@ -4,17 +4,21 @@ import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 import { MICRO_DURATION, MOTION_EASE, STAGGER_DELAY } from "@/lib/motion";
 
+type DataAttrs = {
+  [key: `data-${string}`]: string | undefined;
+};
+
 type StaggerGroupProps = {
   children: ReactNode;
   className?: string;
   stagger?: number;
   "aria-label"?: string;
-};
+} & DataAttrs;
 
 type StaggerItemProps = {
   children: ReactNode;
   className?: string;
-};
+} & DataAttrs;
 
 const hidden = { opacity: 0, y: 12 };
 const visible = { opacity: 1, y: 0 };
@@ -25,6 +29,7 @@ export function StaggerGroup({
   className,
   stagger = STAGGER_DELAY,
   "aria-label": ariaLabel,
+  ...dataAttrs
 }: StaggerGroupProps) {
   const reduce = useReducedMotion();
 
@@ -45,13 +50,18 @@ export function StaggerGroup({
           },
         },
       }}
+      {...dataAttrs}
     >
       {children}
     </motion.div>
   );
 }
 
-export function StaggerItem({ children, className }: StaggerItemProps) {
+export function StaggerItem({
+  children,
+  className,
+  ...dataAttrs
+}: StaggerItemProps) {
   const reduce = useReducedMotion();
 
   return (
@@ -67,6 +77,7 @@ export function StaggerItem({ children, className }: StaggerItemProps) {
           },
         },
       }}
+      {...dataAttrs}
     >
       {children}
     </motion.div>

@@ -5,14 +5,22 @@ import TechTag from "@/components/ui/TechTag";
 import { StaggerGroup, StaggerItem } from "@/components/ui/Stagger";
 import styles from "./ProjectCard.module.css";
 
+export type ProjectCardStatus = "coming-soon" | "delivered" | null;
+
 export type ProjectCardProps = {
   title: string;
   description: string;
   role: string;
   technologies: string[];
   slug: string;
-  status: "live" | "coming-soon";
+  status: ProjectCardStatus;
 };
+
+function statusLabel(status: ProjectCardStatus): string | null {
+  if (status === "coming-soon") return "IN PROGRESS";
+  if (status === "delivered") return "DELIVERED";
+  return null;
+}
 
 export default function ProjectCard({
   title,
@@ -22,20 +30,16 @@ export default function ProjectCard({
   slug,
   status,
 }: ProjectCardProps) {
-  const isLive = status === "live";
+  const label = statusLabel(status);
+  const linked = status !== "coming-soon";
 
   const content = (
     <>
-      <div className={styles.status}>
-        {isLive ? (
-          <span className={`text-label ${styles.statusLive}`}>
-            <span className={styles.dot} aria-hidden="true" />
-            LIVE
-          </span>
-        ) : (
-          <span className={`text-label ${styles.statusSoon}`}>IN PROGRESS</span>
-        )}
-      </div>
+      {label ? (
+        <div className={styles.status}>
+          <span className={`text-label ${styles.statusSoon}`}>{label}</span>
+        </div>
+      ) : null}
 
       <p className={`text-label ${styles.role}`}>{role}</p>
       <h3 className={`text-h3 ${styles.title}`}>{title}</h3>
@@ -49,19 +53,19 @@ export default function ProjectCard({
         ))}
       </StaggerGroup>
 
-      {isLive ? (
+      {linked ? (
         <span className={`text-label ${styles.ctaHover}`}>
           VIEW CASE STUDY →
         </span>
       ) : (
         <span className={`text-label ${styles.ctaMuted}`}>
-          CASE STUDY COMING SOON
+          CASE STUDY IN PROGRESS
         </span>
       )}
     </>
   );
 
-  if (isLive) {
+  if (linked) {
     return (
       <Link href={`/projects/${slug}`} className={styles.card}>
         {content}
@@ -69,5 +73,7 @@ export default function ProjectCard({
     );
   }
 
-  return <article className={`${styles.card} ${styles.cardStatic}`}>{content}</article>;
+  return (
+    <article className={`${styles.card} ${styles.cardStatic}`}>{content}</article>
+  );
 }

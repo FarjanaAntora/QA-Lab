@@ -122,15 +122,56 @@ function NightFuryMark() {
   );
 }
 
+function AuroraCat() {
+  return (
+    <svg
+      className={`${styles.mark} ${styles.auroraMark}`}
+      viewBox="0 0 48 54"
+      aria-hidden="true"
+    >
+      <path
+        d="M36 28c6-2 10 6 6 13-2 4-8 6-12 5"
+        fill="none"
+        stroke="var(--color-accent-warm)"
+        strokeWidth="3.2"
+        strokeLinecap="round"
+      />
+      <ellipse cx="22" cy="36" rx="13" ry="10" fill="currentColor" />
+      <ellipse
+        cx="20"
+        cy="38"
+        rx="7"
+        ry="5.5"
+        fill="color-mix(in srgb, currentColor 72%, white)"
+      />
+      <circle cx="23" cy="20" r="10" fill="currentColor" />
+      <path d="M14.2 14.2 16.8 5.6 20.8 14.6Z" fill="currentColor" />
+      <path d="M25.4 14.6 29.6 5.4 32.2 14.4Z" fill="currentColor" />
+      <ellipse cx="19.4" cy="19.4" rx="2.1" ry="2.5" fill="var(--color-accent-warm)" />
+      <ellipse cx="26.8" cy="19.4" rx="2.1" ry="2.5" fill="var(--color-accent-warm)" />
+      <ellipse cx="19.5" cy="19.6" rx="1" ry="1.5" fill="var(--color-bg-primary)" />
+      <ellipse cx="26.9" cy="19.6" rx="1" ry="1.5" fill="var(--color-bg-primary)" />
+      <path
+        d="M22.2 22.4 24 24.2 25.8 22.4"
+        fill="var(--color-accent-warm)"
+      />
+      <ellipse cx="15.4" cy="44.8" rx="3.1" ry="2" fill="currentColor" />
+      <ellipse cx="27.2" cy="44.8" rx="3.1" ry="2" fill="currentColor" />
+    </svg>
+  );
+}
+
 function ThemedCompanion({ theme }: { theme: Theme }) {
   if (theme === "bottle-green") return <PersianCat />;
   if (theme === "light") return <NightFuryMark />;
+  if (theme === "aurora") return <AuroraCat />;
   return <OrangeCat />;
 }
 
 function kindFor(theme: Theme) {
   if (theme === "bottle-green") return "persian";
   if (theme === "light") return "toothless";
+  if (theme === "aurora") return "aurora";
   return "orange";
 }
 

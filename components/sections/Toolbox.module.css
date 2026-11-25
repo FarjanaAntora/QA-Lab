@@ -8,115 +8,63 @@
 }
 
 .subcopy {
-  margin: 0 0 48px;
+  margin: 0 0 36px;
+  max-width: 40em;
   color: var(--color-text-secondary);
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
+.tiers {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.card {
+.tier {
   padding: 24px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-bg-secondary);
-  transition:
-    border-color var(--motion-hover),
-    transform var(--motion-hover),
-    box-shadow var(--motion-hover);
 }
 
-.card:hover {
-  border-color: var(--color-accent);
-  transform: scale(1.015);
-  box-shadow: 0 0 0 1px var(--color-accent-soft);
+.tierSupporting {
+  padding: 18px 24px;
+  background: var(--color-bg-primary);
 }
 
-.category {
-  margin: 0 0 16px;
+.tierLabel {
+  margin: 0 0 6px;
   color: var(--color-accent-text);
 }
 
-.coreBlock + .supportBlock {
-  margin-top: 16px;
-}
-
-.tier {
-  margin: 0 0 8px;
+.tierNote {
+  margin: 0 0 16px;
+  font-size: 13px;
+  line-height: 1.5;
   color: var(--color-text-muted);
 }
 
-.tags,
-.supportingTags {
+.coreTags,
+.supportTags {
   display: flex;
   flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.supportTags {
   gap: 6px;
-}
-
-.supportingTags {
-  gap: 4px;
-}
-
-.supportingTags span {
-  padding: 1px 6px;
-  border-color: var(--color-border);
-  background: transparent;
-  font-size: 10px;
-  color: var(--color-text-muted);
-}
-
-.supportBand {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  margin-top: 12px;
-}
-
-.supportCard {
-  padding: 14px 16px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-}
-
-.supportCategory {
-  margin: 0 0 10px;
-  color: var(--color-text-muted);
 }
 
 .types {
   margin: 20px 0 0;
-  font-size: 13px;
-  line-height: 1.6;
+  max-width: 52em;
+  font-size: 12px;
+  line-height: 1.7;
   color: var(--color-text-muted);
 }
 
 .typesLabel {
-  display: inline-block;
-  margin-right: 10px;
+  display: inline;
+  margin-right: 8px;
   color: var(--color-text-muted);
-}
-
-@media (min-width: 640px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .supportBand {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (min-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .card:hover {
-    transform: none;
-  }
 }

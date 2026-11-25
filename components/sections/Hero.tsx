@@ -8,7 +8,10 @@ import { StaggerGroup, StaggerItem } from "@/components/ui/Stagger";
 import { MOTION_EASE } from "@/lib/motion";
 import styles from "./Hero.module.css";
 
-const headlineLines = ["I BREAK", "SOFTWARE", "FOR A LIVING."];
+const headlineLines = [
+  "I'm not here to break things.",
+  "I'm here to make sure our users don't.",
+];
 const tags = [
   "manual testing",
   "api + sql",
@@ -57,20 +60,11 @@ export default function Hero() {
               {line}
             </motion.span>
           ))}
-          <motion.span
-            className={`${styles.headlineLine} ${styles.aside}`}
-            custom={4}
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-          >
-            on purpose
-          </motion.span>
         </h1>
 
         <motion.div
           className={styles.subtext}
-          custom={5}
+          custom={3}
           variants={fadeUp}
           initial="hidden"
           animate="visible"
@@ -89,7 +83,7 @@ export default function Hero() {
         </motion.div>
 
         <motion.div
-          custom={6}
+          custom={4}
           variants={fadeUp}
           initial="hidden"
           animate="visible"

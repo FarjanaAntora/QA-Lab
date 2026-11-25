@@ -103,13 +103,49 @@ export const mhmFigures = [
   },
 ] as const;
 
+export const enterpriseErpFocal: FocalProject = {
+  id: "enterprise-erp",
+  slug: "enterprise-erp-qa",
+  label: "Focal project",
+  title: "Enterprise ERP QA",
+  positioning:
+    "Sole QA ownership across a multi-client ERP engagement. Fifteen-plus clients. One continuous platform.",
+  summary:
+    "SQA for Echologyx / Echotex across a shared ERP serving 15+ clients over about two years. Same company under different management — one continuous engagement, not two unrelated jobs. Coverage spanned API, functional, regression and integration work, with mobile checks on real devices and BrowserStack. Memorial Houston Medical sits inside this engagement as the deepest module-ownership case.",
+  role: "Sole QA / SQA Engineer",
+  metric: {
+    value: "15+",
+    note: "clients served across about two years on one ERP engagement",
+  },
+  capabilities: [
+    "Sole QA ownership across shared ERP modules for a multi-client portfolio",
+    "API, functional, regression and integration coverage on a live enterprise platform",
+    "Mobile testing on iOS and Android with real devices, DevTools and BrowserStack",
+    "Defect lifecycle in Jira with development teams; SRS and SOP documentation",
+    "Continuous engagement across Echologyx and Echotex under different management",
+  ],
+  technologies: [
+    "Manual Testing",
+    "API Testing",
+    "Selenium",
+    "Python",
+    "Postman",
+    "Mobile Testing",
+    "BrowserStack",
+    "Jira",
+    "SQL",
+  ],
+  highlight:
+    "2,000+ defects uncovered across the ERP, including its API — with Memorial Houston as the five-module ownership case inside the same engagement.",
+};
+
 export const abTestingFocal: FocalProject = {
   id: "global-ab",
   slug: null,
-  label: "Focal project",
-  title: "Global Brand A/B Testing",
+  label: "Selected work",
+  title: "A/B Analytics QA",
   positioning:
-    "A/B testing and QA for premium global brands. The full lifecycle, not just execution.",
+    "QA and analytics checking for premium global brands.",
   summary:
     "QA and analytics checking on A/B tests for premium global brands: checking experiments, traffic and web analytics, event tracking and user journeys.",
   role: "QA and analytics checking",

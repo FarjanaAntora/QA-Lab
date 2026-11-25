@@ -9,9 +9,7 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { StaggerGroup, StaggerItem } from "@/components/ui/Stagger";
 import { MOTION_EASE } from "@/lib/motion";
 import {
-  abContrasts,
-  abTestingFocal,
-  brandRoster,
+  enterpriseErpFocal,
   hppyFocal,
   hppyMetrics,
   mhmFigures,
@@ -164,24 +162,6 @@ function MhmArchitecture() {
   );
 }
 
-function BrandRoster() {
-  return (
-    <StaggerGroup className={styles.roster} aria-label="Client brands">
-      {brandRoster.map((brand) => (
-        <StaggerItem key={brand.name} className={styles.rosterLogo}>
-          <img
-            src={brand.src}
-            alt={brand.name}
-            className={
-              "emblem" in brand && brand.emblem ? styles.rosterEmblem : undefined
-            }
-          />
-        </StaggerItem>
-      ))}
-    </StaggerGroup>
-  );
-}
-
 export default function FocalProjects() {
   return (
     <div className={styles.stack}>
@@ -235,22 +215,32 @@ export default function FocalProjects() {
       </ScrollReveal>
 
       <ScrollReveal>
-        <article className={`${styles.focal} ${styles.focalRoster}`}>
+        <article className={`${styles.focal} ${styles.focalEditorial}`}>
           <div className={styles.copy}>
-            <FocalHeader project={abTestingFocal} />
-            <FigureStack
-              figures={abContrasts}
-              label="Two A/B testing outcomes"
-            />
+            <FocalHeader project={enterpriseErpFocal} />
+            {enterpriseErpFocal.metric ? (
+              <p className={styles.metric}>
+                <span className={`text-h2 ${styles.metricValue}`}>
+                  {enterpriseErpFocal.metric.value}
+                </span>
+                <span className={styles.metricNote}>
+                  {enterpriseErpFocal.metric.note}
+                </span>
+              </p>
+            ) : null}
             <ul className={styles.capabilities}>
-              {abTestingFocal.capabilities.map((item) => (
+              {enterpriseErpFocal.capabilities.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
-            <FocalTags project={abTestingFocal} />
-            <FocalCta project={abTestingFocal} />
+            <FocalTags project={enterpriseErpFocal} />
+            {enterpriseErpFocal.highlight ? (
+              <blockquote className={styles.highlight}>
+                {enterpriseErpFocal.highlight}
+              </blockquote>
+            ) : null}
+            <FocalCta project={enterpriseErpFocal} />
           </div>
-          <BrandRoster />
         </article>
       </ScrollReveal>
 

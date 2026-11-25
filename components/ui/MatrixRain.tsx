@@ -78,12 +78,14 @@ export default function MatrixRain({
       const height = canvas.clientHeight;
       paintBackground();
 
-      context.fillStyle = token("--color-accent-text", token("--color-accent", "#6a8f9c"));
+      const matrixFrom = token("--color-matrix-from", "#6a8f9c");
+      const matrixTo = token("--color-matrix-to", "#3d9b6e");
       context.font = `${fontSize}px monospace`;
       context.globalAlpha = 0.32;
 
       for (let i = 0; i < columnCount; i += 1) {
         if (i % 3 === 0) continue;
+        context.fillStyle = i % 2 === 0 ? matrixFrom : matrixTo;
         const glyphs = 5 + (i % 4);
         for (let j = 0; j < glyphs; j += 1) {
           const char = CHARSET[Math.floor(Math.random() * CHARSET.length)] ?? "0";
@@ -99,14 +101,14 @@ export default function MatrixRain({
       const width = canvas.clientWidth;
       const height = canvas.clientHeight;
       const fadeFill = token(backgroundToken, "#0c0f14");
-      const glyphFill = token("--color-accent-text", token("--color-accent", "#6a8f9c"));
+      const matrixFrom = token("--color-matrix-from", "#6a8f9c");
+      const matrixTo = token("--color-matrix-to", "#3d9b6e");
 
       context.fillStyle = fadeFill;
       context.globalAlpha = 0.038;
       context.fillRect(0, 0, width, height);
       context.globalAlpha = 0.72;
 
-      context.fillStyle = glyphFill;
       context.font = `${fontSize}px monospace`;
 
       for (let i = 0; i < columnCount; i += 1) {
@@ -114,6 +116,7 @@ export default function MatrixRain({
         const x = i * columnWidth;
         const y = drops[i]! * fontSize;
 
+        context.fillStyle = i % 2 === 0 ? matrixFrom : matrixTo;
         context.fillText(char, x, y);
 
         if (y > height && Math.random() > 0.968) {

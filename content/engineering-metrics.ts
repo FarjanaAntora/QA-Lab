@@ -5,70 +5,66 @@ export type LighthouseScores = {
   accessibility: number;
   bestPractices: number;
   seo: number;
+  fcpMs?: number | null;
 };
 
 export type EngineeringMetrics = {
-  updatedAt: string | null;
-  playwrightPassed: number | null;
-  axeViolations: number | null;
-  lighthouse: LighthouseScores | null;
-};
-
-export type EngineeringCard = {
-  label: string;
-  value: string;
-  note: string;
-  live?: boolean;
+  measuredAt: string | null;
+  updatedAt?: string | null;
+  playwright: {
+    listed: number | null;
+    ciRunnable: number | null;
+    productionSkippedWithoutProdUrl: number;
+    note: string;
+  } | null;
+  ci: {
+    workflow: string;
+    triggers: string[];
+    steps: string[];
+    repoUrl: string;
+    actionsUrl: string;
+    latestWorkflowRun: {
+      id: number;
+      url: string;
+      status: string;
+      conclusion: string | null;
+      branch: string;
+      createdAt: string;
+    } | null;
+  } | null;
+  axe: {
+    pages: string[];
+    themes: string[];
+    scanCount: number;
+    totalViolations: number;
+    maxViolations: number;
+    statement: string;
+  } | null;
+  lighthouse: {
+    pages: string[];
+    formFactors: string[];
+    summary: LighthouseScores;
+  } | null;
+  // legacy
+  playwrightPassed?: number | null;
+  axeViolations?: number | null;
 };
 
 export const engineeringMetrics = raw as EngineeringMetrics;
 
-/** Stack facts — not measured scores. */
-const stackCards: EngineeringCard[] = [
-  {
-    label: "FRAMEWORKS",
-    value: "Next.js 16",
-    note: "App Router | TypeScript | Tailwind",
-  },
-  {
-    label: "DEPLOYMENT",
-    value: "Vercel",
-    note: "CI/CD via GitHub Actions",
-  },
-];
+export function formatMeasuredDate(iso: string | null | undefined): string {
+  if (!iso) return "not yet measured";
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return iso;
+  return date.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+}
 
-export function getEngineeringCards(
-  metrics: EngineeringMetrics = engineeringMetrics,
-): EngineeringCard[] {
-  const cards: EngineeringCard[] = [];
-
-  if (typeof metrics.playwrightPassed === "number") {
-    cards.push({
-      label: "PLAYWRIGHT TESTS",
-      value: String(metrics.playwrightPassed),
-      note: "passed checks from the latest CI JSON report",
-      live: true,
-    });
-  }
-
-  if (metrics.lighthouse) {
-    const { performance, accessibility, seo } = metrics.lighthouse;
-    cards.push({
-      label: "LIGHTHOUSE SCORE",
-      value: `${performance} · ${accessibility} · ${seo}`,
-      note: "performance · accessibility · SEO (Lighthouse CI)",
-    });
-  }
-
-  cards.push(...stackCards);
-
-  if (typeof metrics.axeViolations === "number") {
-    cards.push({
-      label: "ACCESSIBILITY",
-      value: String(metrics.axeViolations),
-      note: "axe-core violations on the home page",
-    });
-  }
-
-  return cards;
+export function formatFcp(ms: number | null | undefined): string | null {
+  if (typeof ms !== "number" || !Number.isFinite(ms)) return null;
+  if (ms < 1000) return `${Math.round(ms)} ms FCP`;
+  return `${(ms / 1000).toFixed(1)} s FCP`;
 }

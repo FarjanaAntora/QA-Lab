@@ -2,11 +2,7 @@ import type { Metadata } from "next";
 import Nav from "@/components/layout/Nav";
 import ThemeProvider from "@/components/theme/ThemeProvider";
 import FriendsWalk from "@/components/ui/FriendsWalk";
-import {
-  OG_IMAGE_PATH,
-  SITE_URL,
-  absoluteUrl,
-} from "@/lib/site";
+import { SITE_URL, absoluteUrl } from "@/lib/site";
 import { THEME_BOOT_SCRIPT } from "@/lib/theme";
 import "./globals.css";
 
@@ -28,20 +24,11 @@ export const metadata: Metadata = {
     siteName: "THE QA LAB",
     title: homeTitle,
     description: homeDescription,
-    images: [
-      {
-        url: OG_IMAGE_PATH,
-        width: 1200,
-        height: 630,
-        alt: "Aktia Farjana Antora — Lead SQA Engineer | THE QA LAB",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: homeTitle,
     description: homeDescription,
-    images: [OG_IMAGE_PATH],
   },
 };
 

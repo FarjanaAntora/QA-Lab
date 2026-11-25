@@ -47,7 +47,7 @@ def build() -> Path:
         "Senior QA Automation Engineer | AI Quality Engineering"
     )
     pdf.muted_line(
-        "farjana1319ontu@gmail.com | +880 1686057143 | Dhaka, Bangladesh"
+        "farjana1319ontu@gmail.com | Dhaka, Bangladesh"
     )
     pdf.muted_line(
         "linkedin.com/in/aktia-farjana-antora | github.com/FarjanaAntora"

@@ -19,6 +19,14 @@ export default function CvDocument() {
         </p>
         <p className={styles.contact}>
           <a
+            href={cvData.linkedinHref}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {cvData.linkedin}
+          </a>
+          <span aria-hidden="true"> · </span>
+          <a
             href={cvData.githubHref}
             target="_blank"
             rel="noopener noreferrer"
@@ -71,6 +79,15 @@ export default function CvDocument() {
       </section>
 
       <section className={styles.block}>
+        <h2 className={styles.sectionLabel}>Key Achievements</h2>
+        <ul className={styles.bullets}>
+          {cvData.achievements.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section className={styles.block}>
         <h2 className={styles.sectionLabel}>Technical Skills</h2>
         <dl className={styles.skills}>
           {cvData.skills.map((skill) => (
@@ -82,7 +99,7 @@ export default function CvDocument() {
         </dl>
       </section>
 
-      <section className={`${styles.block} ${styles.blockLast}`}>
+      <section className={styles.block}>
         <h2 className={styles.sectionLabel}>Education</h2>
         <p className={styles.eduDegree}>
           {cvData.education.degree}
@@ -91,6 +108,11 @@ export default function CvDocument() {
         <p className={styles.eduMeta}>
           {cvData.education.university} · {cvData.education.year}
         </p>
+      </section>
+
+      <section className={`${styles.block} ${styles.blockLast}`}>
+        <h2 className={styles.sectionLabel}>References</h2>
+        <p className={styles.referencesNote}>{cvData.referencesNote}</p>
       </section>
     </article>
   );

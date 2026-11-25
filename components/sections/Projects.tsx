@@ -18,8 +18,8 @@ export default function Projects() {
           <blockquote className={styles.framing}>
             <p>
               Different systems. Different risks. Different outcomes. I have
-              found 160+ defects in one A/B test, 457+ in a single ERP module,
-              and only 2 in a 120-hour project.
+              found 160+ defects in one A/B test, 150–700 in a single ERP
+              module, and only 2 in a 120-hour project.
             </p>
             <p>
               The counts are not in conflict. They are the context. The work
